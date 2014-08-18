@@ -83,7 +83,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     rpcConsole(0)
 {
 
-    resize(700, 500);
+    resize(850, 500);
     setWindowTitle(tr("Netcoin") + " - " + tr("Wallet"));
 
 #ifndef Q_OS_MAC
@@ -122,7 +122,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
 
     shoppingPage = new ShoppingPage();
 
-    networkPage = new NetworkPage(NetworkPage::ForEditing, NetworkPage::SendingTab);
+    networkPage = new NetworkPage();
 
     receiveCoinsPage = new AddressBookPage(AddressBookPage::ForEditing, AddressBookPage::ReceivingTab);
 
