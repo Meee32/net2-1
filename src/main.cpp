@@ -694,7 +694,7 @@ bool CTxMemPool::accept(CTxDB& txdb, CTransaction &tx, bool fCheckInputs,
         // Don't accept it if it can't get into a block
         int64_t txMinFee = tx.GetMinFee(1000, GMF_RELAY, nSize, true);
         if (nFees < txMinFee)
-            return error("CTxMemPool::accept() : not enough fees %s, %"PRId64" < %"PRId64,
+            return error("CTxMemPool::accept() : not enough fees %s, %"PRI64d" < %"PRI64d,
                          hash.ToString().c_str(),
                          nFees, txMinFee);
 
@@ -1064,8 +1064,13 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees, uint256 prevHash)
 	}
 
 	// Subsidy is cut in half every 129,600 blocks, which will occur approximately every 3 months
-	nSubsidy >>= (nHeight / 129600); 
+    nSubsidy >>= (nHeight / 129600);
 
+   if (nHeight >= BLOCK_HEIGHT_DIGISHIELD_FIX_START)
+    {
+        nSubsidy += nSubsidy / 4;  //25% boost to all POW miners to encourage new wallet adoption
+        nSubsidy *= 1;             //adjust for POW blocks target changing from 1 to 2 minutes when POW/POS goes live
+    }
    if (nHeight >= BLOCK_HEIGHT_POS_AND_DIGISHIELD_START)
     {
         nSubsidy += nSubsidy / 4;  //25% boost to all POW miners to encourage new wallet adoption
@@ -1088,10 +1093,14 @@ int GetPIRRewardPhase(int64_t nHeight)
 
 int64_t GetPIRRewardCoinYear(int64_t nCoinValue, int64_t nHeight)
 {
+    // work out which phase rates we should use, based on the block height
+    int nPhase = GetPIRRewardPhase(nHeight);
+
     // find the % band that contains the staked value
+    if (nCoinValue >= PIR_THRESHOLDS[PIR_LEVELS-1] * COIN)
+        return PIR_RATES[nPhase][PIR_LEVELS-1]  * CENT;
 
     int nLevel = 0;
-
     for (int i = 1; i<PIR_LEVELS; i++)
     {
         if (nCoinValue < PIR_THRESHOLDS[i] * COIN)
@@ -1106,8 +1115,6 @@ int64_t GetPIRRewardCoinYear(int64_t nCoinValue, int64_t nHeight)
     // a simple way to interpolate this using integer math is to break the range into 100 slices and find the slice where our coin value lies
     // Rates and Thresholds are integers, CENT and COIN are multiples of 100, so using 100 slices does not introduce any integer math rounding errors
 
-    // work out which phase rates we should use, based on the block height
-    int nPhase = GetPIRRewardPhase(nHeight);
 
     int64_t nLevelRatePerSlice = (( PIR_RATES[nPhase][nLevel+1] - PIR_RATES[nPhase][nLevel] ) * CENT )  / 100;
     int64_t nLevelValuePerSlice = (( PIR_THRESHOLDS[nLevel+1] - PIR_THRESHOLDS[nLevel] ) * COIN ) / 100;
@@ -1122,6 +1129,7 @@ int64_t GetPIRRewardCoinYear(int64_t nCoinValue, int64_t nHeight)
     };
 
     return nRewardCoinYear;
+
 }
 
 
@@ -1134,7 +1142,7 @@ int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nCoinValue,  int64_t nFe
     int64_t nSubsidy = nCoinAge * nRewardCoinYear * 33 / (365 * 33 + 8); //integer equivalent of nCoinAge * nRewardCoinYear / 365.2424242..
 
     if (fDebug && GetBoolArg("-printcreation"))
-        printf("GetProofOfStakeReward(): PIR=%.1f create=%s nCoinAge=%"PRId64" nCoinValue=%s nFees=%"PRId64"\n", (double)nRewardCoinYear/(double)CENT, FormatMoney(nSubsidy).c_str(), nCoinAge, FormatMoney(nCoinValue).c_str(), nFees);
+        printf("GetProofOfStakeReward(): PIR=%.1f create=%s nCoinAge=%"PRI64d" nCoinValue=%s nFees=%"PRI64d"\n", (double)nRewardCoinYear/(double)CENT, FormatMoney(nSubsidy).c_str(), nCoinAge, FormatMoney(nCoinValue).c_str(), nFees);
 
     return nSubsidy + nFees;
 }
@@ -1382,7 +1390,7 @@ unsigned int GetNextTrust_DigiShield(const CBlockIndex* pindexLast, bool fProofO
     // debug print
     if (fDebug && GetBoolArg("-printdigishield")) {
         printf("GetNextWorkRequired RETARGET\n");
-        printf("nTargetTimespan = %"PRId64" nActualTimespan = %"PRId64"\n", retargetTimespan, nActualTimespan);
+        printf("nTargetTimespan = %"PRI64d" nActualTimespan = %"PRI64d"\n", retargetTimespan, nActualTimespan);
         printf("Before: %08x %s\n", pindexLast->nBits, CBigNum().SetCompact(pindexLast->nBits).getuint256().ToString().c_str());
         printf("After: %08x %s\n", bnNew.GetCompact(), bnNew.getuint256().ToString().c_str());
     };
@@ -1390,10 +1398,74 @@ unsigned int GetNextTrust_DigiShield(const CBlockIndex* pindexLast, bool fProofO
     return bnNew.GetCompact();
 }
 
+//NEW DIGISHIELD START
+static const int64_t nTargetTimespanRe = 1*60; // 60 Seconds
+static const int64_t nTargetSpacingRe = 1*60; // 60 seconds
+static const int64_t nIntervalRe = nTargetTimespanRe / nTargetSpacingRe; // 1 block
+
+static const int64_t nMaxAdjustDown = 40; // 40% adjustment down
+static const int64_t nMaxAdjustUp = 20; // 20% adjustment up
+
+static const int64_t nMinActualTimespan = nTargetTimespanRe * (100 - nMaxAdjustUp) / 100;
+static const int64_t nMaxActualTimespan = nTargetTimespanRe * (100 + nMaxAdjustDown) / 100;
+
+
+static unsigned int GetNextWorkRequiredV2(const CBlockIndex* pindexLast, bool fProofOfStake)
+{
+    //unsigned int nProofOfWorkLimit = Params().ProofOfWorkLimit().GetCompact();
+
+    // find the previous 2 blocks of the requested type (either POS or POW)
+    const CBlockIndex* pindexPrev = GetLastBlockIndex(pindexLast, fProofOfStake);
+
+    // netcoin POW and POS blocks each separately retarget to 2 minutes, giving 1 minute overall average block target time.
+    int64_t retargetTimespan = nTargetSpacing;
+
+    // Genesis block,  or first POS block not yet mined
+    if (pindexPrev == NULL) return bnProofOfWorkLimit.getuint();
+
+    // is there another block of the correct type prior to pindexPrev?
+    const CBlockIndex* pindexPrevPrev = GetLastBlockIndex(pindexPrev->pprev, fProofOfStake);
+
+    if (pindexPrevPrev == NULL)
+        pindexPrevPrev = pindexPrev ;
+
+       // Limit adjustment step
+       int64_t nActualTimespan = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
+
+       printf(" nActualTimespan = %d before bounds\n", nActualTimespan);
+       if (nActualTimespan < nMinActualTimespan)
+       nActualTimespan = nMinActualTimespan;
+       if (nActualTimespan > nMaxActualTimespan)
+       nActualTimespan = nMaxActualTimespan;
+
+    CBigNum bnNew;
+    bnNew.SetCompact(pindexLast->nBits);
+    bnNew *= nActualTimespan;
+    bnNew /= retargetTimespan;
+
+    if (bnNew > bnProofOfWorkLimit)
+        bnNew = bnProofOfWorkLimit;
+
+    // debug print
+    if (fDebug && GetBoolArg("-printdigishield")) {
+        printf("GetNextWorkRequired RETARGET\n");
+        printf("nTargetTimespan = %"PRI64d" nActualTimespan = %"PRI64d"\n", retargetTimespan, nActualTimespan);
+        printf("Before: %08x %s\n", pindexLast->nBits, CBigNum().SetCompact(pindexLast->nBits).getuint256().ToString().c_str());
+        printf("After: %08x %s\n", bnNew.GetCompact(), bnNew.getuint256().ToString().c_str());
+    };
+
+    return bnNew.GetCompact();
+    //END OLD DIGI
+}
+
 // POW blocks tried various algorithms starting at different block height
 unsigned int GetNextProofOfWork(const CBlockIndex* pindexLast, const CBlock* pblock)
 {
     const CBlockIndex* pindexLastPOW = GetLastBlockIndex(pindexLast, false);
+
+    // most recent (highest block height DIGISHIELD FIX)
+    if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_DIGISHIELD_FIX_START_TESTNET : BLOCK_HEIGHT_DIGISHIELD_FIX_START))
+        return GetNextWorkRequiredV2(pindexLastPOW, false);
 
     // most recent (highest block height)
     if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_POS_AND_DIGISHIELD_START_TESTNET : BLOCK_HEIGHT_POS_AND_DIGISHIELD_START))
@@ -1409,7 +1481,6 @@ unsigned int GetNextProofOfWork(const CBlockIndex* pindexLast, const CBlock* pbl
 // GET NEXT WORK REQUIRED - MAIN FUNCTION ROUTER FOR DIFFERENT AGE AND TYPE OF BLOCKS
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlock* pblock, bool fProofOfStake)
 {
-
     if(fProofOfStake)
         return GetNextTrust_DigiShield(pindexLast, true); // first proof of stake blocks use digishield
     else
@@ -1466,11 +1537,11 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
     uint256 nBestInvalidBlockTrust = pindexNew->nChainTrust - pindexNew->pprev->nChainTrust;
     uint256 nBestBlockTrust = pindexBest->nHeight != 0 ? (pindexBest->nChainTrust - pindexBest->pprev->nChainTrust) : pindexBest->nChainTrust;
 
-    printf("InvalidChainFound: invalid block=%s  height=%d  trust=%s  blocktrust=%"PRIu64"  date=%s\n",
+    printf("InvalidChainFound: invalid block=%s  height=%d  trust=%s  blocktrust=%"PRI64u"  date=%s\n",
       pindexNew->GetBlockHash().ToString().substr(0,20).c_str(), pindexNew->nHeight,
       CBigNum(pindexNew->nChainTrust).ToString().c_str(), nBestInvalidBlockTrust.Get64(),
       DateTimeStrFormat("%x %H:%M:%S", pindexNew->GetBlockTime()).c_str());
-    printf("InvalidChainFound:  current best=%s  height=%d  trust=%s  blocktrust=%"PRIu64"  date=%s\n",
+    printf("InvalidChainFound:  current best=%s  height=%d  trust=%s  blocktrust=%"PRI64u"  date=%s\n",
       hashBestChain.ToString().substr(0,20).c_str(), nBestHeight,
       CBigNum(pindexBest->nChainTrust).ToString().c_str(),
       nBestBlockTrust.Get64(),
@@ -1908,7 +1979,7 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
         int64_t nReward = GetProofOfWorkReward(pindex->nHeight, nFees, prevHash);
         // Check coinbase reward
         if (vtx[0].GetValueOut() > nReward)
-            return DoS(50, error("ConnectBlock() : coinbase reward exceeded (actual=%"PRId64" vs calculated=%"PRId64")",
+            return DoS(50, error("ConnectBlock() : coinbase reward exceeded (actual=%"PRI64d" vs calculated=%"PRI64d")",
                    vtx[0].GetValueOut(),
                    nReward));
     }
@@ -1923,7 +1994,7 @@ bool CBlock::ConnectBlock(CTxDB& txdb, CBlockIndex* pindex, bool fJustCheck)
         int64_t nCalculatedStakeReward = GetProofOfStakeReward(nCoinAge, nCoinValue, nFees, pindex->nHeight);
 
         if (nStakeReward > nCalculatedStakeReward)
-            return DoS(100, error("ConnectBlock() : coinstake pays too much(actual=%"PRId64" vs calculated=%"PRId64")", nStakeReward, nCalculatedStakeReward));
+            return DoS(100, error("ConnectBlock() : coinstake pays too much(actual=%"PRI64d" vs calculated=%"PRI64d")", nStakeReward, nCalculatedStakeReward));
     }
 
     // ppcoin: track money supply and mint amount info
@@ -2167,7 +2238,7 @@ bool CBlock::SetBestChain(CTxDB& txdb, CBlockIndex* pindexNew)
 
     uint256 nBestBlockTrust = pindexBest->nHeight != 0 ? (pindexBest->nChainTrust - pindexBest->pprev->nChainTrust) : pindexBest->nChainTrust;
 
-    printf("SetBestChain: new best=%s  height=%d  trust=%s  blocktrust=%"PRId64"  date=%s\n",
+    printf("SetBestChain: new best=%s  height=%d  trust=%s  blocktrust=%"PRI64d"  date=%s\n",
       hashBestChain.ToString().substr(0,20).c_str(), nBestHeight,
       CBigNum(nBestChainTrust).ToString().c_str(),
       nBestBlockTrust.Get64(),
@@ -2286,7 +2357,7 @@ printf("GetCoinAge::%s\n", ToString().c_str());
            bnCentSecond += CBigNum(nValueIn) * (nTxTime-nPrevTime) / CENT;
 
         if (fDebug && GetBoolArg("-printcoinage"))
-            printf("coin age nValueIn=%"PRId64" nTimeDiff=%d bnCentSecond=%s\n", nValueIn, nTxTime - nPrevTime, bnCentSecond.ToString().c_str());
+            printf("coin age nValueIn=%"PRI64d" nTimeDiff=%d bnCentSecond=%s\n", nValueIn, nTxTime - nPrevTime, bnCentSecond.ToString().c_str());
     }
 
     CBigNum bnCoinDay = bnCentSecond * CENT / COIN / (24 * 60 * 60);
@@ -2315,7 +2386,7 @@ bool CBlock::GetCoinAge(uint64_t& nCoinAge) const
     if (nCoinAge == 0) // block coin age minimum 1 coin-day
         nCoinAge = 1;
     if (fDebug && GetBoolArg("-printcoinage"))
-        printf("block coin age total nCoinDays=%"PRId64"\n", nCoinAge);
+        printf("block coin age total nCoinDays=%"PRI64d"\n", nCoinAge);
     return true;
 }
 
@@ -2356,7 +2427,7 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos, const u
     pindexNew->SetStakeModifier(nStakeModifier, fGeneratedStakeModifier);
     pindexNew->nStakeModifierChecksum = GetStakeModifierChecksum(pindexNew);
     if (!CheckStakeModifierCheckpoints(pindexNew->nHeight, pindexNew->nStakeModifierChecksum))
-        return error("AddToBlockIndex() : Rejected by stake modifier checkpoint height=%d, modifier=0x%016"PRIx64, pindexNew->nHeight, nStakeModifier);
+        return error("AddToBlockIndex() : Rejected by stake modifier checkpoint height=%d, modifier=0x%016"PRI64x, pindexNew->nHeight, nStakeModifier);
 
     // Add to mapBlockIndex
     map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.insert(make_pair(hash, pindexNew)).first;
@@ -3094,7 +3165,7 @@ bool LoadExternalBlockFile(FILE* fileIn)
                    __PRETTY_FUNCTION__);
         }
     }
-    printf("Loaded %i blocks from external file in %"PRId64"ms\n", nLoaded, GetTimeMillis() - nStart);
+    printf("Loaded %i blocks from external file in %"PRI64d"ms\n", nLoaded, GetTimeMillis() - nStart);
     return nLoaded > 0;
 }
 
@@ -3198,6 +3269,20 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 // a large 4-byte int at any alignment.
 unsigned char pchMessageStart[4] = { 0xfd, 0xb6, 0xa5, 0xdb }; 
 
+bool IsValidPeerVersion(int nVersion, string strSubVer)
+{
+    if (nVersion < MIN_PROTO_VERSION)
+    {
+        // Since February 20, 2012, the protocol is initiated at version 209,
+        // and earlier versions are no longer supported
+        return false;
+    }
+
+    if (strSubVer.find("Netcoin Stake:2") != std::string::npos) return true;
+
+    return false;
+
+}
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 {
@@ -3302,6 +3387,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         // Ask the first connected node for block updates
         static int nAskedForBlocks = 0;
         if (!pfrom->fClient && !pfrom->fOneShot &&
+            IsValidPeerVersion(pfrom->nVersion, pfrom->strSubVer) &&
             (pfrom->nStartingHeight > (nBestHeight - 144)) &&
             (pfrom->nVersion < NOBLKS_VERSION_START ||
              pfrom->nVersion >= NOBLKS_VERSION_END) &&
@@ -3329,7 +3415,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 
         printf("receive version message: version %d, blocks=%d, us=%s, them=%s, peer=%s\n", pfrom->nVersion, pfrom->nStartingHeight, addrMe.ToString().c_str(), addrFrom.ToString().c_str(), pfrom->addr.ToString().c_str());
 
-        cPeerBlockCounts.input(pfrom->nStartingHeight);
+        if (IsValidPeerVersion(pfrom->nVersion, pfrom->strSubVer)) cPeerBlockCounts.input(pfrom->nStartingHeight);
 
         // ppcoin: ask for pending sync-checkpoint if any
         if (!IsInitialBlockDownload())

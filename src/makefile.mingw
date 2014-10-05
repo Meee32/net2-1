@@ -2,25 +2,25 @@
 # Distributed under the MIT/X11 software license, see the accompanying
 # file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
-USE_UPNP:=1
+USE_UPNP:=0
+USE_IPV6:=1
 
- INCLUDEPATHS= \
- -L"C:\deps\boost_1_55_0" \
- -L"C:\deps" \
- -L"C:\deps\db-4.8.30.NC\build_unix" \
- -L"C:\deps\openssl-1.0.1h\include\openssl"
+INCLUDEPATHS= \
+ -I"C:\deps\boost_1_55_0" \
+ -I"C:\deps\db-4.8.30.NC\build_unix" \
+ -I"C:\deps\openssl-1.0.1i\include"
  
 LIBPATHS= \
  -L"C:\deps\boost_1_55_0\stage\lib" \
- -L"C:\deps\miniupnpc" \
  -L"C:\deps\db-4.8.30.NC\build_unix" \
- -L"C:\deps\openssl-1.0.1h"
+ -L"C:\deps\openssl-1.0.1i"
 
 LIBS= \
- -l boost_system-mgw46-mt-1_55_0 \
- -l boost_filesystem-mgw46-mt-1_55_0 \
- -l boost_program_options-mgw46-mt-1_55_0 \
- -l boost_thread-mgw46-mt-1_55_0 \
+ -l boost_system-mgw49-mt-s-1_55 \
+ -l boost_filesystem-mgw49-mt-s-1_55 \
+ -l boost_program_options-mgw49-mt-s-1_55 \
+ -l boost_thread-mgw49-mt-s-1_55 \
+ -l boost_chrono-mgw49-mt-s-1_55 \
  -l db_cxx \
  -l ssl \
  -l crypto
@@ -28,7 +28,7 @@ LIBS= \
 DEFS=-DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -DBOOST_SPIRIT_THREADSAFE -DUSE_IPV6 -D__NO_SYSTEM_INCLUDES
 #DEBUGFLAGS=-g
 CFLAGS=-mthreads -O2 -w -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter $(DEBUGFLAGS) $(DEFS) $(INCLUDEPATHS)
-LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat -Wl,--large-address-aware -static
+LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat
 
 TESTDEFS = -DTEST_DATA_DIR=$(abspath test/data)
 
@@ -45,11 +45,14 @@ LIBS += -l kernel32 -l user32 -l gdi32 -l comdlg32 -l winspool -l winmm -l shell
 HEADERS = $(wildcard *.h)
 
 OBJS= \
+    obj/kernel.o \
+    obj/alert.o \
     obj/version.o \
     obj/checkpoints.o \
     obj/netbase.o \
     obj/addrman.o \
     obj/crypter.o \
+    obj/miner.o \
     obj/key.o \
     obj/db.o \
     obj/init.o \
@@ -59,12 +62,16 @@ OBJS= \
     obj/net.o \
     obj/protocol.o \
     obj/bitcoinrpc.o \
+    obj/rpcblockchain.o \
+    obj/rpcmining.o \
     obj/rpcdump.o \
     obj/rpcnet.o \
     obj/rpcrawtransaction.o \
+    obj/rpcwallet.o \
     obj/script.o \
     obj/scrypt.o \
     obj/sync.o \
+    obj/txdb.o \
     obj/util.o \
     obj/wallet.o \
     obj/walletdb.o \

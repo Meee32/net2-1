@@ -51,9 +51,9 @@ static const int64_t MAX_MONEY = 325000000 * COIN; // NetCoin: maximum of 325M c
 // Netcoin PIR personal staking interest rate is organised into percentage reward bands based on the value of the coins being staked
 // madprofezzor@gmail.com
 
-static const int PIR_LEVELS = 7; // number of thresholds
+static const int PIR_LEVELS = 6; // number of entries in PIR_THRESHOLDS
 static const int PIR_PHASES = 3;
-static const int64_t PIR_PHASEBLOCKS = 365 * 24 * 60 * 60; // one year for each phase
+static const int64_t PIR_PHASEBLOCKS = 365 * 24 * 60; // one year for each phase
 
 static const int64_t PIR_THRESHOLDS[PIR_LEVELS] = {
     0,
@@ -61,14 +61,13 @@ static const int64_t PIR_THRESHOLDS[PIR_LEVELS] = {
     10000,
     100000,
     1000000,
-    10000000,
-    9223372036854775807
-}; // unit is netcoins.  Must start with 0 and finish with INT64T_MAX
+    10000000
+}; // unit is netcoins.  Must start with 0
 
 static const int64_t PIR_RATES[PIR_PHASES][PIR_LEVELS] = {
-        {10,15,20,30,80,100,100},   // Year 1
-        {20,25,30,35,40,45 ,45 },   // Year 2
-        {20,22,24,26,28,30 ,30 }    // Year 3+
+        {10,15,20,30,80,100},   // Year 1
+        {20,25,30,35,40,45 },   // Year 2
+        {20,22,24,26,28,30 }    // Year 3+
 };
 
 
@@ -90,12 +89,14 @@ static const int fHaveUPnP = false;
 static const uint256 hashGenesisBlock("0x38624e3834cfdc4410a5acbc32f750171aadad9620e6ba6d5c73201c16f7c8d1");
 
 static const int BLOCK_HEIGHT_KGW_START = 218500; // HISTORICAL HARD FORK. DO NOT CHANGE
-static const int BLOCK_HEIGHT_POS_AND_DIGISHIELD_START = 420000; //
+static const int BLOCK_HEIGHT_POS_AND_DIGISHIELD_START = 420000; //POS + DIGISHIELD HISTORICAL FORK
+static const int BLOCK_HEIGHT_DIGISHIELD_FIX_START = 436000; //DIGISHIELD FIX FORK
 static const int BLOCK_HEIGHT_FINALPOW =  1296000; // this is where the proof of work reward drops to 1 coin. Approx 2.5 years after genesis block
 
 
 static const int BLOCK_HEIGHT_KGW_START_TESTNET = 5;
 static const int BLOCK_HEIGHT_POS_AND_DIGISHIELD_START_TESTNET =10;
+static const int BLOCK_HEIGHT_DIGISHIELD_FIX_START_TESTNET =20;
 static const int BLOCK_HEIGHT_FINALPOW_TESTNET =  10000;
 
 static const uint256 hashGenesisBlockTestNet("0x4a1ed64aed30d471b268b7a3ba634d4c63955700db462093a20e3f1f9db6a13f"); //("0x63141eded213b050e2aca8e6beb2070fa37c3520f1c492fd5a82a03c337e90f3");
@@ -150,6 +151,7 @@ static const uint64_t nMinDiskSpace = 52428800;
 class CReserveKey;
 class CTxDB;
 class CTxIndex;
+
 
 void RegisterWallet(CWallet* pwalletIn);
 void UnregisterWallet(CWallet* pwalletIn);
@@ -1153,7 +1155,7 @@ public:
 
     void print() const
     {
-        printf("CBlock(hash=%s, PoW=%s, ver=%d, hashPrevBlock=%s, hashMerkleRoot=%s, nTime=%u, nBits=%08x, nNonce=%u, vtx=%"PRIu64", vchBlockSig=%s)\n",
+        printf("CBlock(hash=%s, PoW=%s, ver=%d, hashPrevBlock=%s, hashMerkleRoot=%s, nTime=%u, nBits=%08x, nNonce=%u, vtx=%"PRI64u", vchBlockSig=%s)\n",
             GetHash().ToString().substr(0,20).c_str(),
             GetPoWHash().ToString().substr(0,20).c_str(),
             nVersion,
@@ -1417,7 +1419,7 @@ public:
 
     std::string ToString() const
     {
-        return strprintf("CBlockIndex(nprev=%p, pnext=%p, nFile=%u, nBlockPos=%-6d nHeight=%d, nMint=%s, nMoneySupply=%s, nFlags=(%s)(%d)(%s), nStakeModifier=%"PRIx64", nStakeModifierChecksum=%08x, hashProof=%s, prevoutStake=(%s), nStakeTime=%d merkle=%s, hashBlock=%s)",
+        return strprintf("CBlockIndex(nprev=%p, pnext=%p, nFile=%u, nBlockPos=%-6d nHeight=%d, nMint=%s, nMoneySupply=%s, nFlags=(%s)(%d)(%s), nStakeModifier=%"PRI64x", nStakeModifierChecksum=%08x, hashProof=%s, prevoutStake=(%s), nStakeTime=%d merkle=%s, hashBlock=%s)",
             pprev, pnext, nFile, nBlockPos, nHeight,
             FormatMoney(nMint).c_str(), FormatMoney(nMoneySupply).c_str(),
             GeneratedStakeModifier() ? "MOD" : "-", GetStakeEntropyBit(), IsProofOfStake()? "PoS" : "PoW",
