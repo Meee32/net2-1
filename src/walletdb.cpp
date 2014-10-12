@@ -9,6 +9,8 @@
 #include <boost/version.hpp>
 #include <boost/filesystem.hpp>
 
+#include <QTimer>
+
 using namespace std;
 using namespace boost;
 

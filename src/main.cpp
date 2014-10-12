@@ -1069,7 +1069,6 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees, uint256 prevHash)
    if (nHeight >= BLOCK_HEIGHT_DIGISHIELD_FIX_START)
     {
         nSubsidy += nSubsidy / 4;  //25% boost to all POW miners to encourage new wallet adoption
-        nSubsidy *= 1;             //adjust for POW blocks target changing from 1 to 2 minutes when POW/POS goes live
     }
    if (nHeight >= BLOCK_HEIGHT_POS_AND_DIGISHIELD_START)
     {
@@ -1468,13 +1467,13 @@ unsigned int GetNextProofOfWork(const CBlockIndex* pindexLast, const CBlock* pbl
         return GetNextWorkRequiredV2(pindexLastPOW, false);
 
     // most recent (highest block height)
-    if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_POS_AND_DIGISHIELD_START_TESTNET : BLOCK_HEIGHT_POS_AND_DIGISHIELD_START))
+    else if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_POS_AND_DIGISHIELD_START_TESTNET : BLOCK_HEIGHT_POS_AND_DIGISHIELD_START))
         return GetNextTrust_DigiShield(pindexLastPOW, false);
 
-    if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_KGW_START_TESTNET : BLOCK_HEIGHT_KGW_START))
+    else if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_KGW_START_TESTNET : BLOCK_HEIGHT_KGW_START))
         return GetNextWorkRequired_KGW(pindexLastPOW);
 
-    // first netcoin difficulty algorithm
+    else// first netcoin difficulty algorithm
     return GetNextWorkRequired_V1(pindexLastPOW,pblock);
 }
 
@@ -1485,7 +1484,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlock* pb
         return GetNextTrust_DigiShield(pindexLast, true); // first proof of stake blocks use digishield
     else
         return GetNextProofOfWork(pindexLast, pblock);
-
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits)

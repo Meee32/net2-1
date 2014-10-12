@@ -69,9 +69,11 @@ signals:
 private:
     Ui::OverviewPage *ui;
     WalletModel *model;
+    CWallet *wallet;
     ClientModel *modelStatistics;
     qint64 currentBalance;
     qint64 currentStake;
+    qint64 interest;
     qint64 currentUnconfirmedBalance;
     qint64 currentImmatureBalance;
 
