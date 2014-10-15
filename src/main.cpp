@@ -1467,13 +1467,13 @@ unsigned int GetNextProofOfWork(const CBlockIndex* pindexLast, const CBlock* pbl
         return GetNextWorkRequiredV2(pindexLastPOW, false);
 
     // most recent (highest block height)
-    else if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_POS_AND_DIGISHIELD_START_TESTNET : BLOCK_HEIGHT_POS_AND_DIGISHIELD_START))
+    if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_POS_AND_DIGISHIELD_START_TESTNET : BLOCK_HEIGHT_POS_AND_DIGISHIELD_START))
         return GetNextTrust_DigiShield(pindexLastPOW, false);
 
-    else if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_KGW_START_TESTNET : BLOCK_HEIGHT_KGW_START))
+    if (pindexLastPOW->nHeight+1 >= (fTestNet ? BLOCK_HEIGHT_KGW_START_TESTNET : BLOCK_HEIGHT_KGW_START))
         return GetNextWorkRequired_KGW(pindexLastPOW);
 
-    else// first netcoin difficulty algorithm
+    // first netcoin difficulty algorithm
     return GetNextWorkRequired_V1(pindexLastPOW,pblock);
 }
 
@@ -3267,18 +3267,12 @@ bool static AlreadyHave(CTxDB& txdb, const CInv& inv)
 // a large 4-byte int at any alignment.
 unsigned char pchMessageStart[4] = { 0xfd, 0xb6, 0xa5, 0xdb }; 
 
-bool IsValidPeerVersion(int nVersion, string strSubVer)
+bool IsValidPeerVersion(int nVersion)
 {
-    if (nVersion < MIN_PROTO_VERSION)
+    if (nVersion < CLIENT_VERSION)
     {
-        // Since February 20, 2012, the protocol is initiated at version 209,
-        // and earlier versions are no longer supported
         return false;
     }
-
-    if (strSubVer.find("Netcoin Stake:2") != std::string::npos) return true;
-
-    return false;
 
 }
 
@@ -3385,7 +3379,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
         // Ask the first connected node for block updates
         static int nAskedForBlocks = 0;
         if (!pfrom->fClient && !pfrom->fOneShot &&
-            IsValidPeerVersion(pfrom->nVersion, pfrom->strSubVer) &&
+            IsValidPeerVersion(pfrom->nVersion) &&
             (pfrom->nStartingHeight > (nBestHeight - 144)) &&
             (pfrom->nVersion < NOBLKS_VERSION_START ||
              pfrom->nVersion >= NOBLKS_VERSION_END) &&
@@ -3413,7 +3407,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 
         printf("receive version message: version %d, blocks=%d, us=%s, them=%s, peer=%s\n", pfrom->nVersion, pfrom->nStartingHeight, addrMe.ToString().c_str(), addrFrom.ToString().c_str(), pfrom->addr.ToString().c_str());
 
-        if (IsValidPeerVersion(pfrom->nVersion, pfrom->strSubVer)) cPeerBlockCounts.input(pfrom->nStartingHeight);
+        if (IsValidPeerVersion(pfrom->nVersion)) cPeerBlockCounts.input(pfrom->nStartingHeight);
 
         // ppcoin: ask for pending sync-checkpoint if any
         if (!IsInitialBlockDownload())

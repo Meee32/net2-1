@@ -57,6 +57,7 @@ public:
 
 public slots:
     void setBalance(qint64 balance, qint64 stake, qint64 unconfirmedBalance, qint64 immatureBalance);
+    void setInterest(qint64);
     void setNumTransactions(int count);
     void setStatistics(ClientModel *modelStatistics);
     void lockWalletToggle();
