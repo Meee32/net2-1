@@ -1,8 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2012 Litecoin Developers
-// Copyright (c) 2013 Luckycoin Developers
-// Copyright (c) 2013 NetCoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -64,6 +61,8 @@ map<string, string> mapArgs;
 map<string, vector<string> > mapMultiArgs;
 bool fDebug = false;
 bool fDebugNet = false;
+bool fDebugSmsg = false;
+bool fNoSmsg = false;
 bool fPrintToConsole = false;
 bool fPrintToDebugger = false;
 bool fRequestShutdown = false;
@@ -78,7 +77,7 @@ bool fLogTimestamps = false;
 CMedianFilter<int64_t> vTimeOffsets(200,0);
 bool fReopenDebugLog = false;
 
-// Init openssl library multithreading support
+// Init OpenSSL library multithreading support
 static CCriticalSection** ppmutexOpenSSL;
 void locking_callback(int mode, int i, const char* file, int line)
 {
@@ -89,29 +88,33 @@ void locking_callback(int mode, int i, const char* file, int line)
     }
 }
 
+LockedPageManager LockedPageManager::instance;
+
 // Init
 class CInit
 {
 public:
     CInit()
     {
-        // Init openssl library multithreading support
+        // Init OpenSSL library multithreading support
         ppmutexOpenSSL = (CCriticalSection**)OPENSSL_malloc(CRYPTO_num_locks() * sizeof(CCriticalSection*));
         for (int i = 0; i < CRYPTO_num_locks(); i++)
             ppmutexOpenSSL[i] = new CCriticalSection();
         CRYPTO_set_locking_callback(locking_callback);
 
 #ifdef WIN32
-        // Seed random number generator with screen scrape and other hardware sources
+        // Seed OpenSSL PRNG with current contents of the screen
         RAND_screen();
 #endif
 
-        // Seed random number generator with performance counter
+        // Seed OpenSSL PRNG with performance counter
         RandAddSeed();
     }
     ~CInit()
     {
-        // Shutdown openssl library multithreading support
+        // Securely erase the memory used by the PRNG
+        RAND_cleanup();
+        // Shutdown OpenSSL library multithreading support
         CRYPTO_set_locking_callback(NULL);
         for (int i = 0; i < CRYPTO_num_locks(); i++)
             delete ppmutexOpenSSL[i];
@@ -157,7 +160,7 @@ void RandAddSeedPerfmon()
     {
         RAND_add(pdata, nSize, nSize/100.0);
         memset(pdata, 0, nSize);
-        printf("RandAddSeed() %d bytes\n", nSize);
+        printf("RandAddSeed() %lu bytes\n", nSize);
     }
 #endif
 }
@@ -195,7 +198,6 @@ uint256 GetRandHash()
 
 
 
-
 inline int OutputDebugStringF(const char* pszFormat, ...)
 {
     int ret = 0;
@@ -207,7 +209,7 @@ inline int OutputDebugStringF(const char* pszFormat, ...)
         ret = vprintf(pszFormat, arg_ptr);
         va_end(arg_ptr);
     }
-    else
+    else if (!fPrintToDebugger)
     {
         // print to debug.log
         static FILE* fileout = NULL;
@@ -221,8 +223,14 @@ inline int OutputDebugStringF(const char* pszFormat, ...)
         if (fileout)
         {
             static bool fStartedNewLine = true;
-            static boost::mutex mutexDebugLog;
-            boost::mutex::scoped_lock scoped_lock(mutexDebugLog);
+
+            // This routine may be called by global destructors during shutdown.
+            // Since the order of destruction of static/global objects is undefined,
+            // allocate mutexDebugLog on the heap the first time this routine
+            // is called to avoid crashes during shutdown.
+            static boost::mutex* mutexDebugLog = NULL;
+            if (mutexDebugLog == NULL) mutexDebugLog = new boost::mutex();
+            boost::mutex::scoped_lock scoped_lock(*mutexDebugLog);
 
             // reopen the log file, if requested
             if (fReopenDebugLog) {
@@ -362,9 +370,9 @@ string FormatMoney(int64_t n, bool fPlus)
     int64_t n_abs = (n > 0 ? n : -n);
     int64_t quotient = n_abs/COIN;
     int64_t remainder = n_abs%COIN;
-    string str = strprintf("%"PRI64d".%08"PRI64d, quotient, remainder);
+    string str = strprintf("%"PRId64".%08"PRId64, quotient, remainder);
 
-    // Right-trim excess 0's before the decimal point:
+    // Right-trim excess zeros before the decimal point:
     int nTrim = 0;
     for (int i = str.size()-1; (str[i] == '0' && isdigit(str[i-2])); --i)
         ++nTrim;
@@ -425,7 +433,7 @@ bool ParseMoney(const char* pszIn, int64_t& nRet)
 }
 
 
-static signed char phexdigit[256] =
+static const signed char phexdigit[256] =
 { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
   -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
   -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
@@ -457,7 +465,7 @@ vector<unsigned char> ParseHex(const char* psz)
 {
     // convert hex dump to vector
     vector<unsigned char> vch;
-    while(true)
+    while (true)
     {
         while (isspace(*psz))
             psz++;
@@ -902,6 +910,48 @@ vector<unsigned char> DecodeBase32(const char* p, bool* pfInvalid)
     return vchRet;
 }
 
+static const long hextable[] =
+{
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 10-19
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 30-39
+    -1, -1, -1, -1, -1, -1, -1, -1,  0,  1,
+     2,  3,  4,  5,  6,  7,  8,  9, -1, -1,		// 50-59
+    -1, -1, -1, -1, -1, 10, 11, 12, 13, 14,
+    15, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 70-79
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, 10, 11, 12,		// 90-99
+    13, 14, 15, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 110-109
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 130-139
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 150-159
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 170-179
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 190-199
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 210-219
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 230-239
+    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+    -1, -1, -1, -1, -1, -1
+};
+
+long hex2long(const char* hexString)
+{
+    long ret = 0;
+
+    while (*hexString && ret >= 0)
+    {
+        ret = (ret << 4) | hextable[*hexString++];
+    }
+
+    return ret;
+}
+
 string DecodeBase32(const string& str)
 {
     vector<unsigned char> vchRet = DecodeBase32(str.c_str());
@@ -911,7 +961,7 @@ string DecodeBase32(const string& str)
 
 bool WildcardMatch(const char* psz, const char* mask)
 {
-    while(true)
+    while (true)
     {
         switch (*mask)
         {
@@ -959,12 +1009,6 @@ static std::string FormatException(std::exception* pex, const char* pszThread)
     else
         return strprintf(
             "UNKNOWN EXCEPTION       \n%s in %s       \n", pszModule, pszThread);
-}
-
-void LogException(std::exception* pex, const char* pszThread)
-{
-    std::string message = FormatException(pex, pszThread);
-    printf("\n%s", message.c_str());
 }
 
 void PrintException(std::exception* pex, const char* pszThread)
@@ -1060,14 +1104,14 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good())
-        return; // No NetCoin.conf file is OK
+        return; // No bitcoin.conf file is OK
 
     set<string> setOptions;
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
     {
-        // Don't overwrite existing settings so command line settings override netcoin.conf
+        // Don't overwrite existing settings so command line settings override bitcoin.conf
         string strKey = string("-") + it->string_key;
         if (mapSettingsRet.count(strKey) == 0)
         {
@@ -1086,6 +1130,7 @@ boost::filesystem::path GetPidFile()
     return pathPidFile;
 }
 
+#ifndef WIN32
 void CreatePidFile(const boost::filesystem::path &path, pid_t pid)
 {
     FILE* file = fopen(path.string().c_str(), "w");
@@ -1095,6 +1140,7 @@ void CreatePidFile(const boost::filesystem::path &path, pid_t pid)
         fclose(file);
     }
 }
+#endif
 
 bool RenameOver(boost::filesystem::path src, boost::filesystem::path dest)
 {
@@ -1117,22 +1163,12 @@ void FileCommit(FILE *fileout)
 #endif
 }
 
-int GetFilesize(FILE* file)
-{
-    int nSavePos = ftell(file);
-    int nFilesize = -1;
-    if (fseek(file, 0, SEEK_END) == 0)
-        nFilesize = ftell(file);
-    fseek(file, nSavePos, SEEK_SET);
-    return nFilesize;
-}
-
 void ShrinkDebugFile()
 {
     // Scroll debug.log if it's getting too big
     boost::filesystem::path pathLog = GetDataDir() / "debug.log";
     FILE* file = fopen(pathLog.string().c_str(), "r");
-    if (file && GetFilesize(file) > 10 * 1000000)
+    if (file && boost::filesystem::file_size(pathLog) > 10 * 1000000)
     {
         // Restart the file with some of the end
         char pch[200000];
@@ -1148,13 +1184,6 @@ void ShrinkDebugFile()
         }
     }
 }
-
-
-
-
-
-
-
 
 //
 // "Never go to sea with two chronometers; take one or three."
@@ -1200,13 +1229,13 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
 
     // Add data
     vTimeOffsets.input(nOffsetSample);
-    printf("Added time data, samples %d, offset %+"PRI64d" (%+"PRI64d" minutes)\n", vTimeOffsets.size(), nOffsetSample, nOffsetSample/60);
+    printf("Added time data, samples %d, offset %+"PRId64" (%+"PRId64" minutes)\n", vTimeOffsets.size(), nOffsetSample, nOffsetSample/60);
     if (vTimeOffsets.size() >= 5 && vTimeOffsets.size() % 2 == 1)
     {
         int64_t nMedian = vTimeOffsets.median();
         std::vector<int64_t> vSorted = vTimeOffsets.sorted();
         // Only let other nodes change our time by so much
-        if (abs64(nMedian) < 35 * 60) // NetCoin: changed maximum adjust to 35 mins to avoid letting peers change our time too much in case of an attack.
+        if (abs64(nMedian) < 70 * 60)
         {
             nTimeOffset = nMedian;
         }
@@ -1226,7 +1255,7 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
                 if (!fMatch)
                 {
                     fDone = true;
-                    string strMessage = _("Warning: Please check that your computer's date and time are correct.  If your clock is wrong Linkcoin will not work properly.");
+                    string strMessage = _("Warning: Please check that your computer's date and time are correct! If your clock is wrong NetCoin will not work properly.");
                     strMiscWarning = strMessage;
                     printf("*** %s\n", strMessage.c_str());
                     uiInterface.ThreadSafeMessageBox(strMessage+" ", string("NetCoin"), CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION);
@@ -1235,58 +1264,33 @@ void AddTimeData(const CNetAddr& ip, int64_t nTime)
         }
         if (fDebug) {
             BOOST_FOREACH(int64_t n, vSorted)
-                printf("%+"PRI64d"  ", n);
+                printf("%+"PRId64"  ", n);
             printf("|  ");
         }
-        printf("nTimeOffset = %+"PRI64d"  (%+"PRI64d" minutes)\n", nTimeOffset, nTimeOffset/60);
+        printf("nTimeOffset = %+"PRId64"  (%+"PRId64" minutes)\n", nTimeOffset, nTimeOffset/60);
     }
 }
 
-
-static const long hextable[] = 
+uint32_t insecure_rand_Rz = 11;
+uint32_t insecure_rand_Rw = 11;
+void seed_insecure_rand(bool fDeterministic)
 {
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 10-19
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 30-39
-	-1, -1, -1, -1, -1, -1, -1, -1,  0,  1,
-	 2,  3,  4,  5,  6,  7,  8,  9, -1, -1,		// 50-59
-	-1, -1, -1, -1, -1, 10, 11, 12, 13, 14,
-	15, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 70-79
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, 10, 11, 12,		// 90-99
-	13, 14, 15, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 110-109
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 130-139
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 150-159
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 170-179
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 190-199
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 210-219
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,		// 230-239
-	-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-	-1, -1, -1, -1, -1, -1
-};
-
-
-long hex2long(const char* hexString)
-{
-	long ret = 0; 
-
-	while (*hexString && ret >= 0) 
-	{
-		ret = (ret << 4) | hextable[*hexString++];
-	}
-
-	return ret; 
+    //The seed values have some unlikely fixed points which we avoid.
+    if(fDeterministic)
+    {
+        insecure_rand_Rz = insecure_rand_Rw = 11;
+    } else {
+        uint32_t tmp;
+        do{
+            RAND_bytes((unsigned char*)&tmp,4);
+        }while(tmp==0 || tmp==0x9068ffffU);
+        insecure_rand_Rz=tmp;
+        do{
+            RAND_bytes((unsigned char*)&tmp,4);
+        }while(tmp==0 || tmp==0x464fffffU);
+        insecure_rand_Rw=tmp;
+    }
 }
-
-
 
 string FormatVersion(int nVersion)
 {
@@ -1347,8 +1351,11 @@ void RenameThread(const char* name)
     //       on FreeBSD or OpenBSD first. When verified the '0 &&' part can be
     //       removed.
     pthread_set_name_np(pthread_self(), name);
-#elif defined(MAC_OSX)
-    pthread_setname_np(name);
+
+// This is XCode 10.6-and-later; bring back if we drop 10.5 support:
+// #elif defined(MAC_OSX)
+//    pthread_setname_np(name);
+
 #else
     // Prevent warnings for unused parameters...
     (void)name;

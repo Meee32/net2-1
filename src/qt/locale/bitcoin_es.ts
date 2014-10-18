@@ -3,22 +3,24 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About Netcoin</source>
-        <translation>Acerca de Netcoin</translation>
+        <source>About NetCoin</source>
+        <translation>Acerca de NetCoin</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;Netcoin&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;Netcoin&lt;/b&gt; versión</translation>
+        <source>&lt;b&gt;NetCoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt;NetCoin&lt;/b&gt; versión</translation>
     </message>
     <message>
         <location line="+41"/>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The Netcoin developers</source>
+Copyright © 2014 The BlackCoin developers
+Copyright © 2014 The NetCoin developers</source>
         <translation>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The Netcoin developers</translation>
+Copyright © 2014 The BlackCoin developers
+Copyright © 2014 The NetCoin developers</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -68,8 +70,8 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="-46"/>
-        <source>These are your Netcoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>Estas son las direcciones de Netcoin para recibir pagos. Es posible que desee dar una diferente a cada remitente para que pueda realizar un seguimiento de quien te está pagando.</translation>
+        <source>These are your NetCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>Estas son las direcciones de NetCoin para recibir pagos. Es posible que desee dar una diferente a cada remitente para que pueda realizar un seguimiento de quien te está pagando.</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -83,8 +85,8 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a Netcoin address</source>
-        <translation>Firmar un mensaje para demostrar que es dueño de su dirección de Netcoin</translation>
+        <source>Sign a message to prove you own a NetCoin address</source>
+        <translation>Firmar un mensaje para demostrar que es dueño de su dirección de NetCoin</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -98,8 +100,8 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="-14"/>
-        <source>Verify a message to ensure it was signed with a specified Netcoin address</source>
-        <translation>Verifique el mensaje para asegurarse que fue firmado por una dirección específica de Netcoin</translation>
+        <source>Verify a message to ensure it was signed with a specified NetCoin address</source>
+        <translation>Verifique el mensaje para asegurarse que fue firmado por una dirección específica de NetCoin</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -266,8 +268,8 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     </message>
     <message>
         <location line="-58"/>
-        <source>Netcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>Netcoin cerrará para terminar el proceso de encriptación. Recuerde que la encriptación de su monedero no puede proteger completamente que sus monedas sean robadas por malware infectando su computadora.</translation>
+        <source>NetCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation>NetCoin cerrará para terminar el proceso de encriptación. Recuerde que la encriptación de su monedero no puede proteger completamente que sus monedas sean robadas por malware infectando su computadora.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -314,17 +316,17 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+282"/>
+        <location filename="../bitcoingui.cpp" line="+280"/>
         <source>Sign &amp;message...</source>
         <translation>Firmar &amp;mensaje...</translation>
     </message>
     <message>
-        <location line="+251"/>
+        <location line="+242"/>
         <source>Synchronizing with network...</source>
         <translation>Sincronizando con la red…</translation>
     </message>
     <message>
-        <location line="-319"/>
+        <location line="-308"/>
         <source>&amp;Overview</source>
         <translation>&amp;Vista general</translation>
     </message>
@@ -379,9 +381,9 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <translation>Salir de la aplicación</translation>
     </message>
     <message>
-        <location line="+6"/>
-        <source>Show information about Netcoin</source>
-        <translation>Mostrar información sobre Netcoin</translation>
+        <location line="+4"/>
+        <source>Show information about NetCoin</source>
+        <translation>Mostrar información sobre NetCoin</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -406,7 +408,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     <message>
         <location line="+3"/>
         <source>&amp;Backup Wallet...</source>
-        <translation>%Guardar copia del monedero...</translation>
+        <translation>&amp;Guardar copia de seguridad del monedero...</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -414,7 +416,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <translation>&amp;Cambiar la contraseña…</translation>
     </message>
     <message numerus="yes">
-        <location line="+259"/>
+        <location line="+250"/>
         <source>~%n block(s) remaining</source>
         <translation><numerusform>~%n bloque restante</numerusform><numerusform>~%n bloques restantes</numerusform></translation>
     </message>
@@ -424,19 +426,19 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <translation>Descargado %1 de %2 bloques de historial de transacciones (%3% completado).</translation>
     </message>
     <message>
-        <location line="-256"/>
+        <location line="-247"/>
         <source>&amp;Export...</source>
-        <translation>&amp;Exportando...</translation>
+        <translation>&amp;Exportar...</translation>
     </message>
     <message>
-        <location line="-64"/>
-        <source>Send coins to a Netcoin address</source>
-        <translation>Enviar monedas a una dirección de Netcoin</translation>
+        <location line="-62"/>
+        <source>Send coins to a NetCoin address</source>
+        <translation>Enviar monedas a una dirección de NetCoin</translation>
     </message>
     <message>
-        <location line="+47"/>
-        <source>Modify configuration options for Netcoin</source>
-        <translation>Modificar las opciones de configuración para Netcoin</translation>
+        <location line="+45"/>
+        <source>Modify configuration options for NetCoin</source>
+        <translation>Modificar las opciones de configuración para NetCoin</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -474,9 +476,9 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <translation>&amp;Verificar mensaje...</translation>
     </message>
     <message>
-        <location line="-202"/>
-        <source>Netcoin</source>
-        <translation>Netcoin</translation>
+        <location line="-200"/>
+        <source>NetCoin</source>
+        <translation>NetCoin</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -484,9 +486,9 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <translation>Monedero</translation>
     </message>
     <message>
-        <location line="+180"/>
-        <source>&amp;About Netcoin</source>
-        <translation>Acerca de Netcoin</translation>
+        <location line="+178"/>
+        <source>&amp;About NetCoin</source>
+        <translation>Acerca de NetCoin</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -509,7 +511,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <translation>Bloquear monedero</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+34"/>
         <source>&amp;File</source>
         <translation>&amp;Archivo</translation>
     </message>
@@ -524,7 +526,7 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <translation>A&amp;yuda</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+9"/>
         <source>Tabs toolbar</source>
         <translation>Barra de pestañas</translation>
     </message>
@@ -542,13 +544,13 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
     <message>
         <location line="+0"/>
         <location line="+60"/>
-        <source>Netcoin client</source>
-        <translation>Cliente Netcoin</translation>
+        <source>NetCoin client</source>
+        <translation>Cliente NetCoin</translation>
     </message>
     <message numerus="yes">
-        <location line="+75"/>
-        <source>%n active connection(s) to Netcoin network</source>
-        <translation><numerusform>%n conexión activa a la red Netcoin</numerusform><numerusform>%n conexiones activas a la red Netcoin</numerusform></translation>
+        <location line="+70"/>
+        <source>%n active connection(s) to NetCoin network</source>
+        <translation><numerusform>%n conexión activa a la red NetCoin</numerusform><numerusform>%n conexiones activas a la red NetCoin</numerusform></translation>
     </message>
     <message>
         <location line="+40"/>
@@ -586,22 +588,12 @@ Eric Young (eay@cryptsoft.com) y el software UPnP escrito por Thomas Bernard.</t
         <translation><numerusform>hace %n segundo</numerusform><numerusform>hace %n segundos</numerusform></translation>
     </message>
     <message>
-        <location line="-312"/>
-        <source>About Netcoin card</source>
-        <translation>Sobre la tarjeta Netcoin</translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Show information about Netcoin card</source>
-        <translation>Mostrar información sobre la tarjeta Netcoin</translation>
-    </message>
-    <message>
-        <location line="+18"/>
+        <location line="-284"/>
         <source>&amp;Unlock Wallet...</source>
         <translation>&amp;Desbloquear Monedero...</translation>
     </message>
     <message numerus="yes">
-        <location line="+297"/>
+        <location line="+288"/>
         <source>%n minute(s) ago</source>
         <translation><numerusform>hace %n minuto</numerusform><numerusform>hace %n minutos</numerusform></translation>
     </message>
@@ -672,8 +664,8 @@ Dirección: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid Netcoin address or malformed URI parameters.</source>
-        <translation>URI no se puede analizar! Esto puede ser causado por una dirección de Netcoin no válida o parámetros de URI malformados.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid NetCoin address or malformed URI parameters.</source>
+        <translation>URI no se puede analizar! Esto puede ser causado por una dirección de NetCoin no válida o parámetros de URI malformados.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -732,8 +724,8 @@ Dirección: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. Netcoin can no longer continue safely and will quit.</source>
-        <translation>Se ha producido un error fatal. Netcoin ya no puede continuar de forma segura y cerrará.</translation>
+        <source>A fatal error occurred. NetCoin can no longer continue safely and will quit.</source>
+        <translation>Se ha producido un error fatal. NetCoin ya no puede continuar de forma segura y cerrará.</translation>
     </message>
 </context>
 <context>
@@ -1066,8 +1058,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid Netcoin address.</source>
-        <translation>La dirección introducida &quot;%1&quot; no es una dirección válida de Netcoin.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid NetCoin address.</source>
+        <translation>La dirección introducida &quot;%1&quot; no es una dirección válida de NetCoin.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1085,8 +1077,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../guiutil.cpp" line="+420"/>
         <location line="+12"/>
-        <source>Netcoin-Qt</source>
-        <translation>Netcoin-Qt</translation>
+        <source>NetCoin-Qt</source>
+        <translation>NetCoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -1158,13 +1150,13 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start Netcoin after logging in to the system.</source>
-        <translation>Iniciar Netcoin automáticamente después de entrar en el sistema.</translation>
+        <source>Automatically start NetCoin after logging in to the system.</source>
+        <translation>Iniciar NetCoin automáticamente después de entrar en el sistema.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start Netcoin on system login</source>
-        <translation>&amp;Iniciar Netcoin al inicio del sistema</translation>
+        <source>&amp;Start NetCoin on system login</source>
+        <translation>&amp;Iniciar NetCoin al inicio del sistema</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1183,8 +1175,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the Netcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente el puerto de cliente Netcoin en el router. Esto sólo funciona cuando el router es compatible con UPnP y está habilitado.</translation>
+        <source>Automatically open the NetCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abrir automáticamente el puerto de cliente NetCoin en el router. Esto sólo funciona cuando el router es compatible con UPnP y está habilitado.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1193,8 +1185,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the Netcoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Conéctese a la red de Netcoin a través de un SOCKS proxy (e.g. cuando se conecta a través de Tor)</translation>
+        <source>Connect to the NetCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Conéctese a la red de NetCoin a través de un SOCKS proxy (e.g. cuando se conecta a través de Tor)</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1268,8 +1260,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting Netcoin.</source>
-        <translation>El idioma del interfaz de usuario se puede configurar aquí. Esta configuración se aplicará después de reiniciar Netcoin.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting NetCoin.</source>
+        <translation>El idioma del interfaz de usuario se puede configurar aquí. Esta configuración se aplicará después de reiniciar NetCoin.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1283,8 +1275,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show Netcoin addresses in the transaction list or not.</source>
-        <translation>Tanto para mostrar direcciones de Netcoin en la lista de transacciones o no.</translation>
+        <source>Whether to show NetCoin addresses in the transaction list or not.</source>
+        <translation>Tanto para mostrar direcciones de NetCoin en la lista de transacciones o no.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1330,8 +1322,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting Netcoin.</source>
-        <translation>Esta configuración se aplicará después de reiniciar Netcoin.</translation>
+        <source>This setting will take effect after restarting NetCoin.</source>
+        <translation>Esta configuración se aplicará después de reiniciar NetCoin.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1349,8 +1341,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+33"/>
         <location line="+231"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Netcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información mostrada puede estar fuera de fecha. Su monedera se sincroniza automáticamente con la red Netcoin después de que se establece una conexión, pero este proceso no se ha completado todavía.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the NetCoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>La información mostrada puede estar fuera de fecha. Su monedera se sincroniza automáticamente con la red NetCoin después de que se establece una conexión, pero este proceso no se ha completado todavía.</translation>
     </message>
     <message>
         <location line="-160"/>
@@ -1370,12 +1362,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+49"/>
         <source>Spendable:</source>
-        <translation>Gastable:</translation>
+        <translation>Disponible:</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Your current spendable balance</source>
-        <translation>Su balance actual gastable</translation>
+        <translation>Su actual balance disponible</translation>
     </message>
     <message>
         <location line="+71"/>
@@ -1434,7 +1426,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+56"/>
         <source>Amount:</source>
-        <translation>Cuantía:</translation>
+        <translation>Cantidad:</translation>
     </message>
     <message>
         <location line="-44"/>
@@ -1565,8 +1557,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the Netcoin-Qt help message to get a list with possible Netcoin command-line options.</source>
-        <translation>Mostrar el mensaje de ayuda de Netcoin-Qt para obtener una lista con las posibles opciones de línea de comandos para Netcoin.</translation>
+        <source>Show the NetCoin-Qt help message to get a list with possible NetCoin command-line options.</source>
+        <translation>Mostrar el mensaje de ayuda de NetCoin-Qt para obtener una lista con las posibles opciones de línea de comandos para NetCoin.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1585,13 +1577,13 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="-104"/>
-        <source>Netcoin - Debug window</source>
-        <translation>Netcoin - Ventana de depuración</translation>
+        <source>NetCoin - Debug window</source>
+        <translation>NetCoin - Ventana de depuración</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>Netcoin Core</source>
-        <translation>Núcleo Netcoin</translation>
+        <source>NetCoin Core</source>
+        <translation>Núcleo NetCoin</translation>
     </message>
     <message>
         <location line="+279"/>
@@ -1600,8 +1592,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the Netcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Abre el archivo de registro de Netcoin del directorio de datos actual. Esto puede tardar algunos segundos para archivos grandes.</translation>
+        <source>Open the NetCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Abre el archivo de registro de NetCoin del directorio de datos actual. Esto puede tardar algunos segundos para archivos grandes.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1610,8 +1602,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the Netcoin RPC console.</source>
-        <translation>Bienvenido a la consola RPC de Netcoin</translation>
+        <source>Welcome to the NetCoin RPC console.</source>
+        <translation>Bienvenido a la consola RPC de NetCoin</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1684,8 +1676,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+86"/>
         <location line="+86"/>
         <location line="+32"/>
-        <source>0.00 NET</source>
-        <translation>123.456 NET {0.00 ?}</translation>
+        <source>0.00 SDC</source>
+        <translation>123.456 SDC {0.00 ?}</translation>
     </message>
     <message>
         <location line="-191"/>
@@ -1754,8 +1746,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>123.456 NET</source>
-        <translation>123.456 NET</translation>
+        <source>123.456 SDC</source>
+        <translation>123.456 SDC</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1769,8 +1761,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Introduce una dirección Netcoin (p.ej. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Introduce una dirección NetCoin (p.ej. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1869,8 +1861,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+251"/>
-        <source>WARNING: Invalid Netcoin address</source>
-        <translation>ADVERTENCIA: Dirección Netcoin inválida</translation>
+        <source>WARNING: Invalid NetCoin address</source>
+        <translation>ADVERTENCIA: Dirección NetCoin inválida</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1913,8 +1905,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to send the payment to  (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>La dirección a la que se quiere enviar el pago (p.ej. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address to send the payment to  (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>La dirección a la que se quiere enviar el pago (p.ej. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1943,8 +1935,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Introduce una dirección Netcoin (p.ej. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Introduce una dirección NetCoin (p.ej. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
 </context>
 <context>
@@ -1967,8 +1959,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>La dirección a firmar con un mensaje (p.ej. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address to sign the message with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>La dirección a firmar con un mensaje (p.ej. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2004,8 +1996,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Netcoin address</source>
-        <translation>Firma el mensaje para demostrar que posees esta dirección Netcoin.</translation>
+        <source>Sign the message to prove you own this NetCoin address</source>
+        <translation>Firma el mensaje para demostrar que posees esta dirección NetCoin.</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2031,13 +2023,13 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>The address the message was signed with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>La dirección firmada con un mensaje (p.ej. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address the message was signed with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>La dirección firmada con un mensaje (p.ej. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified Netcoin address</source>
-        <translation>Verifique el mensaje para asegurarse de que se firmó con la dirección Netcoin especificada.</translation>
+        <source>Verify the message to ensure it was signed with the specified NetCoin address</source>
+        <translation>Verifique el mensaje para asegurarse de que se firmó con la dirección NetCoin especificada.</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2047,8 +2039,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Introduce una dirección Netcoin (p.ej PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Introduce una dirección NetCoin (p.ej SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -2057,8 +2049,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter Netcoin signature</source>
-        <translation>Introduce la firma Netcoin</translation>
+        <source>Enter NetCoin signature</source>
+        <translation>Introduce la firma NetCoin</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2628,8 +2620,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+33"/>
-        <source>Netcoin version</source>
-        <translation>versión Netcoin</translation>
+        <source>NetCoin version</source>
+        <translation>versión NetCoin</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2638,8 +2630,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or pandacoind</source>
-        <translation>Envía un comando a -server o pandacoind</translation>
+        <source>Send command to -server or netcoind</source>
+        <translation>Envía un comando a -server o netcoind</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2661,13 +2653,13 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Specify configuration file (default: pandacoin.conf)</source>
-        <translation>Especifica un archivo de configuración (por defecto: pandacoin.conf)</translation>
+        <source>Specify configuration file (default: netcoin.conf)</source>
+        <translation>Especifica un archivo de configuración (por defecto: netcoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify pid file (default: pandacoind.pid)</source>
-        <translation>Especifica un archivo pid (por defecto: pandacoind.pid)</translation>
+        <source>Specify pid file (default: netcoind.pid)</source>
+        <translation>Especifica un archivo pid (por defecto: netcoind.pid)</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2691,8 +2683,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
-        <translation>Escuchando conexiones en el puerto &lt;port&gt; (por defecto: 15714 o testnet: 25714)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 51737 or testnet: 51997)</source>
+        <translation>Escuchando conexiones en el puerto &lt;port&gt; (por defecto: 51737 o testnet: 51997)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2751,8 +2743,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="-87"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 22444 or testnet: 25715)</source>
-        <translation>Escuchar conexiones JSON-RPC en &lt;port&gt; (predeterminado: 22444 o testnet: 25715)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 51736 or testnet: 51996)</source>
+        <translation>Escuchar conexiones JSON-RPC en &lt;port&gt; (predeterminado: 51736 o testnet: 51996)</translation>
     </message>
     <message>
         <location line="-11"/>
@@ -2819,8 +2811,8 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     </message>
     <message>
         <location line="+61"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Netcoin will not work properly.</source>
-        <translation>Advertencia: Verifique que la fecha y hora del equipo sean correctas! Si su reloj es erróneo Netcoin no funcionará correctamente.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong NetCoin will not work properly.</source>
+        <translation>Advertencia: Verifique que la fecha y hora del equipo sean correctas! Si su reloj es erróneo NetCoin no funcionará correctamente.</translation>
     </message>
     <message>
         <location line="-31"/>
@@ -3010,24 +3002,24 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:
-rpcuser=pandacoinrpc
+rpcuser=netcoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.com
 </source>
         <translation>%s, debe establecer un rpcpassword en el fichero de configuración:
 %s
 Se recomienda utilizar la siguiente contraseña aleatoria:
-rpcuser=pandacoinrpc
+rpcuser=netcoinrpc
 rpcpassword=%s
 (no necesita recordar este password)
 El nombre de usuario y contraseña no debe ser el mismo.
 Si no existe el archivo, créelo con permisos de sólo lectura para el dueño.
 También se recomienda establecer alertnotify para ser notificado de los problemas;
-por ejemplo: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.com
+por ejemplo: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.com
 </translation>
     </message>
     <message>
@@ -3159,13 +3151,13 @@ por ejemplo: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+1"/>
-        <source>Cannot obtain a lock on data directory %s.  Netcoin is probably already running.</source>
-        <translation>No se puede obtener un bloqueo en el directorio de datos %s. Netcoin probablemente ya esté en funcionamiento.</translation>
+        <source>Cannot obtain a lock on data directory %s.  NetCoin is probably already running.</source>
+        <translation>No se puede obtener un bloqueo en el directorio de datos %s. NetCoin probablemente ya esté en funcionamiento.</translation>
     </message>
     <message>
         <location line="-98"/>
-        <source>Netcoin</source>
-        <translation>Netcoin</translation>
+        <source>NetCoin</source>
+        <translation>NetCoin</translation>
     </message>
     <message>
         <location line="+140"/>
@@ -3199,13 +3191,13 @@ por ejemplo: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+4"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Netcoin</source>
-        <translation>Error cargando wallet.dat: El monedero requiere una nueva versión de Netcoin</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of NetCoin</source>
+        <translation>Error cargando wallet.dat: El monedero requiere una nueva versión de NetCoin</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart Netcoin to complete</source>
-        <translation>El monedero necesita ser reescrito: reinicie Netcoin para completar</translation>
+        <source>Wallet needed to be rewritten: restart NetCoin to complete</source>
+        <translation>El monedero necesita ser reescrito: reinicie NetCoin para completar</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3274,8 +3266,8 @@ por ejemplo: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+122"/>
-        <source>Unable to bind to %s on this computer. Netcoin is probably already running.</source>
-        <translation>No se puede enlazar a %s en este equipo. Netcoin probablemente ya esté en funcionamiento.</translation>
+        <source>Unable to bind to %s on this computer. NetCoin is probably already running.</source>
+        <translation>No se puede enlazar a %s en este equipo. NetCoin probablemente ya esté en funcionamiento.</translation>
     </message>
     <message>
         <location line="-97"/>

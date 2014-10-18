@@ -25,24 +25,24 @@ namespace Checkpoints
     //    timestamp before)
     // + Contains no strange transactions
     //
-static MapCheckpoints mapCheckpoints =
+    static MapCheckpoints mapCheckpoints =
         boost::assign::map_list_of
-        (     0, uint256("0x38624e3834cfdc4410a5acbc32f750171aadad9620e6ba6d5c73201c16f7c8d1"))
-        (   100, uint256("0x722978629f5714f55eab4f5e6f03bed10c6bf34d9e73f79566c3eb0b94887c42"))
-        (  1000, uint256("0xfd51dbe8a3874a2ff717af63733c19c134f921ecfe0e9bfc74cf80e9ccf97b12"))
-        ( 10000, uint256("0xd4702398032bc5b7b3c2e971de88eb6a5d91474350ccf9fdc276b606748eed40"))
-        ( 50000, uint256("0xb105dfb1ea9a486e73b502ccf71aec00ff3b6aee994dadd4f7f35e15a21c94e8"))
-        (100000, uint256("0x10e02fc59b6e9d3010f0a91da8890fc6bacb59cebb38bdaad8b7f84df68fa617"))
-        (136700, uint256("0x56635b3326e9a29f5ad82884eb3cfb7412a7c0daf671174daea834a0a4e80cb6"))
-        (175000, uint256("0x1ea14545346fa619ff26000f50eb53f76bfb4861066ef8753c584e752db5b59f"))
-        (200000, uint256("0xfc6fbe48af986b7c5e560ecbf82b78ea73f568482dd806e29e7d1027a1905fd4"))
+          (     0, uint256(""))
+     //   (   100, uint256("0x722978629f5714f55eab4f5e6f03bed10c6bf34d9e73f79566c3eb0b94887c42"))
+    //    (  1000, uint256("0xfd51dbe8a3874a2ff717af63733c19c134f921ecfe0e9bfc74cf80e9ccf97b12"))
+   //     ( 10000, uint256("0xd4702398032bc5b7b3c2e971de88eb6a5d91474350ccf9fdc276b606748eed40"))
+    //    ( 50000, uint256("0xb105dfb1ea9a486e73b502ccf71aec00ff3b6aee994dadd4f7f35e15a21c94e8"))
+    //    (100000, uint256("0x10e02fc59b6e9d3010f0a91da8890fc6bacb59cebb38bdaad8b7f84df68fa617"))
+     //   (136700, uint256("0x56635b3326e9a29f5ad82884eb3cfb7412a7c0daf671174daea834a0a4e80cb6"))
+    //    (175000, uint256("0x1ea14545346fa619ff26000f50eb53f76bfb4861066ef8753c584e752db5b59f"))
+    //    (200000, uint256("0xfc6fbe48af986b7c5e560ecbf82b78ea73f568482dd806e29e7d1027a1905fd4"))
         ;
 
     // TestNet has no checkpoints
     static MapCheckpoints mapCheckpointsTestnet =
         boost::assign::map_list_of
         ( 0, hashGenesisBlockTestNet )
-        ;
+    ;
 
     bool CheckHardened(int nHeight, const uint256& hash)
     {
@@ -195,7 +195,7 @@ static MapCheckpoints mapCheckpoints =
         return false;
     }
 
-    // Automatically select a suitable sync-checkpoint
+    // Automatically select a suitable sync-checkpoint 
     uint256 AutoSelectSyncCheckpoint()
     {
         const CBlockIndex *pindex = pindexBest;
@@ -240,7 +240,7 @@ static MapCheckpoints mapCheckpoints =
             return false;
         if (hashBlock == hashPendingCheckpoint)
             return true;
-        if (mapOrphanBlocks.count(hashPendingCheckpoint)
+        if (mapOrphanBlocks.count(hashPendingCheckpoint) 
             && hashBlock == WantedByOrphan(mapOrphanBlocks[hashPendingCheckpoint]))
             return true;
         return false;
@@ -296,9 +296,12 @@ static MapCheckpoints mapCheckpoints =
 
     bool SetCheckpointPrivKey(std::string strPrivKey)
     {
+        if (fDebug)
+            printf("SetCheckpointPrivKey()\n");
+        
         // Test signing a sync-checkpoint with genesis block
         CSyncCheckpoint checkpoint;
-        checkpoint.hashCheckpoint = (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet);
+        checkpoint.hashCheckpoint = !fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet;
         CDataStream sMsg(SER_NETWORK, PROTOCOL_VERSION);
         sMsg << (CUnsignedSyncCheckpoint)checkpoint;
         checkpoint.vchMsg = std::vector<unsigned char>(sMsg.begin(), sMsg.end());
@@ -316,6 +319,9 @@ static MapCheckpoints mapCheckpoints =
 
     bool SendSyncCheckpoint(uint256 hashCheckpoint)
     {
+        if (fDebug)
+            printf("SendSyncCheckpoint()\n");
+        
         CSyncCheckpoint checkpoint;
         checkpoint.hashCheckpoint = hashCheckpoint;
         CDataStream sMsg(SER_NETWORK, PROTOCOL_VERSION);
@@ -330,7 +336,7 @@ static MapCheckpoints mapCheckpoints =
         if (!key.Sign(Hash(checkpoint.vchMsg.begin(), checkpoint.vchMsg.end()), checkpoint.vchSig))
             return error("SendSyncCheckpoint: Unable to sign checkpoint, check private key?");
 
-        if(!checkpoint.ProcessSyncCheckpoint(NULL))
+        if (!checkpoint.ProcessSyncCheckpoint(NULL))
         {
             printf("WARNING: SendSyncCheckpoint: Failed to process checkpoint.\n");
             return false;
@@ -357,8 +363,8 @@ static MapCheckpoints mapCheckpoints =
     }
 }
 
-// netcoin: sync-checkpoint master key
-const std::string CSyncCheckpoint::strMasterPubKey = "046b2e58c8c0502bea592b7ec55f5acb8781a2764520f346642a5c2a6e8ef8b00704752e825d9e739daac343fae5027945e018a15e456e98ef2d0b507fbd9a6d13";
+// ppcoin: sync-checkpoint master key                 
+const std::string CSyncCheckpoint::strMasterPubKey = "02334512c0d7a9a69289c4b7ad1c76e5330ef9dacd9da912c91a853986bddf0434";
 
 std::string CSyncCheckpoint::strMasterPrivKey = "";
 

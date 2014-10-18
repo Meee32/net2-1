@@ -1,5 +1,5 @@
-Litecoin-Qt: Qt4 GUI for Litecoin
-================================
+NetCoin-qt: Qt5 GUI for NetCoin
+===============================
 
 Build instructions
 ===================
@@ -7,14 +7,15 @@ Build instructions
 Debian
 -------
 
-First, make sure that the required packages for Qt4 development of your
+First, make sure that the required packages for Qt5 development of your
 distribution are installed, for Debian and Ubuntu these are:
 
 ::
 
-    apt-get install qt4-qmake libqt4-dev build-essential libboost-dev libboost-system-dev \
+    apt-get install qt5-default qt5-qmake qtbase5-dev-tools qttools5-dev-tools \
+        build-essential libboost-dev libboost-system-dev \
         libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev \
-        libssl-dev libdb4.8++-dev
+        libssl-dev libdb++-dev libminiupnpc-dev
 
 then execute the following:
 
@@ -23,29 +24,23 @@ then execute the following:
     qmake
     make
 
-Alternatively, install `Qt Creator`_ and open the `litecoin-qt.pro` file.
+Alternatively, install Qt Creator and open the `netcoin-qt.pro` file.
 
-An executable named `litecoin-qt` will be built.
+An executable named `netcoin-qt` will be built.
 
-.. _`Qt Creator`: http://qt.nokia.com/downloads/
 
 Windows
 --------
 
 Windows build instructions:
 
-- Download the `Qt Windows SDK`_ and install it. You don't need the Symbian stuff, just the desktop Qt.
+- Download the `QT Windows SDK`_ and install it. You don't need the Symbian stuff, just the desktop Qt.
 
-- Download and extract the `dependencies archive`_  [#]_, or compile openssl, boost and dbcxx yourself.
+- Compile openssl, boost and dbcxx.
 
-- Copy the contents of the folder "deps" to "X:\\QtSDK\\mingw", replace X:\\ with the location where you installed the Qt SDK. Make sure that the contents of "deps\\include" end up in the current "include" directory.
+- Open the .pro file in QT creator and build as normal (ctrl-B)
 
-- Open the bitcoin-qt.pro file in Qt Creator and build as normal (ctrl-B)
-
-.. _`Qt Windows SDK`: http://qt.nokia.com/downloads/sdk-windows-cpp
-.. _`dependencies archive`: https://download.visucore.com/bitcoin/qtgui_deps_1.zip
-.. [#] PGP signature: https://download.visucore.com/bitcoin/qtgui_deps_1.zip.sig (signed with RSA key ID `610945D0`_)
-.. _`610945D0`: http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x610945D0
+.. _`QT Windows SDK`: http://qt-project.org/downloads
 
 
 Mac OS X
@@ -62,19 +57,19 @@ Mac OS X
 	sudo port selfupdate
 	sudo port install boost db48 miniupnpc
 
-- Open the bitcoin-qt.pro file in Qt Creator and build as normal (cmd-B)
+- Open the .pro file in Qt Creator and build as normal (cmd-B)
 
-.. _`Qt Mac OS X SDK`: http://qt.nokia.com/downloads/sdk-mac-os-cpp
+.. _`Qt Mac OS X SDK`: http://qt-project.org/downloads
 .. _`MacPorts`: http://www.macports.org/install.php
 
 
 Build configuration options
 ============================
 
-UPnP port forwarding
+UPNnP port forwarding
 ---------------------
 
-To use UPnP for port forwarding behind a NAT router (recommended, as more connections overall allow for a faster and more stable litecoin experience), pass the following argument to qmake:
+To use UPnP for port forwarding behind a NAT router (recommended, as more connections overall allow for a faster and more stable netcoin experience), pass the following argument to qmake:
 
 ::
 
@@ -122,9 +117,9 @@ flag to qmake to control this:
 Berkely DB version warning
 ==========================
 
-A warning for people using the *static binary* version of Litecoin on a Linux/UNIX-ish system (tl;dr: **Berkely DB databases are not forward compatible**).
+A warning for people using the *static binary* version of NetCoin on a Linux/UNIX-ish system (tl;dr: **Berkely DB databases are not forward compatible**).
 
-The static binary version of Litecoin is linked against libdb4.8 (see also `this Debian issue`_).
+The static binary version of NetCoin is linked against libdb 5.0 (see also `this Debian issue`_).
 
 Now the nasty thing is that databases from 5.X are not compatible with 4.X.
 
@@ -139,7 +134,7 @@ Ubuntu 11.10 warning
 ====================
 
 Ubuntu 11.10 has a package called 'qt-at-spi' installed by default.  At the time of writing, having that package
-installed causes litecoin-qt to crash intermittently.  The issue has been reported as `launchpad bug 857790`_, but
+installed causes netcoin-qt to crash intermittently.  The issue has been reported as `launchpad bug 857790`_, but
 isn't yet fixed.
 
 Until the bug is fixed, you can remove the qt-at-spi package to work around the problem, though this will presumably

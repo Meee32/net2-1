@@ -14,13 +14,13 @@
 #include <QLocale>
 #include <QList>
 #include <QColor>
-#include <QTimer>
 #include <QIcon>
 #include <QDateTime>
 #include <QtAlgorithms>
 
 // Amount column is right-aligned it contains numbers
 static int column_alignments[] = {
+        Qt::AlignLeft|Qt::AlignVCenter,
         Qt::AlignLeft|Qt::AlignVCenter,
         Qt::AlignLeft|Qt::AlignVCenter,
         Qt::AlignLeft|Qt::AlignVCenter,
@@ -70,7 +70,7 @@ public:
         OutputDebugStringF("refreshWallet\n");
         cachedWallet.clear();
         {
-            LOCK(wallet->cs_wallet);
+            LOCK2(cs_main, wallet->cs_wallet);
             for(std::map<uint256, CWalletTx>::iterator it = wallet->mapWallet.begin(); it != wallet->mapWallet.end(); ++it)
             {
                 if(TransactionRecord::showTransaction(it->second))
@@ -88,7 +88,7 @@ public:
     {
         OutputDebugStringF("updateWallet %s %i\n", hash.ToString().c_str(), status);
         {
-            LOCK(wallet->cs_wallet);
+            LOCK2(cs_main, wallet->cs_wallet);
 
             // Find transaction in wallet
             std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(hash);
@@ -178,13 +178,19 @@ public:
         {
             TransactionRecord *rec = &cachedWallet[idx];
 
+            // Get required locks upfront. This avoids the GUI from getting
+            // stuck if the core is holding the locks for a longer time - for
+            // example, during a wallet rescan.
+            //
             // If a status update is needed (blocks came in since last check),
             //  update the status of this transaction from the wallet. Otherwise,
             // simply re-use the cached status.
-            if(rec->statusUpdateNeeded())
+            TRY_LOCK(cs_main, lockMain);
+            if(lockMain)
             {
+                TRY_LOCK(wallet->cs_wallet, lockWallet);
+                if(lockWallet && rec->statusUpdateNeeded())
                 {
-                    LOCK(wallet->cs_wallet);
                     std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(rec->hash);
 
                     if(mi != wallet->mapWallet.end())
@@ -204,7 +210,7 @@ public:
     QString describe(TransactionRecord *rec)
     {
         {
-            LOCK(wallet->cs_wallet);
+            LOCK2(cs_main, wallet->cs_wallet);
             std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(rec->hash);
             if(mi != wallet->mapWallet.end())
             {
@@ -220,16 +226,11 @@ TransactionTableModel::TransactionTableModel(CWallet* wallet, WalletModel *paren
         QAbstractTableModel(parent),
         wallet(wallet),
         walletModel(parent),
-        priv(new TransactionTablePriv(wallet, this)),
-        cachedNumBlocks(0)
+        priv(new TransactionTablePriv(wallet, this))
 {
-    columns << QString() << tr("Date") << tr("Type") << tr("Address") << tr("Amount");
+    columns << QString() << tr("Date") << tr("Type") << tr("Address") << tr("Narration") << tr("Amount");
 
     priv->refreshWallet();
-
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateConfirmations()));
-    timer->start(MODEL_UPDATE_DELAY);
 
     connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
 }
@@ -249,16 +250,12 @@ void TransactionTableModel::updateTransaction(const QString &hash, int status)
 
 void TransactionTableModel::updateConfirmations()
 {
-    if(nBestHeight != cachedNumBlocks)
-    {
-        cachedNumBlocks = nBestHeight;
-        // Blocks came in since last poll.
-        // Invalidate status (number of confirmations) and (possibly) description
-        //  for all rows. Qt is smart enough to only actually request the data for the
-        //  visible rows.
-        emit dataChanged(index(0, Status), index(priv->size()-1, Status));
-        emit dataChanged(index(0, ToAddress), index(priv->size()-1, ToAddress));
-    }
+    // Blocks came in since last poll.
+    // Invalidate status (number of confirmations) and (possibly) description
+    //  for all rows. Qt is smart enough to only actually request the data for the
+    //  visible rows.
+    emit dataChanged(index(0, Status), index(priv->size()-1, Status));
+    emit dataChanged(index(0, ToAddress), index(priv->size()-1, ToAddress));
 }
 
 int TransactionTableModel::rowCount(const QModelIndex &parent) const
@@ -301,7 +298,7 @@ QString TransactionTableModel::formatTxStatus(const TransactionRecord *wtx) cons
         status = tr("Conflicted");
         break;
     case TransactionStatus::Immature:
-        status = tr("<font color= #ffaa00>Immature (%1 confirmations, will be available after %2)</font>").arg(wtx->status.depth).arg(wtx->status.depth + wtx->status.matures_in);
+        status = tr("Immature (%1 confirmations, will be available after %2)").arg(wtx->status.depth).arg(wtx->status.depth + wtx->status.matures_in);
         break;
     case TransactionStatus::MaturesWarning:
         status = tr("This block was not received by any other nodes and will probably not be accepted!");
@@ -359,8 +356,6 @@ QString TransactionTableModel::formatTxType(const TransactionRecord *wtx) const
         return tr("Payment to yourself");
     case TransactionRecord::Generated:
         return tr("Mined");
-    case TransactionRecord::Generated2:
-        return tr("Mined");
     default:
         return QString();
     }
@@ -371,8 +366,6 @@ QVariant TransactionTableModel::txAddressDecoration(const TransactionRecord *wtx
     switch(wtx->type)
     {
     case TransactionRecord::Generated:
-        return QIcon(":/icons/tx_mined");
-    case TransactionRecord::Generated2:
         return QIcon(":/icons/tx_mined");
     case TransactionRecord::RecvWithAddress:
     case TransactionRecord::RecvFromOther:
@@ -396,8 +389,6 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx, b
     case TransactionRecord::SendToAddress:
     case TransactionRecord::Generated:
         return lookupAddress(wtx->address, tooltip);
-    case TransactionRecord::Generated2:
-        return lookupAddress(wtx->address, tooltip);
     case TransactionRecord::SendToOther:
         return QString::fromStdString(wtx->address);
     case TransactionRecord::SendToSelf:
@@ -405,6 +396,12 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx, b
         return tr("(n/a)");
     }
 }
+
+QString TransactionTableModel::formatNarration(const TransactionRecord *wtx) const
+{
+    return QString::fromStdString(wtx->narration);
+}
+
 
 QVariant TransactionTableModel::addressColor(const TransactionRecord *wtx) const
 {
@@ -414,7 +411,6 @@ QVariant TransactionTableModel::addressColor(const TransactionRecord *wtx) const
     case TransactionRecord::RecvWithAddress:
     case TransactionRecord::SendToAddress:
     case TransactionRecord::Generated:
-    case TransactionRecord::Generated2:
         {
         QString label = walletModel->getAddressTableModel()->labelForAddress(QString::fromStdString(wtx->address));
         if(label.isEmpty())
@@ -514,6 +510,8 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
             return formatTxType(rec);
         case ToAddress:
             return formatTxToAddress(rec, false);
+        case Narration:
+            return formatNarration(rec);
         case Amount:
             return formatTxAmount(rec);
         }
@@ -622,27 +620,6 @@ QModelIndex TransactionTableModel::index(int row, int column, const QModelIndex 
     }
 }
 
-qint64 TransactionTableModel::getInterestGenerated()
-{
-   //checkme: Paranoid? Not sure if entirely necessary.
-   LOCK(wallet->cs_wallet);
-
-   int64_t ret = 0;
-   for(int i=0; i < priv->size(); i++)
-   {
-       if(priv->cachedWallet[i].type == TransactionRecord::Generated2)
-       {
-           if(priv->cachedWallet[i].status.status == TransactionStatus::Confirmed)
-           {
-               //if(forAddress.isEmpty() || forAddress == priv->cachedWallet[i].address.c_str())
-               //{
-                   ret += priv->cachedWallet[i].credit - priv->cachedWallet[i].debit;
-               //}
-           }
-       }
-   }
-   return ret;
-}
 void TransactionTableModel::updateDisplayUnit()
 {
     // emit dataChanged to update Amount column with the current unit

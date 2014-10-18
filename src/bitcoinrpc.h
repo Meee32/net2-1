@@ -1,12 +1,11 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2012 Litecoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef _BITCOINRPC_H_
 #define _BITCOINRPC_H_ 1
-#include <stdint.h>
+
 #include <string>
 #include <list>
 #include <map>
@@ -154,6 +153,7 @@ extern json_spirit::Value importprivkey(const json_spirit::Array& params, bool f
 
 extern json_spirit::Value sendalert(const json_spirit::Array& params, bool fHelp);
 
+extern json_spirit::Value getsubsidy(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getmininginfo(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getstakinginfo(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getwork(const json_spirit::Array& params, bool fHelp);
@@ -217,7 +217,29 @@ extern json_spirit::Value getblockhash(const json_spirit::Array& params, bool fH
 extern json_spirit::Value getblock(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getblockbynumber(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getcheckpoint(const json_spirit::Array& params, bool fHelp);
-extern json_spirit::Value gethashespersec(const json_spirit::Array& params, bool fHelp);
-extern json_spirit::Value getnetworkhashps(const json_spirit::Array& params, bool fHelp);
+
+extern json_spirit::Value getnewstealthaddress(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value liststealthaddresses(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value importstealthaddress(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value sendtostealthaddress(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value clearwallettransactions(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value scanforalltxns(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value scanforstealthtxns(const json_spirit::Array& params, bool fHelp);
+
+
+
+extern json_spirit::Value smsgenable(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgdisable(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsglocalkeys(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgoptions(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgscanchain(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgscanbuckets(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgaddkey(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsggetpubkey(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgsend(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgsendanon(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsginbox(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgoutbox(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value smsgbuckets(const json_spirit::Array& params, bool fHelp);
 
 #endif

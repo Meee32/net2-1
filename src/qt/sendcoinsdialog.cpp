@@ -21,7 +21,6 @@
 #include <QTextDocument>
 #include <QScrollBar>
 #include <QClipboard>
-#include <QAction>
 
 SendCoinsDialog::SendCoinsDialog(QWidget *parent) :
     QDialog(parent),
@@ -38,7 +37,7 @@ SendCoinsDialog::SendCoinsDialog(QWidget *parent) :
 
 #if QT_VERSION >= 0x040700
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-    ui->lineEditCoinControlChange->setPlaceholderText(tr("Enter a Netcoin address (e.g. nBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)"));
+    ui->lineEditCoinControlChange->setPlaceholderText(tr("Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)"));
 #endif
 
     addEntry();
@@ -53,7 +52,6 @@ SendCoinsDialog::SendCoinsDialog(QWidget *parent) :
     connect(ui->lineEditCoinControlChange, SIGNAL(textEdited(const QString &)), this, SLOT(coinControlChangeEdited(const QString &)));
 
     // Coin Control: clipboard actions
-
     QAction *clipboardQuantityAction = new QAction(tr("Copy quantity"), this);
     QAction *clipboardAmountAction = new QAction(tr("Copy amount"), this);
     QAction *clipboardFeeAction = new QAction(tr("Copy fee"), this);
@@ -152,16 +150,10 @@ void SendCoinsDialog::on_sendButton_clicked()
 
     fNewRecipientAllowed = false;
 
-    QMessageBox msgBox;
-     msgBox.setStyleSheet("background: url(:/images/res/images/dialogBackground.jpg);"
-                          "color: #ffaa00;"
-                          "font-family: Plantagenet Cherokee;"
-                          "font-size: 14px;");
-     msgBox.setText("Confirm your transaction");
-     msgBox.setInformativeText(tr("Are you sure you want to send %1?").arg(formatted.join(tr(" and "))));
-     msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
-     msgBox.setDefaultButton(QMessageBox::Yes);
-     int retval = msgBox.exec();
+    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm send coins"),
+                          tr("Are you sure you want to send %1?").arg(formatted.join(tr(" and "))),
+          QMessageBox::Yes|QMessageBox::Cancel,
+          QMessageBox::Cancel);
 
     if(retval != QMessageBox::Yes)
     {
@@ -220,6 +212,11 @@ void SendCoinsDialog::on_sendButton_clicked()
     case WalletModel::TransactionCommitFailed:
         QMessageBox::warning(this, tr("Send Coins"),
             tr("Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here."),
+            QMessageBox::Ok, QMessageBox::Ok);
+        break;
+    case WalletModel::NarrationTooLong:
+        QMessageBox::warning(this, tr("Send Coins"),
+            tr("Error: Narration is too long."),
             QMessageBox::Ok, QMessageBox::Ok);
         break;
     case WalletModel::Aborted: // User aborted, nothing to do
@@ -470,7 +467,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString & text)
         else if (!CBitcoinAddress(text.toStdString()).IsValid())
         {
             ui->labelCoinControlChangeLabel->setStyleSheet("QLabel{color:red;}");
-            ui->labelCoinControlChangeLabel->setText(tr("WARNING: Invalid Netcoin address"));
+            ui->labelCoinControlChangeLabel->setText(tr("WARNING: Invalid NetCoin address"));
         }
         else
         {

@@ -3,22 +3,24 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About Netcoin</source>
-        <translation>Om Netcoin</translation>
+        <source>About NetCoin</source>
+        <translation>Om NetCoin</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;Netcoin&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;Netcoin&lt;/b&gt; version</translation>
+        <source>&lt;b&gt;NetCoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt;NetCoin&lt;/b&gt; version</translation>
     </message>
     <message>
         <location line="+41"/>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The Netcoin developers</source>
+Copyright © 2014 The BlackCoin developers
+Copyright © 2014 The NetCoin developers</source>
         <translation>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The Netcoin developers</translation>
+Copyright © 2014 The BlackCoin developers
+Copyright © 2014 The NetCoin developers</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -65,8 +67,8 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
     </message>
     <message>
         <location line="-46"/>
-        <source>These are your Netcoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>Dette er dine Netcoin adresser til at modtage betalinger. Du ønsker måske at give en anden en til af hver afsender, så du kan holde styr på hvem der betaler dig.</translation>
+        <source>These are your NetCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>Dette er dine NetCoin adresser til at modtage betalinger. Du ønsker måske at give en anden en til af hver afsender, så du kan holde styr på hvem der betaler dig.</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -80,8 +82,8 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a Netcoin address</source>
-        <translation>Signerer en meddelelse for at bevise du ejer en Netcoin adresse</translation>
+        <source>Sign a message to prove you own a NetCoin address</source>
+        <translation>Signerer en meddelelse for at bevise du ejer en NetCoin adresse</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -95,8 +97,8 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
     </message>
     <message>
         <location line="-14"/>
-        <source>Verify a message to ensure it was signed with a specified Netcoin address</source>
-        <translation>Bekræft en meddelelse for at sikre, den blev underskrevet med en specificeret Netcoin adresse</translation>
+        <source>Verify a message to ensure it was signed with a specified NetCoin address</source>
+        <translation>Bekræft en meddelelse for at sikre, den blev underskrevet med en specificeret NetCoin adresse</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -263,8 +265,8 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
     </message>
     <message>
         <location line="-58"/>
-        <source>Netcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>Netcoin lukker nu for at afslutte krypteringen. Husk at en krypteret  tegnebog ikke fuldt ud beskytter dine mønter mod at blive stjålet af malware som har inficeret din computer.</translation>
+        <source>NetCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation>NetCoin lukker nu for at afslutte krypteringen. Husk at en krypteret  tegnebog ikke fuldt ud beskytter dine mønter mod at blive stjålet af malware som har inficeret din computer.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -311,19 +313,19 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+282"/>
+        <location filename="../bitcoingui.cpp" line="+280"/>
         <source>Sign &amp;message...</source>
         <translation>Underskriv besked...</translation>
     </message>
     <message>
-        <location line="+251"/>
+        <location line="+242"/>
         <source>Synchronizing with network...</source>
         <translation>Synkroniserer med netværk...</translation>
     </message>
     <message>
-        <location line="-319"/>
+        <location line="-308"/>
         <source>&amp;Overview</source>
-        <translation>Oversigt</translation>
+        <translation>&amp;Oversigt</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -333,7 +335,7 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
     <message>
         <location line="+17"/>
         <source>&amp;Transactions</source>
-        <translation>Transaktioner</translation>
+        <translation>&amp;Transaktioner</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -343,7 +345,7 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
     <message>
         <location line="+5"/>
         <source>&amp;Address Book</source>
-        <translation>&amp;Adresse Bog</translation>
+        <translation>&amp;Adressebog</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -376,9 +378,9 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
         <translation>Afslut program</translation>
     </message>
     <message>
-        <location line="+6"/>
-        <source>Show information about Netcoin</source>
-        <translation>Vis oplysninger om Netcoin</translation>
+        <location line="+4"/>
+        <source>Show information about NetCoin</source>
+        <translation>Vis oplysninger om NetCoin</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -393,7 +395,7 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
     <message>
         <location line="+2"/>
         <source>&amp;Options...</source>
-        <translation>Indstillinger...</translation>
+        <translation>&amp;Indstillinger...</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -411,29 +413,29 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
         <translation>Skift adgangskode...</translation>
     </message>
     <message numerus="yes">
-        <location line="+259"/>
+        <location line="+250"/>
         <source>~%n block(s) remaining</source>
         <translation><numerusform>~%n blok resterer</numerusform><numerusform>~%n blokke resterende</numerusform></translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
-        <translation>Downloadet% 1 af% 2 blokke af transaktions historie (% 3% færdig).</translation>
+        <translation>Overført %1 af %2 blokke af transaktions historie (%3% færdig).</translation>
     </message>
     <message>
-        <location line="-256"/>
+        <location line="-247"/>
         <source>&amp;Export...</source>
-        <translation>&amp;Eksporter ...</translation>
+        <translation>&amp;Eksporter...</translation>
     </message>
     <message>
-        <location line="-64"/>
-        <source>Send coins to a Netcoin address</source>
-        <translation>Send mønter til en Netcoin adresse</translation>
+        <location line="-62"/>
+        <source>Send coins to a NetCoin address</source>
+        <translation>Send mønter til en NetCoin adresse</translation>
     </message>
     <message>
-        <location line="+47"/>
-        <source>Modify configuration options for Netcoin</source>
-        <translation>Ændre indstillingsmuligheder for Netcoin</translation>
+        <location line="+45"/>
+        <source>Modify configuration options for NetCoin</source>
+        <translation>Ændre indstillingsmuligheder for NetCoin</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -471,9 +473,9 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
         <translation>Verificér besked...</translation>
     </message>
     <message>
-        <location line="-202"/>
-        <source>Netcoin</source>
-        <translation>Netcoin</translation>
+        <location line="-200"/>
+        <source>NetCoin</source>
+        <translation>NetCoin</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -481,9 +483,9 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
         <translation>Tegnebog</translation>
     </message>
     <message>
-        <location line="+180"/>
-        <source>&amp;About Netcoin</source>
-        <translation>&amp;Om Netcoin</translation>
+        <location line="+178"/>
+        <source>&amp;About NetCoin</source>
+        <translation>&amp;Om NetCoin</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -506,7 +508,7 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
         <translation>Lås tegnebog</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+34"/>
         <source>&amp;File</source>
         <translation>Fil</translation>
     </message>
@@ -521,7 +523,7 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
         <translation>Hjælp</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+9"/>
         <source>Tabs toolbar</source>
         <translation>Faneværktøjslinje</translation>
     </message>
@@ -539,13 +541,13 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
     <message>
         <location line="+0"/>
         <location line="+60"/>
-        <source>Netcoin client</source>
-        <translation>Netcoin Klient</translation>
+        <source>NetCoin client</source>
+        <translation>NetCoin klient</translation>
     </message>
     <message numerus="yes">
-        <location line="+75"/>
-        <source>%n active connection(s) to Netcoin network</source>
-        <translation><numerusform>%n aktiv forbindelse til Netcoin netværk</numerusform><numerusform>%n aktive forbindelser til Netcoin netværk</numerusform></translation>
+        <location line="+70"/>
+        <source>%n active connection(s) to NetCoin network</source>
+        <translation><numerusform>%n aktiv forbindelse til NetCoin netværk</numerusform><numerusform>%n aktive forbindelser til NetCoin netværk</numerusform></translation>
     </message>
     <message>
         <location line="+40"/>
@@ -583,22 +585,12 @@ Produktet indeholder software, som er udviklet af OpenSSL Project til brug i Ope
         <translation><numerusform>%n sekund siden</numerusform><numerusform>%n sekunder siden</numerusform></translation>
     </message>
     <message>
-        <location line="-312"/>
-        <source>About Netcoin card</source>
-        <translation>Om Netcoin kort</translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Show information about Netcoin card</source>
-        <translation>Vis oplysninger om Netcoin kort</translation>
-    </message>
-    <message>
-        <location line="+18"/>
+        <location line="-284"/>
         <source>&amp;Unlock Wallet...</source>
         <translation>Lås tegnebog op</translation>
     </message>
     <message numerus="yes">
-        <location line="+297"/>
+        <location line="+288"/>
         <source>%n minute(s) ago</source>
         <translation><numerusform>%n minut siden</numerusform><numerusform>%n minutter siden</numerusform></translation>
     </message>
@@ -669,8 +661,8 @@ Adresse: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid Netcoin address or malformed URI parameters.</source>
-        <translation>URI kan ikke tolkes! Dette kan skyldes en ugyldig Netcoin adresse eller misdannede URI parametre.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid NetCoin address or malformed URI parameters.</source>
+        <translation>URI kan ikke tolkes! Dette kan skyldes en ugyldig NetCoin adresse eller misdannede URI parametre.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -690,7 +682,7 @@ Adresse: %4
     <message>
         <location line="+0"/>
         <source>Wallet Data (*.dat)</source>
-        <translation>Wallet Data (*.dat)</translation>
+        <translation>Tegnebogsdata (*.dat)</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -729,7 +721,7 @@ Adresse: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. Netcoin can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. NetCoin can no longer continue safely and will quit.</source>
         <translation>Der opstod en fejl under forsøg på at gemme dataene i tegnebogen til den nye placering.</translation>
     </message>
 </context>
@@ -1063,8 +1055,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid Netcoin address.</source>
-        <translation>Den indtastede adresse &quot;%1&quot; er ikke en gyldig Netcoin adresse.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid NetCoin address.</source>
+        <translation>Den indtastede adresse &quot;%1&quot; er ikke en gyldig NetCoin adresse.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1082,8 +1074,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     <message>
         <location filename="../guiutil.cpp" line="+420"/>
         <location line="+12"/>
-        <source>Netcoin-Qt</source>
-        <translation>Netcoin-Qt</translation>
+        <source>NetCoin-Qt</source>
+        <translation>NetCoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -1155,13 +1147,13 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start Netcoin after logging in to the system.</source>
-        <translation>Automatisk start Netcoin efter at have logget ind på systemet.</translation>
+        <source>Automatically start NetCoin after logging in to the system.</source>
+        <translation>Automatisk start NetCoin efter at have logget ind på systemet.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start Netcoin on system login</source>
-        <translation>&amp;Start Netcoin ved systems login</translation>
+        <source>&amp;Start NetCoin on system login</source>
+        <translation>&amp;Start NetCoin ved systems login</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1180,8 +1172,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the Netcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatisk åbne Netcoin klient-port på routeren. Dette virker kun, når din router understøtter UPnP og er det er aktiveret.</translation>
+        <source>Automatically open the NetCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatisk åbne NetCoin klient-port på routeren. Dette virker kun, når din router understøtter UPnP og er det er aktiveret.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1190,8 +1182,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the Netcoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Opret forbindelse til Netcoin netværk via en SOCKS proxy (fx ved tilslutning gennem Tor).</translation>
+        <source>Connect to the NetCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Opret forbindelse til NetCoin netværk via en SOCKS proxy (fx ved tilslutning gennem Tor).</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1265,8 +1257,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting Netcoin.</source>
-        <translation>Sproget i brugergrænsefladen kan indstilles her. Denne indstilling vil træde i kraft efter genstart af Netcoin tegnebog.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting NetCoin.</source>
+        <translation>Sproget i brugergrænsefladen kan indstilles her. Denne indstilling vil træde i kraft efter genstart af NetCoin tegnebog.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1280,8 +1272,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show Netcoin addresses in the transaction list or not.</source>
-        <translation>Få vist Netcoin adresser på listen over transaktioner eller ej.</translation>
+        <source>Whether to show NetCoin addresses in the transaction list or not.</source>
+        <translation>Få vist NetCoin adresser på listen over transaktioner eller ej.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1327,8 +1319,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting Netcoin.</source>
-        <translation>Denne indstilling vil træde i kraft efter genstart af Netcoin.</translation>
+        <source>This setting will take effect after restarting NetCoin.</source>
+        <translation>Denne indstilling vil træde i kraft efter genstart af NetCoin.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1346,8 +1338,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     <message>
         <location line="+33"/>
         <location line="+231"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Netcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>De viste oplysninger kan være forældet. Din tegnebog synkroniserer automatisk med Netcoin netværket efter en forbindelse er etableret, men denne proces er ikke afsluttet endnu.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the NetCoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>De viste oplysninger kan være forældet. Din tegnebog synkroniserer automatisk med NetCoin netværket efter en forbindelse er etableret, men denne proces er ikke afsluttet endnu.</translation>
     </message>
     <message>
         <location line="-160"/>
@@ -1562,8 +1554,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the Netcoin-Qt help message to get a list with possible Netcoin command-line options.</source>
-        <translation>Vis Netcoin-Qt hjælpe besked for at få en liste med mulige Netcoin kommandolinjeparametre.</translation>
+        <source>Show the NetCoin-Qt help message to get a list with possible NetCoin command-line options.</source>
+        <translation>Vis NetCoin-Qt hjælpe besked for at få en liste med mulige NetCoin kommandolinjeparametre.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1582,13 +1574,13 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="-104"/>
-        <source>Netcoin - Debug window</source>
-        <translation>Netcoin - Debug vindue</translation>
+        <source>NetCoin - Debug window</source>
+        <translation>NetCoin - Debug vindue</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>Netcoin Core</source>
-        <translation>Netcoin Kerne</translation>
+        <source>NetCoin Core</source>
+        <translation>NetCoin Kerne</translation>
     </message>
     <message>
         <location line="+279"/>
@@ -1597,8 +1589,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the Netcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Åbn Netcoin debug logfilen fra den nuværende data mappe. Dette kan tage et par sekunder for store logfiler.</translation>
+        <source>Open the NetCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Åbn NetCoin debug logfilen fra den nuværende data mappe. Dette kan tage et par sekunder for store logfiler.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1607,8 +1599,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the Netcoin RPC console.</source>
-        <translation>Velkommen til Netcoin RPC-konsol.</translation>
+        <source>Welcome to the NetCoin RPC console.</source>
+        <translation>Velkommen til NetCoin RPC-konsol.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1681,8 +1673,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
         <location line="+86"/>
         <location line="+86"/>
         <location line="+32"/>
-        <source>0.00 NET</source>
-        <translation>123.456 NET {0.00 ?}</translation>
+        <source>0.00 SDC</source>
+        <translation>123.456 SDC {0.00 ?}</translation>
     </message>
     <message>
         <location line="-191"/>
@@ -1751,8 +1743,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>123.456 NET</source>
-        <translation>123.456 NET</translation>
+        <source>123.456 SDC</source>
+        <translation>123.456 SDC</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1766,8 +1758,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Indtast en Netcoin-adresse (f.eks PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Indtast en NetCoin-adresse (f.eks SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1866,8 +1858,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+251"/>
-        <source>WARNING: Invalid Netcoin address</source>
-        <translation>ADVARSEL: Ugyldig Netcoin adresse</translation>
+        <source>WARNING: Invalid NetCoin address</source>
+        <translation>ADVARSEL: Ugyldig NetCoin adresse</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1910,8 +1902,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to send the payment to  (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Adressen til at sende betalingen til (f.eks PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address to send the payment to  (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Adressen til at sende betalingen til (f.eks SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1940,8 +1932,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Indtast en Netcoin-adresse (f.eks PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Indtast en NetCoin-adresse (f.eks SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
 </context>
 <context>
@@ -1964,8 +1956,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Adresse til at underskrive meddelelsen med (f.eks PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address to sign the message with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Adresse til at underskrive meddelelsen med (f.eks SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2001,8 +1993,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Netcoin address</source>
-        <translation>Underskriv brevet for at bevise du ejer denne Netcoin adresse</translation>
+        <source>Sign the message to prove you own this NetCoin address</source>
+        <translation>Underskriv brevet for at bevise du ejer denne NetCoin adresse</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2028,13 +2020,13 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>The address the message was signed with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Adressen meddelelse blev underskrevet med (f.eks PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address the message was signed with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Adressen meddelelse blev underskrevet med (f.eks SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified Netcoin address</source>
-        <translation>Kontroller meddelelsen for at sikre, at den blev indgået med den angivne Netcoin adresse</translation>
+        <source>Verify the message to ensure it was signed with the specified NetCoin address</source>
+        <translation>Kontroller meddelelsen for at sikre, at den blev indgået med den angivne NetCoin adresse</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2044,8 +2036,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Indtast en Netcoin-adresse (f.eks PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Indtast en NetCoin-adresse (f.eks SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -2054,8 +2046,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter Netcoin signature</source>
-        <translation>Indtast Netcoin underskrift</translation>
+        <source>Enter NetCoin signature</source>
+        <translation>Indtast NetCoin underskrift</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2625,8 +2617,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+33"/>
-        <source>Netcoin version</source>
-        <translation>Netcoin version</translation>
+        <source>NetCoin version</source>
+        <translation>NetCoin version</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2635,8 +2627,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or pandacoind</source>
-        <translation>Send kommando til-server eller pandacoind</translation>
+        <source>Send command to -server or netcoind</source>
+        <translation>Send kommando til-server eller netcoind</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2655,13 +2647,13 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Specify configuration file (default: pandacoin.conf)</source>
-        <translation>Angiv konfigurationsfil (default: pandacoin.conf)</translation>
+        <source>Specify configuration file (default: netcoin.conf)</source>
+        <translation>Angiv konfigurationsfil (default: netcoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify pid file (default: pandacoind.pid)</source>
-        <translation>Angiv pid fil (standard: pandacoind.pid)</translation>
+        <source>Specify pid file (default: netcoind.pid)</source>
+        <translation>Angiv pid fil (standard: netcoind.pid)</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2685,8 +2677,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
-        <translation>Lyt efter forbindelser på &lt;port&gt; (default: 15714 eller Testnet: 25714)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 51737 or testnet: 51997)</source>
+        <translation>Lyt efter forbindelser på &lt;port&gt; (default: 51737 eller Testnet: 51997)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2745,8 +2737,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="-87"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 22444 or testnet: 25715)</source>
-        <translation>Spor efter JSON-RPC-forbindelser på &lt;port&gt; (default: 22444 eller Testnet: 25715)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 51736 or testnet: 51996)</source>
+        <translation>Spor efter JSON-RPC-forbindelser på &lt;port&gt; (default: 51736 eller Testnet: 51996)</translation>
     </message>
     <message>
         <location line="-11"/>
@@ -2810,8 +2802,8 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
     </message>
     <message>
         <location line="+61"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Netcoin will not work properly.</source>
-        <translation>Advarsel: Kontroller venligst, at computerens dato og klokkeslæt er korrekt! Hvis dit ur er forkert vil Netcoin ikke fungere korrekt.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong NetCoin will not work properly.</source>
+        <translation>Advarsel: Kontroller venligst, at computerens dato og klokkeslæt er korrekt! Hvis dit ur er forkert vil NetCoin ikke fungere korrekt.</translation>
     </message>
     <message>
         <location line="-31"/>
@@ -3000,24 +2992,24 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:
-rpcuser=pandacoinrpc
+rpcuser=netcoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.com
 </source>
         <translation>% s, skal du indstille et rpcpassword i konfigurationsfilen: 
 % s 
 Det anbefales at bruge følgende tilfældig adgangskode: 
-rpcuser = pandacoinrpc  
+rpcuser = netcoinrpc  
 rpcpassword =% s  
 (du behøver ikke at huske denne adgangskode)  
 Brugernavn og adgangskode må ikke være den samme.  
 Hvis filen ikke findes, skal du oprette den med filtilladelser ejer-læsbar-kun. 
 Det kan også anbefales at sætte alertnotify så du får besked om problemer; 
-for eksempel: alertnotify = echo%% s | mail-s &quot;Netcoin Alert&quot; admin@foo.com 
+for eksempel: alertnotify = echo%% s | mail-s &quot;NetCoin Alert&quot; admin@foo.com 
 </translation>
     </message>
     <message>
@@ -3142,13 +3134,13 @@ for eksempel: alertnotify = echo%% s | mail-s &quot;Netcoin Alert&quot; admin@fo
     </message>
     <message>
         <location line="+1"/>
-        <source>Cannot obtain a lock on data directory %s.  Netcoin is probably already running.</source>
-        <translation>Kan ikke få en lås på data mappe% s. Netcoin kører sikkert allerede.</translation>
+        <source>Cannot obtain a lock on data directory %s.  NetCoin is probably already running.</source>
+        <translation>Kan ikke få en lås på data mappe% s. NetCoin kører sikkert allerede.</translation>
     </message>
     <message>
         <location line="-98"/>
-        <source>Netcoin</source>
-        <translation>Netcoin</translation>
+        <source>NetCoin</source>
+        <translation>NetCoin</translation>
     </message>
     <message>
         <location line="+140"/>
@@ -3182,13 +3174,13 @@ for eksempel: alertnotify = echo%% s | mail-s &quot;Netcoin Alert&quot; admin@fo
     </message>
     <message>
         <location line="+4"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Netcoin</source>
-        <translation>Fejl ved indlæsning af wallet.dat: Wallet kræver en nyere version af Netcoin</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of NetCoin</source>
+        <translation>Fejl ved indlæsning af wallet.dat: Wallet kræver en nyere version af NetCoin</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart Netcoin to complete</source>
-        <translation>Det er nødvendig for wallet at blive omskrevet: Genstart Netcoin for fuldføre</translation>
+        <source>Wallet needed to be rewritten: restart NetCoin to complete</source>
+        <translation>Det er nødvendig for wallet at blive omskrevet: Genstart NetCoin for fuldføre</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3257,8 +3249,8 @@ for eksempel: alertnotify = echo%% s | mail-s &quot;Netcoin Alert&quot; admin@fo
     </message>
     <message>
         <location line="+122"/>
-        <source>Unable to bind to %s on this computer. Netcoin is probably already running.</source>
-        <translation>Kunne ikke binde sig til% s på denne computer. Netcoin kører sikkert allerede.</translation>
+        <source>Unable to bind to %s on this computer. NetCoin is probably already running.</source>
+        <translation>Kunne ikke binde sig til% s på denne computer. NetCoin kører sikkert allerede.</translation>
     </message>
     <message>
         <location line="-97"/>

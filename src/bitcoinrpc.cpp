@@ -1,11 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2012 The Litecoin Developers
-// Copyright (c) 2013 Florincoin developers
-// Copyright (c) 2013 NetCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 
 #include "init.h"
 #include "util.h"
@@ -24,7 +20,7 @@
 #include <boost/iostreams/concepts.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <boost/algorithm/string.hpp>
-
+#include <boost/lexical_cast.hpp>
 #include <boost/asio/ssl.hpp>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/shared_ptr.hpp>
@@ -223,12 +219,12 @@ Value stop(const Array& params, bool fHelp)
         throw runtime_error(
             "stop <detach>\n"
             "<detach> is true or false to detach the database or not for this stop only\n"
-            "Stop Netcoin server (and possibly override the detachdb config value).");
+            "Stop NetCoin server (and possibly override the detachdb config value).");
     // Shutdown will take long enough that the response should get back
     if (params.size() > 0)
         bitdb.SetDetach(params[0].get_bool());
     StartShutdown();
-    return "Netcoin server stopping";
+    return "NetCoin server stopping";
 }
 
 
@@ -249,6 +245,7 @@ static const CRPCCommand vRPCCommands[] =
     { "getpeerinfo",            &getpeerinfo,            true,   false },
     { "getdifficulty",          &getdifficulty,          true,   false },
     { "getinfo",                &getinfo,                true,   false },
+    { "getsubsidy",             &getsubsidy,             true,   false },
     { "getmininginfo",          &getmininginfo,          true,   false },
     { "getstakinginfo",         &getstakinginfo,         true,   false },
     { "getnewaddress",          &getnewaddress,          true,   false },
@@ -310,6 +307,34 @@ static const CRPCCommand vRPCCommands[] =
     { "resendtx",               &resendtx,               false,  true},
     { "makekeypair",            &makekeypair,            false,  true},
     { "sendalert",              &sendalert,              false,  false},
+    
+    { "getnewstealthaddress",   &getnewstealthaddress,   false,  false},
+    { "liststealthaddresses",   &liststealthaddresses,   false,  false},
+    { "importstealthaddress",   &importstealthaddress,   false,  false},
+    { "sendtostealthaddress",   &sendtostealthaddress,   false,  false},
+    { "clearwallettransactions",&clearwallettransactions,false,  false},
+    { "scanforalltxns",         &scanforalltxns,         false,  false},
+    { "scanforstealthtxns",     &scanforstealthtxns,     false,  false},
+    
+    
+    { "smsgenable",             &smsgenable,             false,  false},
+    { "smsgdisable",            &smsgdisable,            false,  false},
+    { "smsglocalkeys",          &smsglocalkeys,          false,  false},
+    { "smsgoptions",            &smsgoptions,            false,  false},
+    { "smsgscanchain",          &smsgscanchain,          false,  false},
+    { "smsgscanbuckets",        &smsgscanbuckets,        false,  false},
+    { "smsgaddkey",             &smsgaddkey,             false,  false},
+    { "smsggetpubkey",          &smsggetpubkey,          false,  false},
+    { "smsgsend",               &smsgsend,               false,  false},
+    { "smsgsendanon",           &smsgsendanon,           false,  false},
+    { "smsginbox",              &smsginbox,              false,  false},
+    { "smsgoutbox",             &smsgoutbox,             false,  false},
+    { "smsgbuckets",            &smsgbuckets,            false,  false},
+    
+    
+    
+    
+    
 };
 
 CRPCTable::CRPCTable()
@@ -499,7 +524,7 @@ bool HTTPAuthorized(map<string, string>& mapHeaders)
 }
 
 //
-// JSON-RPC protocol.  NetCoin speaks version 1.0 for maximum compatibility,
+// JSON-RPC protocol.  Bitcoin speaks version 1.0 for maximum compatibility,
 // but uses JSON-RPC 1.1/2.0 standards for parts of the 1.0 standard that were
 // unspecified (HTTP errors and contents of 'error').
 //
@@ -671,8 +696,6 @@ private:
 
 void ThreadRPCServer(void* parg)
 {
-    IMPLEMENT_RANDOMIZE_STACK(ThreadRPCServer(parg));
-
     // Make this thread recognisable as the RPC listener
     RenameThread("netcoin-rpclist");
 
@@ -792,7 +815,7 @@ void ThreadRPCServer2(void* parg)
               "The username and password MUST NOT be the same.\n"
               "If the file does not exist, create it with owner-readable-only file permissions.\n"
               "It is also recommended to set alertnotify so you are notified of problems;\n"
-              "for example: alertnotify=echo %%s | mail -s \"Netcoin Alert\" admin@foo.com\n"),
+              "for example: alertnotify=echo %%s | mail -s \"NetCoin Alert\" admin@foo.com\n"),
                 strWhatAmI.c_str(),
                 GetConfigFile().string().c_str(),
                 EncodeBase58(&rand_pwd[0],&rand_pwd[0]+32).c_str()),
@@ -837,12 +860,10 @@ void ThreadRPCServer2(void* parg)
     std::string strerr;
     try
     {
-        boost::shared_ptr<ip::tcp::acceptor> acceptor(new ip::tcp::acceptor(io_service));
         acceptor->open(endpoint.protocol());
         acceptor->set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
 
         // Try making the socket dual IPv6/IPv4 (if listening on the "any" address)
-        boost::system::error_code v6_only_error;
         acceptor->set_option(boost::asio::ip::v6_only(loopback), v6_only_error);
 
         acceptor->bind(endpoint);
@@ -979,8 +1000,6 @@ static CCriticalSection cs_THREAD_RPCHANDLER;
 
 void ThreadRPCServer3(void* parg)
 {
-    IMPLEMENT_RANDOMIZE_STACK(ThreadRPCServer3(parg));
-
     // Make this thread recognisable as the RPC handler
     RenameThread("netcoin-rpchand");
 
@@ -1053,7 +1072,7 @@ void ThreadRPCServer3(void* parg)
                 strReply = JSONRPCExecBatch(valRequest.get_array());
             else
                 throw JSONRPCError(RPC_PARSE_ERROR, "Top-level object parse error");
-                
+
             conn->stream() << HTTPReply(HTTP_OK, strReply, fRun) << std::flush;
         }
         catch (Object& objError)
@@ -1096,9 +1115,9 @@ json_spirit::Value CRPCTable::execute(const std::string &strMethod, const json_s
             if (pcmd->unlocked)
                 result = pcmd->actor(params, false);
             else {
-            LOCK2(cs_main, pwalletMain->cs_wallet);
-            result = pcmd->actor(params, false);
-        }
+                LOCK2(cs_main, pwalletMain->cs_wallet);
+                result = pcmd->actor(params, false);
+            }
         }
         return result;
     }
@@ -1196,56 +1215,55 @@ Array RPCConvertValues(const std::string &strMethod, const std::vector<std::stri
     //
     // Special case non-string parameter types
     //
-
-
     if (strMethod == "stop"                   && n > 0) ConvertTo<bool>(params[0]);
-    if (strMethod == "setgenerate"            && n > 0) ConvertTo<bool>(params[0]);
-    if (strMethod == "setgenerate"            && n > 1) ConvertTo<boost::int64_t>(params[1]);
     if (strMethod == "sendtoaddress"          && n > 1) ConvertTo<double>(params[1]);
     if (strMethod == "settxfee"               && n > 0) ConvertTo<double>(params[0]);
-    if (strMethod == "setmininput"            && n > 0) ConvertTo<double>(params[0]);
-    if (strMethod == "getreceivedbyaddress"   && n > 1) ConvertTo<boost::int64_t>(params[1]);
-    if (strMethod == "getreceivedbyaccount"   && n > 1) ConvertTo<boost::int64_t>(params[1]);
-    if (strMethod == "listreceivedbyaddress"  && n > 0) ConvertTo<boost::int64_t>(params[0]);
+    if (strMethod == "getreceivedbyaddress"   && n > 1) ConvertTo<int64_t>(params[1]);
+    if (strMethod == "getreceivedbyaccount"   && n > 1) ConvertTo<int64_t>(params[1]);
+    if (strMethod == "listreceivedbyaddress"  && n > 0) ConvertTo<int64_t>(params[0]);
     if (strMethod == "listreceivedbyaddress"  && n > 1) ConvertTo<bool>(params[1]);
-    if (strMethod == "listreceivedbyaccount"  && n > 0) ConvertTo<boost::int64_t>(params[0]);
+    if (strMethod == "listreceivedbyaccount"  && n > 0) ConvertTo<int64_t>(params[0]);
     if (strMethod == "listreceivedbyaccount"  && n > 1) ConvertTo<bool>(params[1]);
-    if (strMethod == "getbalance"             && n > 1) ConvertTo<boost::int64_t>(params[1]);
+    if (strMethod == "getbalance"             && n > 1) ConvertTo<int64_t>(params[1]);
     if (strMethod == "getblock"               && n > 1) ConvertTo<bool>(params[1]);
-    if (strMethod == "getblockbynumber"       && n > 0) ConvertTo<boost::int64_t>(params[0]);
+    if (strMethod == "getblockbynumber"       && n > 0) ConvertTo<int64_t>(params[0]);
     if (strMethod == "getblockbynumber"       && n > 1) ConvertTo<bool>(params[1]);
-    if (strMethod == "getblockhash"           && n > 0) ConvertTo<boost::int64_t>(params[0]);
+    if (strMethod == "getblockhash"           && n > 0) ConvertTo<int64_t>(params[0]);
     if (strMethod == "move"                   && n > 2) ConvertTo<double>(params[2]);
-    if (strMethod == "move"                   && n > 3) ConvertTo<boost::int64_t>(params[3]);
+    if (strMethod == "move"                   && n > 3) ConvertTo<int64_t>(params[3]);
     if (strMethod == "sendfrom"               && n > 2) ConvertTo<double>(params[2]);
-    if (strMethod == "sendfrom"               && n > 3) ConvertTo<boost::int64_t>(params[3]);
-     if (strMethod == "listtransactions"       && n > 1) ConvertTo<boost::int64_t>(params[1]);
-    if (strMethod == "listtransactions"       && n > 2) ConvertTo<boost::int64_t>(params[2]);
-    if (strMethod == "listaccounts"           && n > 0) ConvertTo<boost::int64_t>(params[0]);
-    if (strMethod == "walletpassphrase"       && n > 1) ConvertTo<boost::int64_t>(params[1]);
+    if (strMethod == "sendfrom"               && n > 3) ConvertTo<int64_t>(params[3]);
+    if (strMethod == "listtransactions"       && n > 1) ConvertTo<int64_t>(params[1]);
+    if (strMethod == "listtransactions"       && n > 2) ConvertTo<int64_t>(params[2]);
+    if (strMethod == "listaccounts"           && n > 0) ConvertTo<int64_t>(params[0]);
+    if (strMethod == "walletpassphrase"       && n > 1) ConvertTo<int64_t>(params[1]);
     if (strMethod == "walletpassphrase"       && n > 2) ConvertTo<bool>(params[2]);
     if (strMethod == "getblocktemplate"       && n > 0) ConvertTo<Object>(params[0]);
-    if (strMethod == "listsinceblock"         && n > 1) ConvertTo<boost::int64_t>(params[1]);
-   if (strMethod == "sendalert"              && n > 2) ConvertTo<boost::int64_t>(params[2]);
-    if (strMethod == "sendalert"              && n > 3) ConvertTo<boost::int64_t>(params[3]);
-    if (strMethod == "sendalert"              && n > 4) ConvertTo<boost::int64_t>(params[4]);
-    if (strMethod == "sendalert"              && n > 5) ConvertTo<boost::int64_t>(params[5]);
-    if (strMethod == "sendalert"              && n > 6) ConvertTo<boost::int64_t>(params[6]);
+    if (strMethod == "listsinceblock"         && n > 1) ConvertTo<int64_t>(params[1]);
+
+    if (strMethod == "sendalert"              && n > 2) ConvertTo<int64_t>(params[2]);
+    if (strMethod == "sendalert"              && n > 3) ConvertTo<int64_t>(params[3]);
+    if (strMethod == "sendalert"              && n > 4) ConvertTo<int64_t>(params[4]);
+    if (strMethod == "sendalert"              && n > 5) ConvertTo<int64_t>(params[5]);
+    if (strMethod == "sendalert"              && n > 6) ConvertTo<int64_t>(params[6]);
+
     if (strMethod == "sendmany"               && n > 1) ConvertTo<Object>(params[1]);
-    if (strMethod == "sendmany"               && n > 2) ConvertTo<boost::int64_t>(params[2]);
+    if (strMethod == "sendmany"               && n > 2) ConvertTo<int64_t>(params[2]);
     if (strMethod == "reservebalance"         && n > 0) ConvertTo<bool>(params[0]);
     if (strMethod == "reservebalance"         && n > 1) ConvertTo<double>(params[1]);
-    if (strMethod == "addmultisigaddress"     && n > 0) ConvertTo<boost::int64_t>(params[0]);
+    if (strMethod == "addmultisigaddress"     && n > 0) ConvertTo<int64_t>(params[0]);
     if (strMethod == "addmultisigaddress"     && n > 1) ConvertTo<Array>(params[1]);
-    if (strMethod == "listunspent"            && n > 0) ConvertTo<boost::int64_t>(params[0]);
-    if (strMethod == "listunspent"            && n > 1) ConvertTo<boost::int64_t>(params[1]);
+    if (strMethod == "listunspent"            && n > 0) ConvertTo<int64_t>(params[0]);
+    if (strMethod == "listunspent"            && n > 1) ConvertTo<int64_t>(params[1]);
     if (strMethod == "listunspent"            && n > 2) ConvertTo<Array>(params[2]);
-    if (strMethod == "getrawtransaction"      && n > 1) ConvertTo<boost::int64_t>(params[1]);
+    if (strMethod == "getrawtransaction"      && n > 1) ConvertTo<int64_t>(params[1]);
     if (strMethod == "createrawtransaction"   && n > 0) ConvertTo<Array>(params[0]);
     if (strMethod == "createrawtransaction"   && n > 1) ConvertTo<Object>(params[1]);
     if (strMethod == "signrawtransaction"     && n > 1) ConvertTo<Array>(params[1], true);
     if (strMethod == "signrawtransaction"     && n > 2) ConvertTo<Array>(params[2], true);
-    if (strMethod == "keypoolrefill"          && n > 0) ConvertTo<boost::int64_t>(params[0]);
+    if (strMethod == "keypoolrefill"          && n > 0) ConvertTo<int64_t>(params[0]);
+    
+    if (strMethod == "sendtostealthaddress"   && n > 1) ConvertTo<double>(params[1]);
 
     return params;
 }

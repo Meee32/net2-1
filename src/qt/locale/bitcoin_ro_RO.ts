@@ -3,22 +3,24 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About Netcoin</source>
-        <translation>Despre Netcoin</translation>
+        <source>About NetCoin</source>
+        <translation>Despre NetCoin</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;Netcoin&lt;/b&gt; version</source>
-        <translation>Versiune &lt;b&gt;Netcoin&lt;/b&gt;</translation>
+        <source>&lt;b&gt;NetCoin&lt;/b&gt; version</source>
+        <translation>Versiune &lt;b&gt;NetCoin&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+41"/>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The Netcoin developers</source>
+Copyright © 2014 The BlackCoin developers
+Copyright © 2014 The NetCoin developers</source>
         <translation>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The Netcoin developers</translation>
+Copyright © 2014 The BlackCoin developers
+Copyright © 2014 The NetCoin developers</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -65,8 +67,8 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
     </message>
     <message>
         <location line="-46"/>
-        <source>These are your Netcoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>Acestea sunt adresele Netcoin pentru a primi plăți. Poate doriți sa dați o adresa noua fiecarui expeditor pentru a putea ține evidența la cine efectuează plăti.</translation>
+        <source>These are your NetCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>Acestea sunt adresele NetCoin pentru a primi plăți. Poate doriți sa dați o adresa noua fiecarui expeditor pentru a putea ține evidența la cine efectuează plăti.</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -80,8 +82,8 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a Netcoin address</source>
-        <translation>Semnează un mesaj pentru a dovedi că dețineti o adresă Netcoin</translation>
+        <source>Sign a message to prove you own a NetCoin address</source>
+        <translation>Semnează un mesaj pentru a dovedi că dețineti o adresă NetCoin</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -95,8 +97,8 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
     </message>
     <message>
         <location line="-14"/>
-        <source>Verify a message to ensure it was signed with a specified Netcoin address</source>
-        <translation>Verifică un mesaj pentru a vă asigura că a fost semnat cu o anumită adresă Netcoin</translation>
+        <source>Verify a message to ensure it was signed with a specified NetCoin address</source>
+        <translation>Verifică un mesaj pentru a vă asigura că a fost semnat cu o anumită adresă NetCoin</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -263,8 +265,8 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
     </message>
     <message>
         <location line="-58"/>
-        <source>Netcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>Netcoin se va inchide pentru a termina procesul de encriptie. Amintiți-vă, criptarea portofelul dumneavoastră nu poate proteja pe deplin monedele dvs. de a fi furate de  infectarea cu malware a computerului.</translation>
+        <source>NetCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation>NetCoin se va inchide pentru a termina procesul de encriptie. Amintiți-vă, criptarea portofelul dumneavoastră nu poate proteja pe deplin monedele dvs. de a fi furate de  infectarea cu malware a computerului.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -311,17 +313,17 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+282"/>
+        <location filename="../bitcoingui.cpp" line="+280"/>
         <source>Sign &amp;message...</source>
         <translation>Semnează &amp;mesaj...</translation>
     </message>
     <message>
-        <location line="+251"/>
+        <location line="+242"/>
         <source>Synchronizing with network...</source>
         <translation>Se sincronizează cu rețeaua...</translation>
     </message>
     <message>
-        <location line="-319"/>
+        <location line="-308"/>
         <source>&amp;Overview</source>
         <translation>&amp;Imagine de ansamblu</translation>
     </message>
@@ -376,9 +378,9 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation>Închide aplicația</translation>
     </message>
     <message>
-        <location line="+6"/>
-        <source>Show information about Netcoin</source>
-        <translation>Arată informații despre Netcoin</translation>
+        <location line="+4"/>
+        <source>Show information about NetCoin</source>
+        <translation>Arată informații despre NetCoin</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -411,7 +413,7 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation>S&amp;chimbă parola...</translation>
     </message>
     <message numerus="yes">
-        <location line="+259"/>
+        <location line="+250"/>
         <source>~%n block(s) remaining</source>
         <translation><numerusform>~%n bloc rămas</numerusform><numerusform>~%n blocuri rămase</numerusform><numerusform>~%n blocuri rămase</numerusform></translation>
     </message>
@@ -421,19 +423,19 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation>Descărcat %1 din %2  blocuri din istoricul tranzacțiilor(%3% terminat).</translation>
     </message>
     <message>
-        <location line="-256"/>
+        <location line="-247"/>
         <source>&amp;Export...</source>
         <translation>&amp;Exportă</translation>
     </message>
     <message>
-        <location line="-64"/>
-        <source>Send coins to a Netcoin address</source>
-        <translation>Trimite monede către o adresă Netcoin</translation>
+        <location line="-62"/>
+        <source>Send coins to a NetCoin address</source>
+        <translation>Trimite monede către o adresă NetCoin</translation>
     </message>
     <message>
-        <location line="+47"/>
-        <source>Modify configuration options for Netcoin</source>
-        <translation>Modifică opțiuni de configurare pentru Netcoin</translation>
+        <location line="+45"/>
+        <source>Modify configuration options for NetCoin</source>
+        <translation>Modifică opțiuni de configurare pentru NetCoin</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -471,9 +473,9 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation>&amp;Verifică mesajul...</translation>
     </message>
     <message>
-        <location line="-202"/>
-        <source>Netcoin</source>
-        <translation>Netcoin</translation>
+        <location line="-200"/>
+        <source>NetCoin</source>
+        <translation>NetCoin</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -481,9 +483,9 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation>Portofelul</translation>
     </message>
     <message>
-        <location line="+180"/>
-        <source>&amp;About Netcoin</source>
-        <translation>Despre Netcoin</translation>
+        <location line="+178"/>
+        <source>&amp;About NetCoin</source>
+        <translation>Despre NetCoin</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -506,7 +508,7 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation>Blochează portofelul</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+34"/>
         <source>&amp;File</source>
         <translation>&amp;Fișier</translation>
     </message>
@@ -521,7 +523,7 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation>A&amp;jutor</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+9"/>
         <source>Tabs toolbar</source>
         <translation>Bara de file</translation>
     </message>
@@ -539,13 +541,13 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
     <message>
         <location line="+0"/>
         <location line="+60"/>
-        <source>Netcoin client</source>
-        <translation>Clientul Netcoin</translation>
+        <source>NetCoin client</source>
+        <translation>Clientul NetCoin</translation>
     </message>
     <message numerus="yes">
-        <location line="+75"/>
-        <source>%n active connection(s) to Netcoin network</source>
-        <translation><numerusform>%n conexiune activă la reteaua Netcoin</numerusform><numerusform>%n conexiuni active la reteaua Netcoin</numerusform><numerusform>%n conexiuni active la reteaua Netcoin</numerusform></translation>
+        <location line="+70"/>
+        <source>%n active connection(s) to NetCoin network</source>
+        <translation><numerusform>%n conexiune activă la reteaua NetCoin</numerusform><numerusform>%n conexiuni active la reteaua NetCoin</numerusform><numerusform>%n conexiuni active la reteaua NetCoin</numerusform></translation>
     </message>
     <message>
         <location line="+40"/>
@@ -583,22 +585,12 @@ Acest produs include programe dezvoltate de către OpenSSL Project pentru a fi f
         <translation><numerusform>%n secundă în urmă</numerusform><numerusform>%n secunde în urmă</numerusform><numerusform>%n secunde în urmă</numerusform></translation>
     </message>
     <message>
-        <location line="-312"/>
-        <source>About Netcoin card</source>
-        <translation>Despre cardul Netcoin</translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Show information about Netcoin card</source>
-        <translation>Arată informații despre card Netcoin</translation>
-    </message>
-    <message>
-        <location line="+18"/>
+        <location line="-284"/>
         <source>&amp;Unlock Wallet...</source>
         <translation>&amp;Deblochează portofelul</translation>
     </message>
     <message numerus="yes">
-        <location line="+297"/>
+        <location line="+288"/>
         <source>%n minute(s) ago</source>
         <translation><numerusform>%n minut în urmă</numerusform><numerusform>%n minute în urmă</numerusform><numerusform>%n minute în urmă</numerusform></translation>
     </message>
@@ -669,8 +661,8 @@ Adresa: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid Netcoin address or malformed URI parameters.</source>
-        <translation>URI nu poate fi parsatt! Cauza poate fi o adresa Netcoin invalidă sau parametrii URI malformați.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid NetCoin address or malformed URI parameters.</source>
+        <translation>URI nu poate fi parsatt! Cauza poate fi o adresa NetCoin invalidă sau parametrii URI malformați.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -729,8 +721,8 @@ Adresa: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. Netcoin can no longer continue safely and will quit.</source>
-        <translation>A apărut o eroare fatală. Netcoin nu mai poate continua în condiții de siguranță și va iesi.</translation>
+        <source>A fatal error occurred. NetCoin can no longer continue safely and will quit.</source>
+        <translation>A apărut o eroare fatală. NetCoin nu mai poate continua în condiții de siguranță și va iesi.</translation>
     </message>
 </context>
 <context>
@@ -1063,8 +1055,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid Netcoin address.</source>
-        <translation>Adresa introdusă &quot;%1&quot; nu este o adresă Netcoin validă</translation>
+        <source>The entered address &quot;%1&quot; is not a valid NetCoin address.</source>
+        <translation>Adresa introdusă &quot;%1&quot; nu este o adresă NetCoin validă</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1082,8 +1074,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     <message>
         <location filename="../guiutil.cpp" line="+420"/>
         <location line="+12"/>
-        <source>Netcoin-Qt</source>
-        <translation>Netcoin-Qt</translation>
+        <source>NetCoin-Qt</source>
+        <translation>NetCoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -1155,13 +1147,13 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start Netcoin after logging in to the system.</source>
-        <translation>Pornește Netcoin imdiat după logarea în sistem</translation>
+        <source>Automatically start NetCoin after logging in to the system.</source>
+        <translation>Pornește NetCoin imdiat după logarea în sistem</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start Netcoin on system login</source>
-        <translation>$Pornește Netcoin la logarea în sistem</translation>
+        <source>&amp;Start NetCoin on system login</source>
+        <translation>$Pornește NetCoin la logarea în sistem</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1180,8 +1172,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the Netcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Deschide automat portul pentru cientul Netcoin pe router. Aces lucru este posibil doara daca routerul suporta UPnP si este activat</translation>
+        <source>Automatically open the NetCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Deschide automat portul pentru cientul NetCoin pe router. Aces lucru este posibil doara daca routerul suporta UPnP si este activat</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1190,8 +1182,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the Netcoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Conecteaza la reteaua Netcoin prinr-un proxy SOCKS(ex. cand te conectezi prin Tor)</translation>
+        <source>Connect to the NetCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Conecteaza la reteaua NetCoin prinr-un proxy SOCKS(ex. cand te conectezi prin Tor)</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1265,8 +1257,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting Netcoin.</source>
-        <translation>Limba interfeței utilizator poate fi setat aici. Această setare va avea efect după repornirea Netcoin.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting NetCoin.</source>
+        <translation>Limba interfeței utilizator poate fi setat aici. Această setare va avea efect după repornirea NetCoin.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1280,8 +1272,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show Netcoin addresses in the transaction list or not.</source>
-        <translation>Dacă să arate adrese Netcoin din lista de tranzacție sau nu.</translation>
+        <source>Whether to show NetCoin addresses in the transaction list or not.</source>
+        <translation>Dacă să arate adrese NetCoin din lista de tranzacție sau nu.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1327,8 +1319,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting Netcoin.</source>
-        <translation>Aceasta setare va avea efect dupa repornirea Netcoin.</translation>
+        <source>This setting will take effect after restarting NetCoin.</source>
+        <translation>Aceasta setare va avea efect dupa repornirea NetCoin.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1346,8 +1338,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     <message>
         <location line="+33"/>
         <location line="+231"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Netcoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Informatia afisata poate fi depasita.  Portofel se sincronizează automat cu rețeaua Netcoin după ce se stabilește o conexiune, dar acest proces nu s-a finalizat încă.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the NetCoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Informatia afisata poate fi depasita.  Portofel se sincronizează automat cu rețeaua NetCoin după ce se stabilește o conexiune, dar acest proces nu s-a finalizat încă.</translation>
     </message>
     <message>
         <location line="-160"/>
@@ -1562,8 +1554,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the Netcoin-Qt help message to get a list with possible Netcoin command-line options.</source>
-        <translation>Afișa mesajul de ajutor Netcoin-Qt pentru a obține o listă cu posibile opțiuni de linie de comandă Netcoin.</translation>
+        <source>Show the NetCoin-Qt help message to get a list with possible NetCoin command-line options.</source>
+        <translation>Afișa mesajul de ajutor NetCoin-Qt pentru a obține o listă cu posibile opțiuni de linie de comandă NetCoin.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1582,13 +1574,13 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="-104"/>
-        <source>Netcoin - Debug window</source>
-        <translation>Netcoin - fereastră depanare</translation>
+        <source>NetCoin - Debug window</source>
+        <translation>NetCoin - fereastră depanare</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>Netcoin Core</source>
-        <translation>Netcoin Core</translation>
+        <source>NetCoin Core</source>
+        <translation>NetCoin Core</translation>
     </message>
     <message>
         <location line="+279"/>
@@ -1597,8 +1589,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the Netcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Deschideti fisierul de depanare Netcoin din folderul curent. Acest lucru poate dura cateva secunde pentru fisiere de log mari.</translation>
+        <source>Open the NetCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Deschideti fisierul de depanare NetCoin din folderul curent. Acest lucru poate dura cateva secunde pentru fisiere de log mari.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1607,8 +1599,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the Netcoin RPC console.</source>
-        <translation>Bine ati venit la consola Netcoin RPC.</translation>
+        <source>Welcome to the NetCoin RPC console.</source>
+        <translation>Bine ati venit la consola NetCoin RPC.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1681,8 +1673,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
         <location line="+86"/>
         <location line="+86"/>
         <location line="+32"/>
-        <source>0.00 NET</source>
-        <translation>123.456 NET {0.00 ?}</translation>
+        <source>0.00 SDC</source>
+        <translation>123.456 SDC {0.00 ?}</translation>
     </message>
     <message>
         <location line="-191"/>
@@ -1751,8 +1743,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>123.456 NET</source>
-        <translation>123.456 NET</translation>
+        <source>123.456 SDC</source>
+        <translation>123.456 SDC</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1766,8 +1758,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Introduceți o adresă Netcoin(ex:PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Introduceți o adresă NetCoin(ex:SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1866,8 +1858,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+251"/>
-        <source>WARNING: Invalid Netcoin address</source>
-        <translation>Atenție: Adresă Netcoin invalidă</translation>
+        <source>WARNING: Invalid NetCoin address</source>
+        <translation>Atenție: Adresă NetCoin invalidă</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1910,8 +1902,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to send the payment to  (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Adresa catre care trimiteti plata(ex. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address to send the payment to  (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Adresa catre care trimiteti plata(ex. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1940,8 +1932,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Introduceți o adresă Netcoin(ex:PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Introduceți o adresă NetCoin(ex:SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
 </context>
 <context>
@@ -1964,8 +1956,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Adresa cu care semnati mesajul(ex. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address to sign the message with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Adresa cu care semnati mesajul(ex. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2001,8 +1993,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Netcoin address</source>
-        <translation>Semnează un mesaj pentru a dovedi că dețineti o adresă Netcoin</translation>
+        <source>Sign the message to prove you own this NetCoin address</source>
+        <translation>Semnează un mesaj pentru a dovedi că dețineti o adresă NetCoin</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2028,13 +2020,13 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>The address the message was signed with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Adresa cu care a fost semnat mesajul(ex. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>The address the message was signed with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Adresa cu care a fost semnat mesajul(ex. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified Netcoin address</source>
-        <translation>Verifică un mesaj pentru a vă asigura că a fost semnat cu o anumită adresă Netcoin</translation>
+        <source>Verify the message to ensure it was signed with the specified NetCoin address</source>
+        <translation>Verifică un mesaj pentru a vă asigura că a fost semnat cu o anumită adresă NetCoin</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2044,8 +2036,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
-        <translation>Introduceți o adresă Netcoin(ex:PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
+        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <translation>Introduceți o adresă NetCoin(ex:SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -2054,8 +2046,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter Netcoin signature</source>
-        <translation>Introduceti semnatura Netcoin</translation>
+        <source>Enter NetCoin signature</source>
+        <translation>Introduceti semnatura NetCoin</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2625,8 +2617,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+33"/>
-        <source>Netcoin version</source>
-        <translation>Versiune Netcoin</translation>
+        <source>NetCoin version</source>
+        <translation>Versiune NetCoin</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2635,8 +2627,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or pandacoind</source>
-        <translation>Trimite comanda catre server sau pandacoind</translation>
+        <source>Send command to -server or netcoind</source>
+        <translation>Trimite comanda catre server sau netcoind</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2655,13 +2647,13 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Specify configuration file (default: pandacoin.conf)</source>
-        <translation>Specifica fisier de configurare(implicit: pandacoin.conf)</translation>
+        <source>Specify configuration file (default: netcoin.conf)</source>
+        <translation>Specifica fisier de configurare(implicit: netcoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify pid file (default: pandacoind.pid)</source>
-        <translation>Speficica fisier pid(implicit: pandacoin.pid)</translation>
+        <source>Specify pid file (default: netcoind.pid)</source>
+        <translation>Speficica fisier pid(implicit: netcoind.pid)</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2685,8 +2677,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
-        <translation>Ascultă pentru conectări pe &lt;port&gt; (implicit:  15714 sau testnet: 25714) </translation>
+        <source>Listen for connections on &lt;port&gt; (default: 51737 or testnet: 51997)</source>
+        <translation>Ascultă pentru conectări pe &lt;port&gt; (implicit:  51737 sau testnet: 51997) </translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2745,8 +2737,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="-87"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 22444 or testnet: 25715)</source>
-        <translation>Ascultă pentru conexiuni JSON-RPC pe &lt;port&gt; (implicit:15715 sau testnet: 25715)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 51736 or testnet: 51996)</source>
+        <translation>Ascultă pentru conexiuni JSON-RPC pe &lt;port&gt; (implicit:51736 sau testnet: 51996)</translation>
     </message>
     <message>
         <location line="-11"/>
@@ -2810,8 +2802,8 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     </message>
     <message>
         <location line="+61"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Netcoin will not work properly.</source>
-        <translation>Atentie: Va rugam verificati ca timpul si data calculatorului sunt corete. Daca timpul este gresit Netcoin nu va functiona corect.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong NetCoin will not work properly.</source>
+        <translation>Atentie: Va rugam verificati ca timpul si data calculatorului sunt corete. Daca timpul este gresit NetCoin nu va functiona corect.</translation>
     </message>
     <message>
         <location line="-31"/>
@@ -3000,22 +2992,22 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:
-rpcuser=pandacoinrpc
+rpcuser=netcoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.com
 </source>
         <translation>%s, trebuie să configurați o parolă rpc în fișierul de configurare: %s
-Este recomandat să folosiți următoarea parolă generată aleator: rpcuser=pandacoinrpc
+Este recomandat să folosiți următoarea parolă generată aleator: rpcuser=netcoinrpc
 rpcpassword=%s
 (nu trebuie să țineți minte această parolă)
 Username-ul și parola NU TREBUIE să fie aceleași.
 Dacă fișierul nu există, creați-l cu drepturi de citire doar de către deținător.
 Este deasemenea recomandat să setați alertnotify pentru a fi notificat de probleme;
-de exemplu: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.com
+de exemplu: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.com
 </translation>
     </message>
     <message>
@@ -3140,13 +3132,13 @@ de exemplu: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.c
     </message>
     <message>
         <location line="+1"/>
-        <source>Cannot obtain a lock on data directory %s.  Netcoin is probably already running.</source>
-        <translation>Nu se poate obtine un lock pe directorul de date &amp;s. Blackoin probabil ruleaza deja.</translation>
+        <source>Cannot obtain a lock on data directory %s.  NetCoin is probably already running.</source>
+        <translation>Nu se poate obtine un lock pe directorul de date &amp;s. NetCoin probabil ruleaza deja.</translation>
     </message>
     <message>
         <location line="-98"/>
-        <source>Netcoin</source>
-        <translation>Netcoin</translation>
+        <source>NetCoin</source>
+        <translation>NetCoin</translation>
     </message>
     <message>
         <location line="+140"/>
@@ -3180,13 +3172,13 @@ de exemplu: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.c
     </message>
     <message>
         <location line="+4"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Netcoin</source>
-        <translation>Eroare la încărcarea wallet.dat: Portofelul necesita o versiune mai noua de Netcoin</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of NetCoin</source>
+        <translation>Eroare la încărcarea wallet.dat: Portofelul necesita o versiune mai noua de NetCoin</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart Netcoin to complete</source>
-        <translation>A fost nevoie de rescrierea portofelului: restartați Netcoin pentru a finaliza</translation>
+        <source>Wallet needed to be rewritten: restart NetCoin to complete</source>
+        <translation>A fost nevoie de rescrierea portofelului: restartați NetCoin pentru a finaliza</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3255,8 +3247,8 @@ de exemplu: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.c
     </message>
     <message>
         <location line="+122"/>
-        <source>Unable to bind to %s on this computer. Netcoin is probably already running.</source>
-        <translation>Imposibil de conectat %s pe acest computer. Cel mai probabil Netcoin ruleaza</translation>
+        <source>Unable to bind to %s on this computer. NetCoin is probably already running.</source>
+        <translation>Imposibil de conectat %s pe acest computer. Cel mai probabil NetCoin ruleaza</translation>
     </message>
     <message>
         <location line="-97"/>

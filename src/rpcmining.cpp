@@ -10,8 +10,25 @@
 #include "miner.h"
 #include "bitcoinrpc.h"
 
+
 using namespace json_spirit;
 using namespace std;
+
+Value getsubsidy(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 1)
+        throw runtime_error(
+            "getsubsidy [nTarget]\n"
+            "Returns proof-of-work subsidy value for the specified value of target.");
+    
+    int nShowHeight;
+    if (params.size() > 0)
+        nShowHeight = atoi(params[0].get_str());
+    else
+        nShowHeight = nBestHeight+1; // block currently being solved
+    
+    return (uint64_t)GetProofOfWorkReward(nShowHeight, 0, 0);
+}
 
 Value getmininginfo(const Array& params, bool fHelp)
 {
@@ -28,32 +45,23 @@ Value getmininginfo(const Array& params, bool fHelp)
     obj.push_back(Pair("currentblocksize",(uint64_t)nLastBlockSize));
     obj.push_back(Pair("currentblocktx",(uint64_t)nLastBlockTx));
 
-    if(nBestHeight >= (!fTestNet ? BLOCK_HEIGHT_FINALPOW: BLOCK_HEIGHT_FINALPOW_TESTNET) )
-    {
-        diff.push_back(Pair("proof-of-stake",  GetDifficulty(GetLastBlockIndex(pindexBest, true))));
-        diff.push_back(Pair("search-interval", (int)nLastCoinStakeSearchInterval));
-        obj.push_back(Pair("difficulty",       diff));
+    diff.push_back(Pair("proof-of-work",        GetDifficulty()));
+    diff.push_back(Pair("proof-of-stake",       GetDifficulty(GetLastBlockIndex(pindexBest, true))));
+    diff.push_back(Pair("search-interval",      (int)nLastCoinStakeSearchInterval));
+    obj.push_back(Pair("difficulty",    diff));
 
-        obj.push_back(Pair("netstakeweight",   GetPoSKernelPS()));
-        weight.push_back(Pair("minimum",       (uint64_t)nMinWeight));
-        weight.push_back(Pair("maximum",       (uint64_t)nMaxWeight));
-        weight.push_back(Pair("combined",      (uint64_t)nWeight));
-        obj.push_back(Pair("stakeweight",      weight));
-        obj.push_back(Pair("stakeinterest",    (uint64_t)GetPIRRewardCoinYear(pwalletMain->GetBalance(),nBestHeight)));
-    }
-    else
-    {
-    obj.push_back(Pair("difficulty",    (double)GetDifficulty()));
-        obj.push_back(Pair("generate",      GetBoolArg("-gen")));
-        obj.push_back(Pair("genproclimit",  (int)GetArg("-genproclimit", -1)));
-        obj.push_back(Pair("hashespersec",  gethashespersec(params, false)));
-        obj.push_back(Pair("networkhashps", getnetworkhashps(params, false)));
-    }
-
+    obj.push_back(Pair("blockvalue",    (uint64_t)GetProofOfWorkReward(nBestHeight+1, 0, 0)));
+    obj.push_back(Pair("netmhashps",     GetPoWMHashPS()));
+    obj.push_back(Pair("netstakeweight", GetPoSKernelPS()));
     obj.push_back(Pair("errors",        GetWarnings("statusbar")));
     obj.push_back(Pair("pooledtx",      (uint64_t)mempool.size()));
-    obj.push_back(Pair("testnet",       fTestNet));
 
+    weight.push_back(Pair("minimum",    (uint64_t)nMinWeight));
+    weight.push_back(Pair("maximum",    (uint64_t)nMaxWeight));
+    weight.push_back(Pair("combined",  (uint64_t)nWeight));
+    obj.push_back(Pair("stakeweight", weight));
+
+    obj.push_back(Pair("testnet",       fTestNet));
     return obj;
 }
 
@@ -69,7 +77,7 @@ Value getstakinginfo(const Array& params, bool fHelp)
 
     uint64_t nNetworkWeight = GetPoSKernelPS();
     bool staking = nLastCoinStakeSearchInterval && nWeight;
-    int nExpectedTime = staking ? (nTargetSpacing * 2 * nNetworkWeight / nWeight) : -1;
+    int nExpectedTime = staking ? (nTargetSpacing * nNetworkWeight / nWeight) : -1;
 
     Object obj;
 
@@ -101,12 +109,12 @@ Value getworkex(const Array& params, bool fHelp)
         );
 
     if (vNodes.empty())
-        throw JSONRPCError(-9, "Netcoin is not connected!");
+        throw JSONRPCError(-9, "NetCoin is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(-10, "Netcoin is downloading blocks...");
+        throw JSONRPCError(-10, "NetCoin is downloading blocks...");
 
-    if (pindexBest->nHeight >= (!fTestNet ? BLOCK_HEIGHT_FINALPOW : BLOCK_HEIGHT_FINALPOW_TESTNET))
+    if (pindexBest->nHeight >= LAST_POW_BLOCK)
         throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
 
     typedef map<uint256, pair<CBlock*, CScript> > mapNewBlock_t;
@@ -174,10 +182,8 @@ Value getworkex(const Array& params, bool fHelp)
         result.push_back(Pair("coinbase", HexStr(ssTx.begin(), ssTx.end())));
 
         Array merkle_arr;
-        printf("DEBUG: merkle size %"PRIszu"\n", merkle.size());
 
         BOOST_FOREACH(uint256 merkleh, merkle) {
-            printf("%s\n", merkleh.ToString().c_str());
             merkle_arr.push_back(HexStr(BEGIN(merkleh), END(merkleh)));
         }
 
@@ -236,13 +242,13 @@ Value getwork(const Array& params, bool fHelp)
             "  \"target\" : little endian hash target\n"
             "If [data] is specified, tries to solve the block and returns true if it was successful.");
 
-    if (!fTestNet && vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Netcoin is not connected!");
+    if (vNodes.empty())
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "NetCoin is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Netcoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "NetCoin is downloading blocks...");
 
-    if (pindexBest->nHeight >= (!fTestNet ? BLOCK_HEIGHT_FINALPOW : BLOCK_HEIGHT_FINALPOW_TESTNET))
+    if (pindexBest->nHeight >= LAST_POW_BLOCK)
         throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
 
     typedef map<uint256, pair<CBlock*, CScript> > mapNewBlock_t;
@@ -311,7 +317,6 @@ Value getwork(const Array& params, bool fHelp)
         result.push_back(Pair("data",     HexStr(BEGIN(pdata), END(pdata))));
         result.push_back(Pair("hash1",    HexStr(BEGIN(phash1), END(phash1)))); // deprecated
         result.push_back(Pair("target",   HexStr(BEGIN(hashTarget), END(hashTarget))));
-        result.push_back(Pair("algorithm", "scrypt:1024,1,1"));  // Litecoin: specify that we should use the scrypt algorithm
         return result;
     }
     else
@@ -346,7 +351,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "getblocktemplate [params]\n"
-            "If [params] does not contain a \"data\" key, returns data needed to construct a block to work on:\n"
+            "Returns data needed to construct a block to work on:\n"
             "  \"version\" : block version\n"
             "  \"previousblockhash\" : hash of current highest block\n"
             "  \"transactions\" : contents of non-coinbase transactions that should be included in the next block\n"
@@ -361,14 +366,12 @@ Value getblocktemplate(const Array& params, bool fHelp)
             "  \"sizelimit\" : limit of block size\n"
             "  \"bits\" : compressed target of next block\n"
             "  \"height\" : height of the next block\n"
-            "If [params] does contain a \"data\" key, tries to solve the block and returns null if it was successful (and \"rejected\" if not)\n"
             "See https://en.bitcoin.it/wiki/BIP_0022 for full specification.");
 
     std::string strMode = "template";
     if (params.size() > 0)
     {
         const Object& oparam = params[0].get_obj();
-
         const Value& modeval = find_value(oparam, "mode");
         if (modeval.type() == str_type)
             strMode = modeval.get_str();
@@ -383,125 +386,124 @@ Value getblocktemplate(const Array& params, bool fHelp)
     if (strMode != "template")
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
-       if (!fTestNet && vNodes.empty())
-            throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "NetCoin is not connected!");
+    if (vNodes.empty())
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "NetCoin is not connected!");
 
-        if (IsInitialBlockDownload())
-            throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "NetCoin is downloading blocks...");
+    if (IsInitialBlockDownload())
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "NetCoin is downloading blocks...");
 
-
-    if (pindexBest->nHeight >= (!fTestNet ? BLOCK_HEIGHT_FINALPOW : BLOCK_HEIGHT_FINALPOW_TESTNET))
+    if (pindexBest->nHeight >= LAST_POW_BLOCK)
         throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
 
-        static CReserveKey reservekey(pwalletMain);
+    static CReserveKey reservekey(pwalletMain);
 
-        // Update block
-        static unsigned int nTransactionsUpdatedLast;
-        static CBlockIndex* pindexPrev;
+    // Update block
+    static unsigned int nTransactionsUpdatedLast;
+    static CBlockIndex* pindexPrev;
     static int64_t nStart;
-        static CBlock* pblock;
-        if (pindexPrev != pindexBest ||
-            (nTransactionsUpdated != nTransactionsUpdatedLast && GetTime() - nStart > 5))
-        {
+    static CBlock* pblock;
+    if (pindexPrev != pindexBest ||
+        (nTransactionsUpdated != nTransactionsUpdatedLast && GetTime() - nStart > 5))
+    {
         // Clear pindexPrev so future calls make a new block, despite any failures from here on
         pindexPrev = NULL;
 
         // Store the pindexBest used before CreateNewBlock, to avoid races
-            nTransactionsUpdatedLast = nTransactionsUpdated;
+        nTransactionsUpdatedLast = nTransactionsUpdated;
         CBlockIndex* pindexPrevNew = pindexBest;
-            nStart = GetTime();
+        nStart = GetTime();
 
-            // Create new block
-            if(pblock)
+        // Create new block
+        if(pblock)
         {
-                delete pblock;
+            delete pblock;
             pblock = NULL;
         }
         pblock = CreateNewBlock(pwalletMain);
-            if (!pblock)
+        if (!pblock)
             throw JSONRPCError(RPC_OUT_OF_MEMORY, "Out of memory");
 
         // Need to update only after we know CreateNewBlock succeeded
         pindexPrev = pindexPrevNew;
-        }
+    }
 
-        // Update nTime
-        pblock->UpdateTime(pindexPrev);
-        pblock->nNonce = 0;
+    // Update nTime
+    pblock->UpdateTime(pindexPrev);
+    pblock->nNonce = 0;
 
-        Array transactions;
-        map<uint256, int64_t> setTxIndex;
-        int i = 0;
-        CTxDB txdb("r");
-        BOOST_FOREACH (CTransaction& tx, pblock->vtx)
-        {
-            uint256 txHash = tx.GetHash();
-            setTxIndex[txHash] = i++;
+    Array transactions;
+    map<uint256, int64_t> setTxIndex;
+    int i = 0;
+    CTxDB txdb("r");
+    BOOST_FOREACH (CTransaction& tx, pblock->vtx)
+    {
+        uint256 txHash = tx.GetHash();
+        setTxIndex[txHash] = i++;
 
         if (tx.IsCoinBase() || tx.IsCoinStake())
-                continue;
+            continue;
 
-            Object entry;
+        Object entry;
 
-            CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-            ssTx << tx;
-            entry.push_back(Pair("data", HexStr(ssTx.begin(), ssTx.end())));
+        CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
+        ssTx << tx;
+        entry.push_back(Pair("data", HexStr(ssTx.begin(), ssTx.end())));
 
-            entry.push_back(Pair("hash", txHash.GetHex()));
+        entry.push_back(Pair("hash", txHash.GetHex()));
 
-            MapPrevTx mapInputs;
-            map<uint256, CTxIndex> mapUnused;
-            bool fInvalid = false;
-            if (tx.FetchInputs(txdb, mapUnused, false, false, mapInputs, fInvalid))
-            {
-                entry.push_back(Pair("fee", (int64_t)(tx.GetValueIn(mapInputs) - tx.GetValueOut())));
-
-                Array deps;
-                BOOST_FOREACH (MapPrevTx::value_type& inp, mapInputs)
-                {
-                    if (setTxIndex.count(inp.first))
-                        deps.push_back(setTxIndex[inp.first]);
-                }
-                entry.push_back(Pair("depends", deps));
-
-                int64_t nSigOps = tx.GetLegacySigOpCount();
-                nSigOps += tx.GetP2SHSigOpCount(mapInputs);
-                entry.push_back(Pair("sigops", nSigOps));
-            }
-
-            transactions.push_back(entry);
-        }
-
-        Object aux;
-        aux.push_back(Pair("flags", HexStr(COINBASE_FLAGS.begin(), COINBASE_FLAGS.end())));
-
-        uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
-
-        static Array aMutable;
-        if (aMutable.empty())
+        MapPrevTx mapInputs;
+        map<uint256, CTxIndex> mapUnused;
+        bool fInvalid = false;
+        if (tx.FetchInputs(txdb, mapUnused, false, false, mapInputs, fInvalid))
         {
-            aMutable.push_back("time");
-            aMutable.push_back("transactions");
-            aMutable.push_back("prevblock");
+            entry.push_back(Pair("fee", (int64_t)(tx.GetValueIn(mapInputs) - tx.GetValueOut())));
+
+            Array deps;
+            BOOST_FOREACH (MapPrevTx::value_type& inp, mapInputs)
+            {
+                if (setTxIndex.count(inp.first))
+                    deps.push_back(setTxIndex[inp.first]);
+            }
+            entry.push_back(Pair("depends", deps));
+
+            int64_t nSigOps = tx.GetLegacySigOpCount();
+            nSigOps += tx.GetP2SHSigOpCount(mapInputs);
+            entry.push_back(Pair("sigops", nSigOps));
         }
 
-        Object result;
-        result.push_back(Pair("version", pblock->nVersion));
-        result.push_back(Pair("previousblockhash", pblock->hashPrevBlock.GetHex()));
-        result.push_back(Pair("transactions", transactions));
-        result.push_back(Pair("coinbaseaux", aux));
-        result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0].vout[0].nValue));
-        result.push_back(Pair("target", hashTarget.GetHex()));
-    result.push_back(Pair("mintime", (int64_t)pindexPrev->GetPastTimeLimit()+1));
-        result.push_back(Pair("mutable", aMutable));
-        result.push_back(Pair("noncerange", "00000000ffffffff"));
-        result.push_back(Pair("sigoplimit", (int64_t)MAX_BLOCK_SIGOPS));
-        result.push_back(Pair("sizelimit", (int64_t)MAX_BLOCK_SIZE));
-        result.push_back(Pair("curtime", (int64_t)pblock->nTime));
-        result.push_back(Pair("bits", HexBits(pblock->nBits)));
-        result.push_back(Pair("height", (int64_t)(pindexPrev->nHeight+1)));
+        transactions.push_back(entry);
+    }
 
-        return result;
+    Object aux;
+    aux.push_back(Pair("flags", HexStr(COINBASE_FLAGS.begin(), COINBASE_FLAGS.end())));
+
+    uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
+
+    static Array aMutable;
+    if (aMutable.empty())
+    {
+        aMutable.push_back("time");
+        aMutable.push_back("transactions");
+        aMutable.push_back("prevblock");
+    }
+
+    Object result;
+    result.push_back(Pair("version", pblock->nVersion));
+    result.push_back(Pair("previousblockhash", pblock->hashPrevBlock.GetHex()));
+    result.push_back(Pair("transactions", transactions));
+    result.push_back(Pair("coinbaseaux", aux));
+    result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0].vout[0].nValue));
+    result.push_back(Pair("target", hashTarget.GetHex()));
+    result.push_back(Pair("mintime", (int64_t)pindexPrev->GetPastTimeLimit()+1));
+    result.push_back(Pair("mutable", aMutable));
+    result.push_back(Pair("noncerange", "00000000ffffffff"));
+    result.push_back(Pair("sigoplimit", (int64_t)MAX_BLOCK_SIGOPS));
+    result.push_back(Pair("sizelimit", (int64_t)MAX_BLOCK_SIZE));
+    result.push_back(Pair("curtime", (int64_t)pblock->nTime));
+    result.push_back(Pair("bits", HexBits(pblock->nBits)));
+    result.push_back(Pair("height", (int64_t)(pindexPrev->nHeight+1)));
+
+    return result;
 }
 
 Value submitblock(const Array& params, bool fHelp)
@@ -529,6 +531,4 @@ Value submitblock(const Array& params, bool fHelp)
 
     return Value::null;
 }
-
-
 
