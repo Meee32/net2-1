@@ -711,22 +711,22 @@ void CWalletTx::GetAmounts(list<pair<CTxDestination, int64_t> >& listReceived,
     // Sent/received.
     BOOST_FOREACH(const CTxOut& txout, vout)
     {
-         // Skip special stake out
-         if (txout.scriptPubKey.empty())
-             continue;
+        // Skip special stake out
+        if (txout.scriptPubKey.empty())
+            continue;
 
-         bool fIsMine;
-         // Only need to handle txouts if AT LEAST one of these is true:
-         //   1) they debit from us (sent)
-         //   2) the output is to us (received)
-         if (nDebit > 0)
-         {
+        bool fIsMine;
+        // Only need to handle txouts if AT LEAST one of these is true:
+        //   1) they debit from us (sent)
+        //   2) the output is to us (received)
+        if (nDebit > 0)
+        {
             // Don't report 'change' txouts
             if (pwallet->IsChange(txout))
-               continue;
+                continue;
             fIsMine = pwallet->IsMine(txout);
-         }
-         else if (!(fIsMine = pwallet->IsMine(txout)))
+        }
+        else if (!(fIsMine = pwallet->IsMine(txout)))
             continue;
          // In either case, we need to get the destination address
 
@@ -745,7 +745,7 @@ void CWalletTx::GetAmounts(list<pair<CTxDestination, int64_t> >& listReceived,
 
         // If we are receiving the output, add it as a "received" entry
         if (fIsMine)
-           listReceived.push_back(make_pair(address, txout.nValue));
+            listReceived.push_back(make_pair(address, txout.nValue));
     }
 
 }
@@ -998,7 +998,7 @@ void CWallet::ResendWalletTransactions(bool fForce)
         if (nTimeBestReceived < nLastTime)
             return;
         nLastTime = GetTime();
-     }
+    }
 
     // Rebroadcast any of our txes that aren't in a block yet
     printf("ResendWalletTransactions()\n");
@@ -1113,8 +1113,8 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
             // If output is less than minimum value, then don't include transaction.
             // This is to help deal with dust spam clogging up create transactions.
             for (unsigned int i = 0; i < pcoin->vout.size(); i++)
-               if (!(pcoin->IsSpent(i)) && IsMine(pcoin->vout[i]) && pcoin->vout[i].nValue >= nMinimumInputValue &&
-               (!coinControl || !coinControl->HasSelected() || coinControl->IsSelected((*it).first, i)))
+                if (!(pcoin->IsSpent(i)) && IsMine(pcoin->vout[i]) && pcoin->vout[i].nValue >= nMinimumInputValue &&
+                (!coinControl || !coinControl->HasSelected() || coinControl->IsSelected((*it).first, i)))
                     vCoins.push_back(COutput(pcoin, i, nDepth));
         }
     }
@@ -1249,7 +1249,7 @@ bool CWallet::StakeForCharity()
             }
             else
             {
-                SendMoneyToDestination(strStakeForCharityAddress.Get(), nNet, wtx, false, true);
+                SendMoneyToDestination(strStakeForCharityAddress.Get(), nNet, wtx, true, false);
                 nPrevS4CHeight = nBestHeight;
             }
         }
@@ -1367,12 +1367,12 @@ bool CWallet::SelectCoins(int64_t nTargetValue, set<pair<const CWalletTx*,unsign
     // coin control -> return all selected outputs (we want all selected to go into the transaction for sure)
     if (coinControl && coinControl->HasSelected())
     {
-       BOOST_FOREACH(const COutput& out, vCoins)
-       {
-          nValueRet += out.tx->vout[out.i].nValue;
-          setCoinsRet.insert(make_pair(out.tx, out.i));
-       }
-       return (nValueRet >= nTargetValue);
+        BOOST_FOREACH(const COutput& out, vCoins)
+        {
+            nValueRet += out.tx->vout[out.i].nValue;
+            setCoinsRet.insert(make_pair(out.tx, out.i));
+        }
+        return (nValueRet >= nTargetValue);
     }
 
     return (SelectCoinsMinConf(nTargetValue, 1, 6, vCoins, setCoinsRet, nValueRet) ||
@@ -1827,18 +1827,18 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
     else
         txNew.vout[1].nValue = nCredit;
 
-        // Sign
-        int nIn = 0;
-        BOOST_FOREACH(const CWalletTx* pcoin, vwtxPrev)
-        {
-            if (!SignSignature(*this, *pcoin, txNew, nIn++))
-                return error("CreateCoinStake : failed to sign coinstake");
-        }
+    // Sign
+    int nIn = 0;
+    BOOST_FOREACH(const CWalletTx* pcoin, vwtxPrev)
+    {
+        if (!SignSignature(*this, *pcoin, txNew, nIn++))
+            return error("CreateCoinStake : failed to sign coinstake");
+    }
 
-        // Limit size
-        unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
-        if (nBytes >= MAX_BLOCK_SIZE_GEN/5)
-            return error("CreateCoinStake : exceeded coinstake size limit");
+    // Limit size
+    unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
+    if (nBytes >= MAX_BLOCK_SIZE_GEN/5)
+        return error("CreateCoinStake : exceeded coinstake size limit");
 
     // Successfully generated coinstake
     return true;
@@ -1895,7 +1895,7 @@ bool CWallet::CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey)
 }
 
 
-string CWallet::SendMoney(CScript scriptPubKey, int64_t nValue, CWalletTx& wtxNew, bool fAskFee, bool fAllowS4C, std::string strTxComment)
+string CWallet::SendMoney(CScript scriptPubKey, int64_t nValue, CWalletTx& wtxNew, bool fAskFee, std::string strTxComment, bool fAllowS4C)
 {
     CReserveKey reservekey(this);
     int64_t nFeeRequired;
@@ -1935,7 +1935,7 @@ string CWallet::SendMoney(CScript scriptPubKey, int64_t nValue, CWalletTx& wtxNe
 }
 
 
-string CWallet::SendMoneyToDestination(const CTxDestination& address, int64_t nValue, CWalletTx& wtxNew, bool fAskFee, bool fAllowS4C, std::string strTxComment)
+string CWallet::SendMoneyToDestination(const CTxDestination& address, int64_t nValue, CWalletTx& wtxNew, bool fAskFee, std::string strTxComment, bool fAllowS4C)
 {
     // Check amount
     if (nValue <= 0)
@@ -1947,7 +1947,7 @@ string CWallet::SendMoneyToDestination(const CTxDestination& address, int64_t nV
     CScript scriptPubKey;
     scriptPubKey.SetDestination(address);
 
-    return SendMoney(scriptPubKey, nValue, wtxNew, fAskFee, fAllowS4C, strTxComment);
+    return SendMoney(scriptPubKey, nValue, wtxNew, fAskFee, strTxComment, fAllowS4C);
 }
 
 
