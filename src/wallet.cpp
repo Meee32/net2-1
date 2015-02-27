@@ -1083,6 +1083,8 @@ int64_t CWallet::GetImmatureBalance() const
     return nTotal;
 }
 
+
+
 // populate vCoins with vector of spendable COutputs
 void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const CCoinControl *coinControl) const
 {
@@ -1116,6 +1118,7 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
                 if (!(pcoin->IsSpent(i)) && IsMine(pcoin->vout[i]) && pcoin->vout[i].nValue >= nMinimumInputValue &&
                 (!coinControl || !coinControl->HasSelected() || coinControl->IsSelected((*it).first, i)))
                     vCoins.push_back(COutput(pcoin, i, nDepth));
+
         }
     }
 }
@@ -1150,7 +1153,6 @@ static void ApproximateBestSubset(vector<pair<int64_t, pair<const CWalletTx*,uns
 
     vfBest.assign(vValue.size(), true);
     nBest = nTotalLower;
-
 
     for (int nRep = 0; nRep < iterations && nBest != nTargetValue; nRep++)
     {
