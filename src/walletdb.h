@@ -1,13 +1,14 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2011-2012 Litecoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_WALLETDB_H
 #define BITCOIN_WALLETDB_H
 
+#include <stdint.h>
 #include "db.h"
 #include "base58.h"
-#include "stealth.h"
 
 class CKeyPool;
 class CAccount;
@@ -55,29 +56,6 @@ public:
     }
 };
 
-class CStealthKeyMetadata
-{
-// -- used to get secret for keys created by stealth transaction with wallet locked
-public:
-    CStealthKeyMetadata() {};
-    
-    CStealthKeyMetadata(CPubKey pkEphem_, CPubKey pkScan_)
-    {
-        pkEphem = pkEphem_;
-        pkScan = pkScan_;
-    };
-    
-    CPubKey pkEphem;
-    CPubKey pkScan;
-
-    IMPLEMENT_SERIALIZE
-    (
-        READWRITE(pkEphem);
-        READWRITE(pkScan);
-    )
-
-};
-
 
 /** Access to the wallet database (wallet.dat) */
 class CWalletDB : public CDB
@@ -90,33 +68,20 @@ private:
     CWalletDB(const CWalletDB&);
     void operator=(const CWalletDB&);
 public:
-    Dbc* GetAtCursor()
+    bool ReadName(const std::string& strAddress, std::string& strName)
     {
-        return GetCursor();
+        strName = "";
+        return Read(std::make_pair(std::string("name"), strAddress), strName);
     }
-    
-    Dbc* GetTxnCursor()
-    {
-        if (!pdb)
-            return NULL;
-        
-        DbTxn* ptxnid = activeTxn; // call TxnBegin first
-        
-        Dbc* pcursor = NULL;
-        int ret = pdb->cursor(ptxnid, &pcursor, 0);
-        if (ret != 0)
-            return NULL;
-        return pcursor;
-    }
-    
-    DbTxn* GetAtActiveTxn()
-    {
-        return activeTxn;
-    }
-    
+
     bool WriteName(const std::string& strAddress, const std::string& strName);
 
     bool EraseName(const std::string& strAddress);
+
+    bool ReadTx(uint256 hash, CWalletTx& wtx)
+    {
+        return Read(std::make_pair(std::string("tx"), hash), wtx);
+    }
 
     bool WriteTx(uint256 hash, const CWalletTx& wtx)
     {
@@ -129,36 +94,17 @@ public:
         nWalletDBUpdated++;
         return Erase(std::make_pair(std::string("tx"), hash));
     }
-    
-    bool WriteStealthKeyMeta(const CKeyID& keyId, const CStealthKeyMetadata& sxKeyMeta)
-    {
-        nWalletDBUpdated++;
-        return Write(std::make_pair(std::string("sxKeyMeta"), keyId), sxKeyMeta, true);
-    }
-    
-    bool EraseStealthKeyMeta(const CKeyID& keyId)
-    {
-        nWalletDBUpdated++;
-        return Erase(std::make_pair(std::string("sxKeyMeta"), keyId));
-    }
-    
-    bool WriteStealthAddress(const CStealthAddress& sxAddr)
-    {
-        nWalletDBUpdated++;
 
-        return Write(std::make_pair(std::string("sxAddr"), sxAddr.scan_pubkey), sxAddr, true);
-    }
-    
-    bool ReadStealthAddress(CStealthAddress& sxAddr)
+    bool ReadKey(const CPubKey& vchPubKey, CPrivKey& vchPrivKey)
     {
-        // -- set scan_pubkey before reading
-        return Read(std::make_pair(std::string("sxAddr"), sxAddr.scan_pubkey), sxAddr);
+        vchPrivKey.clear();
+        return Read(std::make_pair(std::string("key"), vchPubKey.Raw()), vchPrivKey);
     }
-    
+
     bool WriteKey(const CPubKey& vchPubKey, const CPrivKey& vchPrivKey, const CKeyMetadata &keyMeta)
     {
         nWalletDBUpdated++;
-
+        // Added in NetcoinPOS
         if(!Write(std::make_pair(std::string("keymeta"), vchPubKey), keyMeta))
             return false;
 
@@ -169,11 +115,11 @@ public:
     {
         nWalletDBUpdated++;
         bool fEraseUnencryptedKey = true;
-
+        // added in NetCoinPos
         if(!Write(std::make_pair(std::string("keymeta"), vchPubKey), keyMeta))
             return false;
 
-        if (!Write(std::make_pair(std::string("ckey"), vchPubKey.Raw()), vchCryptedSecret, true))
+        if (!Write(std::make_pair(std::string("ckey"), vchPubKey.Raw()), vchCryptedSecret, false))
             return false;
         if (fEraseUnencryptedKey)
         {
@@ -187,6 +133,13 @@ public:
     {
         nWalletDBUpdated++;
         return Write(std::make_pair(std::string("mkey"), nID), kMasterKey, true);
+    }
+
+    // Support for BIP 0013 : see https://en.bitcoin.it/wiki/BIP_0013
+    bool ReadCScript(const uint160 &hash, CScript& redeemScript)
+    {
+        redeemScript.clear();
+        return Read(std::make_pair(std::string("cscript"), hash), redeemScript);
     }
 
     bool WriteCScript(const uint160& hash, const CScript& redeemScript)
@@ -204,6 +157,12 @@ public:
     bool ReadBestBlock(CBlockLocator& locator)
     {
         return Read(std::string("bestblock"), locator);
+    }
+
+    bool ReadDefaultKey(std::vector<unsigned char>& vchPubKey)
+    {
+        vchPubKey.clear();
+        return Read(std::string("defaultkey"), vchPubKey);
     }
 
     bool WriteOrderPosNext(int64_t nOrderPosNext)
@@ -235,10 +194,53 @@ public:
         return Erase(std::make_pair(std::string("pool"), nPool));
     }
 
+    // Settings are no longer stored in wallet.dat; these are
+    // used only for backwards compatibility:
+    template<typename T>
+    bool ReadSetting(const std::string& strKey, T& value)
+    {
+        return Read(std::make_pair(std::string("setting"), strKey), value);
+    }
+    template<typename T>
+    bool WriteSetting(const std::string& strKey, const T& value)
+    {
+        nWalletDBUpdated++;
+        return Write(std::make_pair(std::string("setting"), strKey), value);
+    }
+    bool EraseSetting(const std::string& strKey)
+    {
+        nWalletDBUpdated++;
+        return Erase(std::make_pair(std::string("setting"), strKey));
+    }
+
     bool WriteMinVersion(int nVersion)
     {
         return Write(std::string("minversion"), nVersion);
     }
+
+    bool WriteStakeForCharity(std::string strStakeForCharityAddress,
+                              int nStakeForCharityPercent,
+                              std::string strStakeForCharityChangeAddress,
+                              int64_t nStakeForCharityMinAmount,
+                              int64_t nStakeForCharityMaxAmount)
+    {
+        nWalletDBUpdated++;
+        if (!Write(std::make_pair(std::string("s4c"), strStakeForCharityAddress),std::make_pair(strStakeForCharityChangeAddress ,nStakeForCharityPercent)))
+            return false;
+
+        return Write(std::make_pair(std::string("s4c2"), strStakeForCharityAddress),std::make_pair(nStakeForCharityMinAmount ,nStakeForCharityMaxAmount));
+
+    }
+
+    bool EraseStakeForCharity(std::string strStakeForCharityAddress)
+    {
+        nWalletDBUpdated++;
+
+        return Erase(std::make_pair(std::string("s4c"), strStakeForCharityAddress));
+        return Erase(std::make_pair(std::string("s4c2"), strStakeForCharityAddress));
+    }
+
+
 
     bool ReadAccount(const std::string& strAccount, CAccount& account);
     bool WriteAccount(const std::string& strAccount, const CAccount& account);

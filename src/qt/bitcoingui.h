@@ -3,22 +3,20 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
-#include <QLabel>
-
-#include <stdint.h>
 
 class TransactionTableModel;
 class ClientModel;
 class WalletModel;
-class MessageModel;
 class TransactionView;
 class OverviewPage;
 class AddressBookPage;
-class MessagePage;
+class ShoppingPage;
+class NetworkPage;
 class SendCoinsDialog;
 class SignVerifyMessageDialog;
 class Notificator;
 class RPCConsole;
+class StakeForCharityDialog;
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -28,23 +26,9 @@ class QAbstractItemModel;
 class QModelIndex;
 class QProgressBar;
 class QStackedWidget;
+class QActionGroup;
 class QUrl;
 QT_END_NAMESPACE
-
-class ActiveLabel : public QLabel
-{
-    Q_OBJECT
-public:
-    ActiveLabel(const QString & text = "", QWidget * parent = 0);
-    ~ActiveLabel(){}
-
-signals:
-    void clicked();
-
-protected:
-    void mouseReleaseEvent (QMouseEvent * event) ;
-
-};
 
 /**
   Bitcoin GUI main class. This class represents the main window of the Bitcoin UI. It communicates with both the client and
@@ -66,11 +50,6 @@ public:
         functionality.
     */
     void setWalletModel(WalletModel *walletModel);
-    /** Set the message model.
-        The message model represents encryption message database, and offers access to the list of messages, address book and sending
-        functionality.
-    */
-    void setMessageModel(MessageModel *messageModel);
 
 protected:
     void changeEvent(QEvent *e);
@@ -81,26 +60,24 @@ protected:
 private:
     ClientModel *clientModel;
     WalletModel *walletModel;
-    MessageModel *messageModel;
 
     QStackedWidget *centralWidget;
 
     OverviewPage *overviewPage;
     QWidget *transactionsPage;
     AddressBookPage *addressBookPage;
+    ShoppingPage *shoppingPage;
+    NetworkPage *networkPage;
     AddressBookPage *receiveCoinsPage;
-    MessagePage *messagePage;
     SendCoinsDialog *sendCoinsPage;
     SignVerifyMessageDialog *signVerifyMessageDialog;
+    StakeForCharityDialog *stakeForCharityDialog;
 
-    ActiveLabel *labelEncryptionIcon;
+    QLabel *labelEncryptionIcon;
     QLabel *labelStakingIcon;
     QLabel *labelConnectionsIcon;
     QLabel *labelBlocksIcon;
     QLabel *progressBarLabel;
-    QLabel *mainIcon;
-    QToolBar *mainToolbar;
-    QToolBar *secondaryToolbar;
     QProgressBar *progressBar;
 
     QMenuBar *appMenuBar;
@@ -109,7 +86,8 @@ private:
     QAction *quitAction;
     QAction *sendCoinsAction;
     QAction *addressBookAction;
-    QAction *messageAction;
+    QAction *shoppingAction;
+    QAction *networkAction;
     QAction *signMessageAction;
     QAction *verifyMessageAction;
     QAction *aboutAction;
@@ -123,7 +101,10 @@ private:
     QAction *unlockWalletAction;
     QAction *lockWalletAction;
     QAction *aboutQtAction;
+    QAction *themeCustomAction;
     QAction *openRPCConsoleAction;
+    QAction *charityAction;
+    QAction *calcAction;
 
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
@@ -131,8 +112,18 @@ private:
     RPCConsole *rpcConsole;
 
     QMovie *syncIconMovie;
+	bool fStakeForCharity;
+	bool fS4CNotificator;
+	int nCharityPercent;
+	QString strCharityAddress;
 
-    uint64_t nWeight;
+    /* Themes support */
+    QString selectedTheme;
+    QStringList themesList;
+    // Path to directory where all themes are (usable for some common images?...)
+    QString themesDir;
+    QAction *customActions[100];
+    /* /Themes support */
 
     /** Create the main UI actions. */
     void createActions();
@@ -167,9 +158,6 @@ public slots:
     void askFee(qint64 nFeeRequired, bool *payFee);
     void handleURI(QString strURI);
 
-    void mainToolbarOrientation(Qt::Orientation orientation);
-    void secondaryToolbarOrientation(Qt::Orientation orientation);
-
 private slots:
     /** Switch to overview (home) page */
     void gotoOverviewPage();
@@ -177,12 +165,14 @@ private slots:
     void gotoHistoryPage();
     /** Switch to address book page */
     void gotoAddressBookPage();
+    /** Switch to shopping page */
+    void gotoShoppingPage();
+    /** Switch to network page */
+    void gotoNetworkPage();
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
     void gotoSendCoinsPage();
-    /** Switch to message page */
-    void gotoMessagePage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");
@@ -193,6 +183,8 @@ private slots:
     void optionsClicked();
     /** Show about dialog */
     void aboutClicked();
+    /** Show Stake Calculator Dialog */
+    void calcClicked();
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
@@ -202,13 +194,6 @@ private slots:
         The new items are those between start and end inclusive, under the given parent item.
     */
     void incomingTransaction(const QModelIndex & parent, int start, int end);
-
-    /** Show incoming message notification for new messages.
-
-        The new items are those between start and end inclusive, under the given parent item.
-    */
-    void incomingMessage(const QModelIndex & parent, int start, int end);
-
     /** Encrypt the wallet */
     void encryptWallet(bool status);
     /** Backup the wallet */
@@ -225,8 +210,13 @@ private slots:
     /** simply calls showNormalIfMinimized(true) for use in SLOT() macro */
     void toggleHidden();
 
-    void updateWeight();
     void updateStakingIcon();
+void charityClicked(QString addr = "");
+    /** Load external QSS stylesheet */
+    void changeTheme(QString theme);
+    void loadTheme(QString theme);
+    void listThemes(QStringList& themes);
+    void keyPressEvent(QKeyEvent * e);
 };
 
 #endif

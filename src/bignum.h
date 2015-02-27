@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2011-2012 Litecoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -85,17 +86,17 @@ public:
     }
 
     //CBigNum(char n) is not portable.  Use 'signed char' or 'unsigned char'.
-    CBigNum(signed char n)        { BN_init(this); if (n >= 0) setulong(n); else setint64(n); }
-    CBigNum(short n)              { BN_init(this); if (n >= 0) setulong(n); else setint64(n); }
-    CBigNum(int n)                { BN_init(this); if (n >= 0) setulong(n); else setint64(n); }
-    CBigNum(long n)               { BN_init(this); if (n >= 0) setulong(n); else setint64(n); }
+    CBigNum(signed char n)      { BN_init(this); if (n >= 0) setulong(n); else setint64(n); }
+    CBigNum(short n)            { BN_init(this); if (n >= 0) setulong(n); else setint64(n); }
+    CBigNum(int n)              { BN_init(this); if (n >= 0) setulong(n); else setint64(n); }
+    CBigNum(long n)             { BN_init(this); if (n >= 0) setulong(n); else setint64(n); }
     CBigNum(long long n)          { BN_init(this); setint64(n); }
-    CBigNum(unsigned char n)      { BN_init(this); setulong(n); }
-    CBigNum(unsigned short n)     { BN_init(this); setulong(n); }
-    CBigNum(unsigned int n)       { BN_init(this); setulong(n); }
-    CBigNum(unsigned long n)      { BN_init(this); setulong(n); }
+    CBigNum(unsigned char n)    { BN_init(this); setulong(n); }
+    CBigNum(unsigned short n)   { BN_init(this); setulong(n); }
+    CBigNum(unsigned int n)     { BN_init(this); setulong(n); }
+    CBigNum(unsigned long n)    { BN_init(this); setulong(n); }
     CBigNum(unsigned long long n) { BN_init(this); setuint64(n); }
-    explicit CBigNum(uint256 n)   { BN_init(this); setuint256(n); }
+    explicit CBigNum(uint256 n) { BN_init(this); setuint256(n); }
 
     explicit CBigNum(const std::vector<unsigned char>& vch)
     {

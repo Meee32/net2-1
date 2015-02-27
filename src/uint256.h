@@ -1,19 +1,21 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2011-2012 Litecoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 #ifndef BITCOIN_UINT256_H
 #define BITCOIN_UINT256_H
 
+#include <stdint.h>
+#include <limits.h>
+#include <stdio.h>
+#include <string.h>
 #include <string>
 #include <vector>
 
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
 
 inline int Testuint256AdHoc(std::vector<std::string> vArg);
+
 
 
 /** Base class without constructors for uint256 and uint160.
@@ -24,7 +26,7 @@ class base_uint
 {
 protected:
     enum { WIDTH=BITS/32 };
-    uint32_t pn[WIDTH];
+    unsigned int pn[WIDTH];
 public:
 
     bool operator!() const
@@ -52,16 +54,6 @@ public:
         return ret;
     }
 
-    double getdouble() const
-    {
-        double ret = 0.0;
-        double fact = 1.0;
-        for (int i = 0; i < WIDTH; i++) {
-            ret += fact * pn[i];
-            fact *= 4294967296.0;
-        }
-        return ret;
-    }
 
     base_uint& operator=(uint64_t b)
     {
@@ -313,7 +305,7 @@ public:
             psz += 2;
 
         // hex string to uint
-        static const unsigned char phexdigit[256] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,1,2,3,4,5,6,7,8,9,0,0,0,0,0,0, 0,0xa,0xb,0xc,0xd,0xe,0xf,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0xa,0xb,0xc,0xd,0xe,0xf,0,0,0,0,0,0,0,0,0 };
+        static unsigned char phexdigit[256] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,1,2,3,4,5,6,7,8,9,0,0,0,0,0,0, 0,0xa,0xb,0xc,0xd,0xe,0xf,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0xa,0xb,0xc,0xd,0xe,0xf,0,0,0,0,0,0,0,0,0 };
         const char* pbegin = psz;
         while (phexdigit[(unsigned char)*psz] || *psz == '0')
             psz++;
@@ -351,6 +343,16 @@ public:
         return (unsigned char*)&pn[WIDTH];
     }
 
+    const unsigned char* begin() const
+    {
+        return (unsigned char*)&pn[0];
+    }
+
+    const unsigned char* end() const
+    {
+        return (unsigned char*)&pn[WIDTH];
+    }
+
     unsigned int size()
     {
         return sizeof(pn);
@@ -361,22 +363,26 @@ public:
         return pn[2*n] | (uint64_t)pn[2*n+1] << 32;
     }
 
+//    unsigned int GetSerializeSize(int nType=0, int nVersion=PROTOCOL_VERSION) const
     unsigned int GetSerializeSize(int nType, int nVersion) const
     {
         return sizeof(pn);
     }
 
     template<typename Stream>
+//    void Serialize(Stream& s, int nType=0, int nVersion=PROTOCOL_VERSION) const
     void Serialize(Stream& s, int nType, int nVersion) const
     {
         s.write((char*)pn, sizeof(pn));
     }
 
     template<typename Stream>
+//    void Unserialize(Stream& s, int nType=0, int nVersion=PROTOCOL_VERSION)
     void Unserialize(Stream& s, int nType, int nVersion)
     {
         s.read((char*)pn, sizeof(pn));
     }
+
 
     friend class uint160;
     friend class uint256;
@@ -385,6 +391,7 @@ public:
 
 typedef base_uint<160> base_uint160;
 typedef base_uint<256> base_uint256;
+
 
 
 //
@@ -455,8 +462,8 @@ public:
     }
 };
 
-inline bool operator==(const uint160& a, uint64_t b)                         { return (base_uint160)a == b; }
-inline bool operator!=(const uint160& a, uint64_t b)                         { return (base_uint160)a != b; }
+inline bool operator==(const uint160& a, uint64_t b)                           { return (base_uint160)a == b; }
+inline bool operator!=(const uint160& a, uint64_t b)                           { return (base_uint160)a != b; }
 inline const uint160 operator<<(const base_uint160& a, unsigned int shift)   { return uint160(a) <<= shift; }
 inline const uint160 operator>>(const base_uint160& a, unsigned int shift)   { return uint160(a) >>= shift; }
 inline const uint160 operator<<(const uint160& a, unsigned int shift)        { return uint160(a) <<= shift; }
@@ -570,8 +577,8 @@ public:
     }
 };
 
-inline bool operator==(const uint256& a, uint64_t b)                         { return (base_uint256)a == b; }
-inline bool operator!=(const uint256& a, uint64_t b)                         { return (base_uint256)a != b; }
+inline bool operator==(const uint256& a, uint64_t b)                           { return (base_uint256)a == b; }
+inline bool operator!=(const uint256& a, uint64_t b)                           { return (base_uint256)a != b; }
 inline const uint256 operator<<(const base_uint256& a, unsigned int shift)   { return uint256(a) <<= shift; }
 inline const uint256 operator>>(const base_uint256& a, unsigned int shift)   { return uint256(a) >>= shift; }
 inline const uint256 operator<<(const uint256& a, unsigned int shift)        { return uint256(a) <<= shift; }
@@ -618,6 +625,14 @@ inline const uint256 operator&(const uint256& a, const uint256& b)      { return
 inline const uint256 operator|(const uint256& a, const uint256& b)      { return (base_uint256)a |  (base_uint256)b; }
 inline const uint256 operator+(const uint256& a, const uint256& b)      { return (base_uint256)a +  (base_uint256)b; }
 inline const uint256 operator-(const uint256& a, const uint256& b)      { return (base_uint256)a -  (base_uint256)b; }
+
+
+
+
+
+
+
+
 
 
 #ifdef TEST_UINT256

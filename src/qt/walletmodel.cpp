@@ -76,24 +76,11 @@ void WalletModel::updateStatus()
 
 void WalletModel::pollBalanceChanged()
 {
-    // Get required locks upfront. This avoids the GUI from getting stuck on
-    // periodical polls if the core is holding the locks for a longer time -
-    // for example, during a wallet rescan.
-    TRY_LOCK(cs_main, lockMain);
-    if(!lockMain)
-        return;
-    TRY_LOCK(wallet->cs_wallet, lockWallet);
-    if(!lockWallet)
-        return;
-
     if(nBestHeight != cachedNumBlocks)
     {
         // Balance and number of transactions might have changed
         cachedNumBlocks = nBestHeight;
-
         checkBalanceChanged();
-        if(transactionTableModel)
-            transactionTableModel->updateConfirmations();
     }
 }
 
@@ -138,15 +125,7 @@ void WalletModel::updateAddressBook(const QString &address, const QString &label
 
 bool WalletModel::validateAddress(const QString &address)
 {
-    std::string sAddr = address.toStdString();
-    
-    if (sAddr.length() > 75)
-    {
-        if (IsStealthAddress(sAddr))
-            return true;
-    };
-    
-    CBitcoinAddress addressParsed(sAddr);
+    CBitcoinAddress addressParsed(address.toStdString());
     return addressParsed.IsValid();
 }
 
@@ -198,167 +177,24 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
     {
         return SendCoinsReturn(AmountWithFeeExceedsBalance, nTransactionFee);
     }
-    
-    std::map<int, std::string> mapStealthNarr;
 
     {
         LOCK2(cs_main, wallet->cs_wallet);
-        
-        CWalletTx wtx;
-        
+
         // Sendmany
         std::vector<std::pair<CScript, int64_t> > vecSend;
         foreach(const SendCoinsRecipient &rcp, recipients)
         {
-            std::string sAddr = rcp.address.toStdString();
-            
-            if (rcp.typeInd == AddressTableModel::AT_Stealth)
-            {
-                CStealthAddress sxAddr;
-                if (sxAddr.SetEncoded(sAddr))
-                {
-                    ec_secret ephem_secret;
-                    ec_secret secretShared;
-                    ec_point pkSendTo;
-                    ec_point ephem_pubkey;
-                    
-                    
-                    if (GenerateRandomSecret(ephem_secret) != 0)
-                    {
-                        printf("GenerateRandomSecret failed.\n");
-                        return Aborted;
-                    };
-                    
-                    if (StealthSecret(ephem_secret, sxAddr.scan_pubkey, sxAddr.spend_pubkey, secretShared, pkSendTo) != 0)
-                    {
-                        printf("Could not generate receiving public key.\n");
-                        return Aborted;
-                    };
-                    
-                    CPubKey cpkTo(pkSendTo);
-                    if (!cpkTo.IsValid())
-                    {
-                        printf("Invalid public key generated.\n");
-                        return Aborted;
-                    };
-                    
-                    CKeyID ckidTo = cpkTo.GetID();
-                    
-                    CBitcoinAddress addrTo(ckidTo);
-                    
-                    if (SecretToPublicKey(ephem_secret, ephem_pubkey) != 0)
-                    {
-                        printf("Could not generate ephem public key.\n");
-                        return Aborted;
-                    };
-                    
-                    if (fDebug)
-                    {
-                        printf("Stealth send to generated pubkey %"PRIszu": %s\n", pkSendTo.size(), HexStr(pkSendTo).c_str());
-                        printf("hash %s\n", addrTo.ToString().c_str());
-                        printf("ephem_pubkey %"PRIszu": %s\n", ephem_pubkey.size(), HexStr(ephem_pubkey).c_str());
-                    };
-                    
-                    CScript scriptPubKey;
-                    scriptPubKey.SetDestination(addrTo.Get());
-                    
-                    vecSend.push_back(make_pair(scriptPubKey, rcp.amount));
-                    
-                    CScript scriptP = CScript() << OP_RETURN << ephem_pubkey;
-                    
-                    if (rcp.narration.length() > 0)
-                    {
-                        std::string sNarr = rcp.narration.toStdString();
-                        
-                        if (sNarr.length() > 24)
-                        {
-                            printf("Narration is too long.\n");
-                            return NarrationTooLong;
-                        };
-                        
-                        std::vector<unsigned char> vchNarr;
-                        
-                        SecMsgCrypter crypter;
-                        crypter.SetKey(&secretShared.e[0], &ephem_pubkey[0]);
-                        
-                        if (!crypter.Encrypt((uint8_t*)&sNarr[0], sNarr.length(), vchNarr))
-                        {
-                            printf("Narration encryption failed.\n");
-                            return Aborted;
-                        };
-                        
-                        if (vchNarr.size() > 48)
-                        {
-                            printf("Encrypted narration is too long.\n");
-                            return Aborted;
-                        };
-                        
-                        if (vchNarr.size() > 0)
-                            scriptP = scriptP << OP_RETURN << vchNarr;
-                        
-                        int pos = vecSend.size()-1;
-                        mapStealthNarr[pos] = sNarr;
-                    };
-                    
-                    vecSend.push_back(make_pair(scriptP, 0));
-                    
-                    continue;
-                }; // else drop through to normal
-            }
-            
             CScript scriptPubKey;
-            scriptPubKey.SetDestination(CBitcoinAddress(sAddr).Get());
+            scriptPubKey.SetDestination(CBitcoinAddress(rcp.address.toStdString()).Get());
             vecSend.push_back(make_pair(scriptPubKey, rcp.amount));
-            
-            
-            
-            
-            if (rcp.narration.length() > 0)
-            {
-                std::string sNarr = rcp.narration.toStdString();
-                
-                if (sNarr.length() > 24)
-                {
-                    printf("Narration is too long.\n");
-                    return NarrationTooLong;
-                };
-                
-                std::vector<uint8_t> vNarr(sNarr.c_str(), sNarr.c_str() + sNarr.length());
-                std::vector<uint8_t> vNDesc;
-                
-                vNDesc.resize(2);
-                vNDesc[0] = 'n';
-                vNDesc[1] = 'p';
-                
-                CScript scriptN = CScript() << OP_RETURN << vNDesc << OP_RETURN << vNarr;
-                
-                vecSend.push_back(make_pair(scriptN, 0));
-            }
         }
 
-        
+        CWalletTx wtx;
         CReserveKey keyChange(wallet);
         int64_t nFeeRequired = 0;
-        int nChangePos = -1;
-        bool fCreated = wallet->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, nChangePos, coinControl);
-        
-        std::map<int, std::string>::iterator it;
-        for (it = mapStealthNarr.begin(); it != mapStealthNarr.end(); ++it)
-        {
-            int pos = it->first;
-            if (nChangePos > -1 && it->first >= nChangePos)
-                pos++;
-            
-            char key[64];
-            if (snprintf(key, sizeof(key), "n_%u", pos) < 1)
-            {
-                printf("CreateStealthTransaction(): Error creating narration key.");
-                continue;
-            };
-            wtx.mapValue[key] = it->second;
-        };
-        
-        
+        bool fCreated = wallet->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, "", false, coinControl);
+
         if(!fCreated)
         {
             if((total + nFeeRequired) > nBalance) // FIXME: could cause collisions in the future
@@ -371,12 +207,10 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
         {
             return Aborted;
         }
-        
         if(!wallet->CommitTransaction(wtx, keyChange))
         {
             return TransactionCommitFailed;
         }
-        
         hex = QString::fromStdString(wtx.GetHash().GetHex());
     }
 
@@ -388,20 +222,14 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
         std::string strLabel = rcp.label.toStdString();
         {
             LOCK(wallet->cs_wallet);
-            
-            if (rcp.typeInd == AddressTableModel::AT_Stealth)
+
+            std::map<CTxDestination, std::string>::iterator mi = wallet->mapAddressBook.find(dest);
+
+            // Check if we have a new address or an updated label
+            if (mi == wallet->mapAddressBook.end() || mi->second != strLabel)
             {
-                wallet->UpdateStealthAddress(strAddress, strLabel, true);
-            } else
-            {
-                std::map<CTxDestination, std::string>::iterator mi = wallet->mapAddressBook.find(dest);
-                
-                // Check if we have a new address or an updated label
-                if (mi == wallet->mapAddressBook.end() || mi->second != strLabel)
-                {
-                    wallet->SetAddressBookName(dest, strLabel);
-                };
-            };
+                wallet->SetAddressBookName(dest, strLabel);
+            }
         }
     }
 
@@ -483,6 +311,58 @@ bool WalletModel::backupWallet(const QString &filename)
     return BackupWallet(*wallet, filename.toLocal8Bit().data());
 }
 
+void WalletModel::setStakeForCharity(bool fStakeForCharity, int& nStakeForCharityPercent,
+                                     CBitcoinAddress& strStakeForCharityAddress,
+                                     CBitcoinAddress& strStakeForCharityChangeAddress,
+                                     qint64& nStakeForCharityMinAmout,
+                                     qint64& nStakeForCharityMaxAmount)
+{
+    // This function assumes the values were checked before being called
+    if (wallet->fFileBacked) // Tranz add option to not save.
+    {
+        CWalletDB walletdb(wallet->strWalletFile);
+        if (fStakeForCharity) {
+            walletdb.EraseStakeForCharity(wallet->strStakeForCharityAddress.ToString());
+            walletdb.WriteStakeForCharity(strStakeForCharityAddress.ToString(),
+                                          nStakeForCharityPercent,
+                                          strStakeForCharityChangeAddress.ToString(),
+                                          nStakeForCharityMinAmout,
+                                          nStakeForCharityMaxAmount);
+        }
+        else {
+            walletdb.EraseStakeForCharity(wallet->strStakeForCharityAddress.ToString());
+            walletdb.EraseStakeForCharity(strStakeForCharityAddress.ToString());
+        }
+
+        if(fDebug)
+          printf("setStakeForCharity: %s %d\n", strStakeForCharityAddress.ToString().c_str(), nStakeForCharityPercent);
+    }
+
+    {
+        LOCK(wallet->cs_wallet);
+        wallet->fStakeForCharity = fStakeForCharity;
+        wallet->nStakeForCharityPercent = nStakeForCharityPercent;
+        wallet->strStakeForCharityAddress = strStakeForCharityAddress;
+        wallet->strStakeForCharityChangeAddress = strStakeForCharityChangeAddress;
+        wallet->nStakeForCharityMin = nStakeForCharityMinAmout;
+        wallet->nStakeForCharityMax = nStakeForCharityMaxAmount;
+    }
+}
+
+void  WalletModel::getStakeForCharity(int& nStakeForCharityPercent,
+                                      CBitcoinAddress& strStakeForCharityAddress,
+                                      CBitcoinAddress& strStakeForCharityChangeAddress,
+                                      qint64& nStakeForCharityMinAmout,
+                                      qint64& nStakeForCharityMaxAmount)
+{
+     nStakeForCharityPercent = wallet->nStakeForCharityPercent;
+     strStakeForCharityAddress = wallet->strStakeForCharityAddress;
+     strStakeForCharityChangeAddress = wallet->strStakeForCharityChangeAddress;
+     nStakeForCharityMinAmout = wallet->nStakeForCharityMin;
+     nStakeForCharityMaxAmount =  wallet->nStakeForCharityMax;
+
+}
+
 // Handlers for core signals
 static void NotifyKeyStoreStatusChanged(WalletModel *walletmodel, CCryptoKeyStore *wallet)
 {
@@ -492,25 +372,12 @@ static void NotifyKeyStoreStatusChanged(WalletModel *walletmodel, CCryptoKeyStor
 
 static void NotifyAddressBookChanged(WalletModel *walletmodel, CWallet *wallet, const CTxDestination &address, const std::string &label, bool isMine, ChangeType status)
 {
-    if (address.type() == typeid(CStealthAddress))
-    {
-        CStealthAddress sxAddr = boost::get<CStealthAddress>(address);
-        std::string enc = sxAddr.Encoded();
-        OutputDebugStringF("NotifyAddressBookChanged %s %s isMine=%i status=%i\n", enc.c_str(), label.c_str(), isMine, status);
-        QMetaObject::invokeMethod(walletmodel, "updateAddressBook", Qt::QueuedConnection,
-                                  Q_ARG(QString, QString::fromStdString(enc)),
-                                  Q_ARG(QString, QString::fromStdString(label)),
-                                  Q_ARG(bool, isMine),
-                                  Q_ARG(int, status));
-    } else
-    {
-        OutputDebugStringF("NotifyAddressBookChanged %s %s isMine=%i status=%i\n", CBitcoinAddress(address).ToString().c_str(), label.c_str(), isMine, status);
-        QMetaObject::invokeMethod(walletmodel, "updateAddressBook", Qt::QueuedConnection,
-                                  Q_ARG(QString, QString::fromStdString(CBitcoinAddress(address).ToString())),
-                                  Q_ARG(QString, QString::fromStdString(label)),
-                                  Q_ARG(bool, isMine),
-                                  Q_ARG(int, status));
-    }
+    OutputDebugStringF("NotifyAddressBookChanged %s %s isMine=%i status=%i\n", CBitcoinAddress(address).ToString().c_str(), label.c_str(), isMine, status);
+    QMetaObject::invokeMethod(walletmodel, "updateAddressBook", Qt::QueuedConnection,
+                              Q_ARG(QString, QString::fromStdString(CBitcoinAddress(address).ToString())),
+                              Q_ARG(QString, QString::fromStdString(label)),
+                              Q_ARG(bool, isMine),
+                              Q_ARG(int, status));
 }
 
 static void NotifyTransactionChanged(WalletModel *walletmodel, CWallet *wallet, const uint256 &hash, ChangeType status)
@@ -589,7 +456,6 @@ bool WalletModel::getPubKey(const CKeyID &address, CPubKey& vchPubKeyOut) const
 // returns a list of COutputs from COutPoints
 void WalletModel::getOutputs(const std::vector<COutPoint>& vOutpoints, std::vector<COutput>& vOutputs)
 {
-    LOCK2(cs_main, wallet->cs_wallet);
     BOOST_FOREACH(const COutPoint& outpoint, vOutpoints)
     {
         if (!wallet->mapWallet.count(outpoint.hash)) continue;
@@ -605,8 +471,6 @@ void WalletModel::listCoins(std::map<QString, std::vector<COutput> >& mapCoins) 
 {
     std::vector<COutput> vCoins;
     wallet->AvailableCoins(vCoins);
-
-    LOCK2(cs_main, wallet->cs_wallet); // ListLockedCoins, mapWallet
     std::vector<COutPoint> vLockedCoins;
 
     // add locked coins
@@ -633,6 +497,11 @@ void WalletModel::listCoins(std::map<QString, std::vector<COutput> >& mapCoins) 
         if(!ExtractDestination(cout.tx->vout[cout.i].scriptPubKey, address)) continue;
         mapCoins[CBitcoinAddress(address).ToString().c_str()].push_back(out);
     }
+}
+
+bool WalletModel::isMine(const CBitcoinAddress &address)
+{
+	return IsMine(*wallet, address.Get());
 }
 
 bool WalletModel::isLockedCoin(uint256 hash, unsigned int n) const

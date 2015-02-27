@@ -1,10 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2011-2012 Litecoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_DB_H
 #define BITCOIN_DB_H
-
+#include <stdint.h>
 #include "main.h"
 
 #include <map>
@@ -50,7 +51,7 @@ public:
     CDBEnv();
     ~CDBEnv();
     void MakeMock();
-    bool IsMock() { return fMockDb; };
+    bool IsMock() { return fMockDb; }
 
     /*
      * Verify that database file strFile is OK. If it is not,
@@ -310,6 +311,8 @@ public:
 
     bool static Rewrite(const std::string& strFile, const char* pszSkip = NULL);
 };
+
+
 
 
 /** Access to the (IP) address database (peers.dat) */

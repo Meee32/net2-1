@@ -1,10 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2011-2012 Litecoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_KEYSTORE_H
 #define BITCOIN_KEYSTORE_H
-
+#include <stdint.h>
 #include "crypter.h"
 #include "sync.h"
 #include <boost/signals2/signal.hpp>
@@ -105,14 +106,15 @@ typedef std::map<CKeyID, std::pair<CPubKey, std::vector<unsigned char> > > Crypt
 class CCryptoKeyStore : public CBasicKeyStore
 {
 private:
+    CryptedKeyMap mapCryptedKeys;
+
+    CKeyingMaterial vMasterKey;
+
     // if fUseCrypto is true, mapKeys must be empty
     // if fUseCrypto is false, vMasterKey must be empty
     bool fUseCrypto;
 
 protected:
-    CryptedKeyMap mapCryptedKeys;
-    CKeyingMaterial vMasterKey;
-    
     bool SetCrypted();
 
     // will encrypt previously unencrypted keys
@@ -142,7 +144,7 @@ public:
         return result;
     }
 
-    bool LockKeyStore();
+    bool Lock();
 
     virtual bool AddCryptedKey(const CPubKey &vchPubKey, const std::vector<unsigned char> &vchCryptedSecret);
     bool AddKey(const CKey& key);

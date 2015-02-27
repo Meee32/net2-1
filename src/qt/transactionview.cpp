@@ -28,30 +28,40 @@
 #include <QClipboard>
 #include <QLabel>
 #include <QDateTimeEdit>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QWidget>
+#include <QPalette>
 
 TransactionView::TransactionView(QWidget *parent) :
     QWidget(parent), model(0), transactionProxyModel(0),
     transactionView(0)
 {
+
     // Build filter row
     setContentsMargins(0,0,0,0);
 
     QHBoxLayout *hlayout = new QHBoxLayout();
     hlayout->setContentsMargins(0,0,0,0);
+
 #ifdef Q_OS_MAC
     hlayout->setSpacing(5);
-    hlayout->addSpacing(26);
+    hlayout->addSpacing(0);
 #else
     hlayout->setSpacing(0);
-    hlayout->addSpacing(23);
+    hlayout->addSpacing(0);
 #endif
 
     dateWidget = new QComboBox(this);
+    dateWidget->setContentsMargins(1,1,1,1);
+
 #ifdef Q_OS_MAC
     dateWidget->setFixedWidth(121);
 #else
-    dateWidget->setFixedWidth(120);
+    dateWidget->setFixedWidth(120);    
 #endif
+
+    dateWidget->setContentsMargins(1,1,1,1);
     dateWidget->addItem(tr("All"), All);
     dateWidget->addItem(tr("Today"), Today);
     dateWidget->addItem(tr("This week"), ThisWeek);
@@ -62,12 +72,12 @@ TransactionView::TransactionView(QWidget *parent) :
     hlayout->addWidget(dateWidget);
 
     typeWidget = new QComboBox(this);
+
 #ifdef Q_OS_MAC
     typeWidget->setFixedWidth(121);
 #else
     typeWidget->setFixedWidth(120);
 #endif
-
     typeWidget->addItem(tr("All"), TransactionFilterProxy::ALL_TYPES);
     typeWidget->addItem(tr("Received with"), TransactionFilterProxy::TYPE(TransactionRecord::RecvWithAddress) |
                                         TransactionFilterProxy::TYPE(TransactionRecord::RecvFromOther));
@@ -76,13 +86,14 @@ TransactionView::TransactionView(QWidget *parent) :
     typeWidget->addItem(tr("To yourself"), TransactionFilterProxy::TYPE(TransactionRecord::SendToSelf));
     typeWidget->addItem(tr("Mined"), TransactionFilterProxy::TYPE(TransactionRecord::Generated));
     typeWidget->addItem(tr("Other"), TransactionFilterProxy::TYPE(TransactionRecord::Other));
-
+    typeWidget->setContentsMargins(1,1,1,1);
     hlayout->addWidget(typeWidget);
 
     addressWidget = new QLineEdit(this);
 #if QT_VERSION >= 0x040700
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
     addressWidget->setPlaceholderText(tr("Enter address or label to search"));
+    addressWidget->setContentsMargins(1,1,1,1);
 #endif
     hlayout->addWidget(addressWidget);
 
@@ -90,6 +101,7 @@ TransactionView::TransactionView(QWidget *parent) :
 #if QT_VERSION >= 0x040700
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
     amountWidget->setPlaceholderText(tr("Min amount"));
+    amountWidget->setContentsMargins(1,1,1,1);
 #endif
 #ifdef Q_OS_MAC
     amountWidget->setFixedWidth(97);
@@ -108,6 +120,7 @@ TransactionView::TransactionView(QWidget *parent) :
     vlayout->addWidget(createDateRangeWidget());
     vlayout->addWidget(view);
     vlayout->setSpacing(0);
+    view->setAlternatingRowColors(false);
     int width = view->verticalScrollBar()->sizeHint().width();
     // Cover scroll bar width with spacing
 #ifdef Q_OS_MAC
@@ -123,20 +136,25 @@ TransactionView::TransactionView(QWidget *parent) :
     transactionView = view;
 
     // Actions
+
     QAction *copyAddressAction = new QAction(tr("Copy address"), this);
     QAction *copyLabelAction = new QAction(tr("Copy label"), this);
     QAction *copyAmountAction = new QAction(tr("Copy amount"), this);
     QAction *copyTxIDAction = new QAction(tr("Copy transaction ID"), this);
     QAction *editLabelAction = new QAction(tr("Edit label"), this);
     QAction *showDetailsAction = new QAction(tr("Show transaction details"), this);
+    QAction *viewOnPandachain = new QAction(tr("Show transaction on the Netcoin Block Explorer"), this);
 
     contextMenu = new QMenu();
     contextMenu->addAction(copyAddressAction);
     contextMenu->addAction(copyLabelAction);
     contextMenu->addAction(copyAmountAction);
     contextMenu->addAction(copyTxIDAction);
+    contextMenu->addSeparator();
     contextMenu->addAction(editLabelAction);
     contextMenu->addAction(showDetailsAction);
+    contextMenu->addSeparator();
+    contextMenu->addAction(viewOnPandachain);
 
     // Connect actions
     connect(dateWidget, SIGNAL(activated(int)), this, SLOT(chooseDate(int)));
@@ -153,6 +171,7 @@ TransactionView::TransactionView(QWidget *parent) :
     connect(copyTxIDAction, SIGNAL(triggered()), this, SLOT(copyTxID()));
     connect(editLabelAction, SIGNAL(triggered()), this, SLOT(editLabel()));
     connect(showDetailsAction, SIGNAL(triggered()), this, SLOT(showDetails()));
+    connect(viewOnPandachain, SIGNAL(triggered()), this, SLOT(viewOnPandachain()));
 }
 
 void TransactionView::setModel(WalletModel *model)
@@ -169,7 +188,7 @@ void TransactionView::setModel(WalletModel *model)
         transactionProxyModel->setSortRole(Qt::EditRole);
 
         transactionView->setModel(transactionProxyModel);
-        transactionView->setAlternatingRowColors(true);
+        transactionView->setAlternatingRowColors(false);
         transactionView->setSelectionBehavior(QAbstractItemView::SelectRows);
         transactionView->setSelectionMode(QAbstractItemView::ExtendedSelection);
         transactionView->setSortingEnabled(true);
@@ -380,6 +399,18 @@ void TransactionView::showDetails()
     {
         TransactionDescDialog dlg(selection.at(0));
         dlg.exec();
+    }
+}
+
+void TransactionView::viewOnPandachain()
+{
+    QModelIndexList selection = transactionView->selectionModel()->selectedRows();
+    if(!selection.isEmpty())
+    {
+        QString format("http://explorer.netcoinfoundation.org/tx/");
+        format += selection.at(0).data(TransactionTableModel::TxIDRole).toString();
+
+        QDesktopServices::openUrl(QUrl(format));
     }
 }
 

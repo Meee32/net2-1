@@ -7,7 +7,7 @@
 #include "txdb.h"
 #include "miner.h"
 #include "kernel.h"
-
+#include "util.h"
 using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
@@ -109,24 +109,27 @@ public:
 // CreateNewBlock: create new block (without proof-of-work/proof-of-stake)
 CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
 {
+    CBlockIndex* pindexPrev = pindexBest;
+    int height = pindexPrev->nHeight+1;
+
     // Create new block
     auto_ptr<CBlock> pblock(new CBlock());
+
     if (!pblock.get())
         return NULL;
 
-    CBlockIndex* pindexPrev = pindexBest;
-
     // Create coinbase tx
     CTransaction txNew;
+
     txNew.vin.resize(1);
     txNew.vin[0].prevout.SetNull();
     txNew.vout.resize(1);
-    
-    
-    int nHeight = pindexPrev->nHeight+1; // height of new block
 
     if (!fProofOfStake)
     {
+        // Netcoin: all PoW blocks are version 2
+        pblock->nVersion = 2;
+
         CReserveKey reservekey(pwallet);
         CPubKey pubkey;
         if (!reservekey.GetReservedKey(pubkey))
@@ -136,7 +139,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
     else
     {
         // Height first in coinbase required for block.version=2
-        txNew.vin[0].scriptSig = (CScript() << nHeight) + COINBASE_FLAGS;
+        txNew.vin[0].scriptSig = (CScript() << height) + COINBASE_FLAGS;
         assert(txNew.vin[0].scriptSig.size() <= 100);
 
         txNew.vout[0].SetEmpty();
@@ -169,7 +172,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
     if (mapArgs.count("-mintxfee"))
         ParseMoney(mapArgs["-mintxfee"], nMinTxFee);
 
-    pblock->nBits = GetNextTargetRequired(pindexPrev, fProofOfStake);
+    pblock->nBits = GetNextWorkRequired(pindexPrev, pblock.get(), fProofOfStake);
 
     // Collect memory pool transactions into the block
     int64_t nFees = 0;
@@ -282,12 +285,8 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
             if (nBlockSigOps + nTxSigOps >= MAX_BLOCK_SIGOPS)
                 continue;
 
-            // Timestamp limit
-            if (tx.nTime > GetAdjustedTime() || (fProofOfStake && tx.nTime > pblock->vtx[0].nTime))
-                continue;
-
             // Transaction fee
-            int64_t nMinFee = tx.GetMinFee(nBlockSize, GMF_BLOCK);
+            int64_t nMinFee = tx.GetMinFee(nBlockSize, GMF_BLOCK, 0, true);
 
             // Skip free transactions if we're past the minimum block size:
             if (fSortedByFee && (dFeePerKb < nMinTxFee) && (nBlockSize + nTxSize >= nBlockMinSize))
@@ -360,17 +359,17 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
         nLastBlockSize = nBlockSize;
 
         if (fDebug && GetBoolArg("-printpriority"))
-            printf("CreateNewBlock(): total size %"PRIu64"\n", nBlockSize);
+            printf("CreateNewBlock(): total size %"PRI64u"\n", nBlockSize);
 
         if (!fProofOfStake)
-            pblock->vtx[0].vout[0].nValue = GetProofOfWorkReward(nHeight, nFees, pindexPrev->GetBlockHash());
+            pblock->vtx[0].vout[0].nValue = GetProofOfWorkReward(pindexPrev->nHeight+1, nFees, pindexPrev->GetBlockHash());
 
         if (pFees)
             *pFees = nFees;
 
         // Fill in header
         pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
-        pblock->nTime          = max(pindexPrev->GetPastTimeLimit()+1, pblock->GetMaxTransactionTime());
+        pblock->nTime          = max(pindexPrev->GetPastTimeLimit()+1, GetAdjustedTime());
         pblock->nTime          = max(pblock->GetBlockTime(), PastDrift(pindexPrev->GetBlockTime()));
         if (!fProofOfStake)
             pblock->UpdateTime(pindexPrev);
@@ -448,7 +447,7 @@ void FormatHashBuffers(CBlock* pblock, char* pmidstate, char* pdata, char* phash
 
 bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
 {
-    uint256 hashBlock = pblock->GetHash();
+    uint256 hashBlock = pblock->GetPoWHash();
     uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
 
     if(!pblock->IsProofOfWork())
@@ -494,7 +493,7 @@ bool CheckStake(CBlock* pblock, CWallet& wallet)
         return error("CheckStake() : %s is not a proof-of-stake block", hashBlock.GetHex().c_str());
 
     // verify hash target and signature of coinstake tx
-    if (!CheckProofOfStake(pblock->vtx[1], pblock->nBits, proofHash, hashTarget))
+    if (!CheckProofOfStake(pblock->vtx[1], pblock->nTime, pblock->nBits, proofHash, hashTarget))
         return error("CheckStake() : proof-of-stake checking failed");
 
     //// debug print
@@ -556,13 +555,19 @@ void StakeMiner(CWallet *pwallet)
         if (fTryToSync)
         {
             fTryToSync = false;
-            if (vNodes.size() < 3 || nBestHeight < GetNumBlocksOfPeers())
+            if ((!fTestNet && vNodes.size() < 3) || nBestHeight < GetNumBlocksOfPeers())
             {
                 MilliSleep(60000);
                 continue;
             }
         }
 
+        //netcoin - Wait until POS activation block height is reached
+        if (nBestHeight < (!fTestNet ? BLOCK_HEIGHT_POS_AND_DIGISHIELD_START : BLOCK_HEIGHT_POS_AND_DIGISHIELD_START_TESTNET))
+        {
+            MilliSleep(60000);
+            continue;
+        }
         //
         // Create new block
         //

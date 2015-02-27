@@ -17,12 +17,19 @@ createArgs(int nRequired, const char* address1=NULL, const char* address2=NULL)
     result.push_back(nRequired);
     Array addresses;
     if (address1) addresses.push_back(address1);
-    if (address2) addresses.push_back(address2);
+    if (address2) addresses.push_back(address1);
     result.push_back(addresses);
     return result;
 }
 
-BOOST_AUTO_TEST_CASE(rpc_addmultisig)
+// This can be removed this when addmultisigaddress is enabled on main net:
+struct TestNetFixture
+{
+    TestNetFixture() { fTestNet = true; }
+    ~TestNetFixture() { fTestNet = false; }
+};
+
+BOOST_FIXTURE_TEST_CASE(rpc_addmultisig, TestNetFixture)
 {
     rpcfn_type addmultisig = tableRPC["addmultisigaddress"]->actor;
 

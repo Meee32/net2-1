@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2011-2012 Litecoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef _BITCOIN_COMPAT_H
@@ -23,11 +24,9 @@
 #include <net/if.h>
 #include <netinet/in.h>
 #include <ifaddrs.h>
-
-typedef u_int SOCKET;
 #endif
 
-
+typedef u_int SOCKET;
 #ifdef WIN32
 #define MSG_NOSIGNAL        0
 #define MSG_DONTWAIT        0

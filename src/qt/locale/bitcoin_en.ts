@@ -5,20 +5,19 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About NetCoin</source>
-        <translation>About NetCoin</translation>
+        <source>About Netcoin</source>
+        <translation>About Netcoin</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;NetCoin&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;NetCoin&lt;/b&gt; version</translation>
+        <source>&lt;b&gt;Netcoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt;Netcoin&lt;/b&gt; version</translation>
     </message>
     <message>
         <location line="+41"/>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The BlackCoin developers
-Copyright © 2014 The NetCoin developers</source>
+Copyright © 2014 The Netcoin developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -66,8 +65,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-46"/>
-        <source>These are your NetCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>These are your NetCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</translation>
+        <source>These are your Netcoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>These are your Netcoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -81,8 +80,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a NetCoin address</source>
-        <translation>Sign a message to prove you own a NetCoin address</translation>
+        <source>Sign a message to prove you own a Netcoin address</source>
+        <translation>Sign a message to prove you own a Netcoin address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -96,8 +95,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-14"/>
-        <source>Verify a message to ensure it was signed with a specified NetCoin address</source>
-        <translation>Verify a message to ensure it was signed with a specified NetCoin address</translation>
+        <source>Verify a message to ensure it was signed with a specified Netcoin address</source>
+        <translation>Verify a message to ensure it was signed with a specified Netcoin address</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -264,8 +263,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-58"/>
-        <source>NetCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>NetCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</translation>
+        <source>Netcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation>Netcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -312,17 +311,17 @@ This product includes software developed by the OpenSSL Project for use in the O
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+280"/>
+        <location filename="../bitcoingui.cpp" line="+282"/>
         <source>Sign &amp;message...</source>
         <translation>Sign &amp;message...</translation>
     </message>
     <message>
-        <location line="+242"/>
+        <location line="+251"/>
         <source>Synchronizing with network...</source>
         <translation>Synchronizing with network...</translation>
     </message>
     <message>
-        <location line="-308"/>
+        <location line="-319"/>
         <source>&amp;Overview</source>
         <translation>&amp;Overview</translation>
     </message>
@@ -377,9 +376,9 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>Quit application</translation>
     </message>
     <message>
-        <location line="+4"/>
-        <source>Show information about NetCoin</source>
-        <translation>Show information about NetCoin</translation>
+        <location line="+6"/>
+        <source>Show information about Netcoin</source>
+        <translation>Show information about Netcoin</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -412,7 +411,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>&amp;Change Passphrase...</translation>
     </message>
     <message numerus="yes">
-        <location line="+250"/>
+        <location line="+259"/>
         <source>~%n block(s) remaining</source>
         <translation>
             <numerusform>~%n block remaining</numerusform>
@@ -425,19 +424,19 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>Downloaded %1 of %2 blocks of transaction history (%3% done).</translation>
     </message>
     <message>
-        <location line="-247"/>
+        <location line="-256"/>
         <source>&amp;Export...</source>
         <translation>&amp;Export...</translation>
     </message>
     <message>
-        <location line="-62"/>
-        <source>Send coins to a NetCoin address</source>
-        <translation>Send coins to a NetCoin address</translation>
+        <location line="-64"/>
+        <source>Send coins to a Netcoin address</source>
+        <translation>Send coins to a Netcoin address</translation>
     </message>
     <message>
-        <location line="+45"/>
-        <source>Modify configuration options for NetCoin</source>
-        <translation>Modify configuration options for NetCoin</translation>
+        <location line="+47"/>
+        <source>Modify configuration options for Netcoin</source>
+        <translation>Modify configuration options for Netcoin</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -475,9 +474,9 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>&amp;Verify message...</translation>
     </message>
     <message>
-        <location line="-200"/>
-        <source>NetCoin</source>
-        <translation>NetCoin</translation>
+        <location line="-202"/>
+        <source>Netcoin</source>
+        <translation>Netcoin</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -485,9 +484,9 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>Wallet</translation>
     </message>
     <message>
-        <location line="+178"/>
-        <source>&amp;About NetCoin</source>
-        <translation>&amp;About NetCoin</translation>
+        <location line="+180"/>
+        <source>&amp;About Netcoin</source>
+        <translation>&amp;About Netcoin</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -510,7 +509,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+35"/>
         <source>&amp;File</source>
         <translation>&amp;File</translation>
     </message>
@@ -525,7 +524,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+12"/>
         <source>Tabs toolbar</source>
         <translation>Tabs toolbar</translation>
     </message>
@@ -543,15 +542,15 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+0"/>
         <location line="+60"/>
-        <source>NetCoin client</source>
-        <translation>NetCoin client</translation>
+        <source>Netcoin client</source>
+        <translation>Netcoin client</translation>
     </message>
     <message numerus="yes">
-        <location line="+70"/>
-        <source>%n active connection(s) to NetCoin network</source>
+        <location line="+75"/>
+        <source>%n active connection(s) to Netcoin network</source>
         <translation>
-            <numerusform>%n active connection to NetCoin network</numerusform>
-            <numerusform>%n active connections to NetCoin network</numerusform>
+            <numerusform>%n active connection to Netcoin network</numerusform>
+            <numerusform>%n active connections to Netcoin network</numerusform>
         </translation>
     </message>
     <message>
@@ -560,7 +559,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation>Downloaded %1 blocks of transaction history.</translation>
     </message>
     <message>
-        <location line="+428"/>
+        <location line="+413"/>
         <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
         <translation></translation>
     </message>
@@ -585,7 +584,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location line="-418"/>
+        <location line="-403"/>
         <source>%n second(s) ago</source>
         <translation>
             <numerusform>%n second ago</numerusform>
@@ -593,12 +592,22 @@ This product includes software developed by the OpenSSL Project for use in the O
         </translation>
     </message>
     <message>
-        <location line="-284"/>
+        <location line="-312"/>
+        <source>About Netcoin card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show information about Netcoin card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+18"/>
         <source>&amp;Unlock Wallet...</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location line="+288"/>
+        <location line="+297"/>
         <source>%n minute(s) ago</source>
         <translation>
             <numerusform>%n minute ago</numerusform>
@@ -678,8 +687,8 @@ Address: %4
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid NetCoin address or malformed URI parameters.</source>
-        <translation>URI can not be parsed! This can be caused by an invalid NetCoin address or malformed URI parameters.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid Netcoin address or malformed URI parameters.</source>
+        <translation>URI can not be parsed! This can be caused by an invalid Netcoin address or malformed URI parameters.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -712,7 +721,7 @@ Address: %4
         <translation>There was an error trying to save the wallet data to the new location.</translation>
     </message>
     <message numerus="yes">
-        <location line="+91"/>
+        <location line="+76"/>
         <source>%n second(s)</source>
         <translation>
             <numerusform>%n second</numerusform>
@@ -750,8 +759,8 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. NetCoin can no longer continue safely and will quit.</source>
-        <translation>A fatal error occurred. NetCoin can no longer continue safely and will quit.</translation>
+        <source>A fatal error occurred. Netcoin can no longer continue safely and will quit.</source>
+        <translation>A fatal error occurred. Netcoin can no longer continue safely and will quit.</translation>
     </message>
 </context>
 <context>
@@ -1070,8 +1079,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid NetCoin address.</source>
-        <translation>The entered address &quot;%1&quot; is not a valid NetCoin address.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Netcoin address.</source>
+        <translation>The entered address &quot;%1&quot; is not a valid Netcoin address.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1087,10 +1096,10 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
 <context>
     <name>GUIUtil::HelpMessageBox</name>
     <message>
-        <location filename="../guiutil.cpp" line="+424"/>
+        <location filename="../guiutil.cpp" line="+420"/>
         <location line="+12"/>
-        <source>NetCoin-Qt</source>
-        <translation>NetCoin-Qt</translation>
+        <source>Netcoin-Qt</source>
+        <translation>Netcoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -1162,13 +1171,13 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start NetCoin after logging in to the system.</source>
-        <translation>Automatically start NetCoin after logging in to the system.</translation>
+        <source>Automatically start Netcoin after logging in to the system.</source>
+        <translation>Automatically start Netcoin after logging in to the system.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start NetCoin on system login</source>
-        <translation>&amp;Start NetCoin on system login</translation>
+        <source>&amp;Start Netcoin on system login</source>
+        <translation>&amp;Start Netcoin on system login</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1187,8 +1196,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the NetCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automatically open the NetCoin client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
+        <source>Automatically open the Netcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatically open the Netcoin client port on the router. This only works when your router supports UPnP and it is enabled.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1197,8 +1206,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the NetCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Connect to the NetCoin network through a SOCKS proxy (e.g. when connecting through Tor).</translation>
+        <source>Connect to the Netcoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Connect to the Netcoin network through a SOCKS proxy (e.g. when connecting through Tor).</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1272,8 +1281,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting NetCoin.</source>
-        <translation>The user interface language can be set here. This setting will take effect after restarting NetCoin.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting Netcoin.</source>
+        <translation>The user interface language can be set here. This setting will take effect after restarting Netcoin.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1287,8 +1296,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show NetCoin addresses in the transaction list or not.</source>
-        <translation>Whether to show NetCoin addresses in the transaction list or not.</translation>
+        <source>Whether to show Netcoin addresses in the transaction list or not.</source>
+        <translation>Whether to show Netcoin addresses in the transaction list or not.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1334,8 +1343,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting NetCoin.</source>
-        <translation>This setting will take effect after restarting NetCoin.</translation>
+        <source>This setting will take effect after restarting Netcoin.</source>
+        <translation>This setting will take effect after restarting Netcoin.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1353,8 +1362,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+33"/>
         <location line="+231"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the NetCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the NetCoin network after a connection is established, but this process has not completed yet.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Netcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>The displayed information may be out of date. Your wallet automatically synchronizes with the Netcoin network after a connection is established, but this process has not completed yet.</translation>
     </message>
     <message>
         <location line="-160"/>
@@ -1569,8 +1578,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the NetCoin-Qt help message to get a list with possible NetCoin command-line options.</source>
-        <translation>Show the NetCoin-Qt help message to get a list with possible NetCoin command-line options.</translation>
+        <source>Show the Netcoin-Qt help message to get a list with possible Netcoin command-line options.</source>
+        <translation>Show the Netcoin-Qt help message to get a list with possible Netcoin command-line options.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1589,13 +1598,13 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="-104"/>
-        <source>NetCoin - Debug window</source>
-        <translation>NetCoin - Debug window</translation>
+        <source>Netcoin - Debug window</source>
+        <translation>Netcoin - Debug window</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>NetCoin Core</source>
-        <translation>NetCoin Core</translation>
+        <source>Netcoin Core</source>
+        <translation>Netcoin Core</translation>
     </message>
     <message>
         <location line="+279"/>
@@ -1604,8 +1613,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the NetCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Open the NetCoin debug log file from the current data directory. This can take a few seconds for large log files.</translation>
+        <source>Open the Netcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Open the Netcoin debug log file from the current data directory. This can take a few seconds for large log files.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1614,8 +1623,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the NetCoin RPC console.</source>
-        <translation>Welcome to the NetCoin RPC console.</translation>
+        <source>Welcome to the Netcoin RPC console.</source>
+        <translation>Welcome to the Netcoin RPC console.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1688,8 +1697,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+86"/>
         <location line="+86"/>
         <location line="+32"/>
-        <source>0.00 SDC</source>
-        <translation type="unfinished">123.456 SDC {0.00 ?}</translation>
+        <source>0.00 NET</source>
+        <translation type="unfinished">123.456 NET {0.00 ?}</translation>
     </message>
     <message>
         <location line="-191"/>
@@ -1758,8 +1767,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+16"/>
-        <source>123.456 SDC</source>
-        <translation>123.456 SDC</translation>
+        <source>123.456 NET</source>
+        <translation>123.456 NET</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1773,8 +1782,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
-        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1873,7 +1882,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+251"/>
-        <source>WARNING: Invalid NetCoin address</source>
+        <source>WARNING: Invalid Netcoin address</source>
         <translation></translation>
     </message>
     <message>
@@ -1917,7 +1926,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to send the payment to  (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
+        <source>The address to send the payment to  (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
         <translation></translation>
     </message>
     <message>
@@ -1947,8 +1956,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
 </context>
 <context>
@@ -1971,8 +1980,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>The address to sign the message with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>The address to sign the message with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>The address to sign the message with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2008,8 +2017,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this NetCoin address</source>
-        <translation>Sign the message to prove you own this NetCoin address</translation>
+        <source>Sign the message to prove you own this Netcoin address</source>
+        <translation>Sign the message to prove you own this Netcoin address</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2035,13 +2044,13 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+21"/>
-        <source>The address the message was signed with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>The address the message was signed with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>The address the message was signed with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>The address the message was signed with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified NetCoin address</source>
-        <translation>Verify the message to ensure it was signed with the specified NetCoin address</translation>
+        <source>Verify the message to ensure it was signed with the specified Netcoin address</source>
+        <translation>Verify the message to ensure it was signed with the specified Netcoin address</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2051,8 +2060,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -2061,8 +2070,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter NetCoin signature</source>
-        <translation>Enter NetCoin signature</translation>
+        <source>Enter Netcoin signature</source>
+        <translation>Enter Netcoin signature</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2644,8 +2653,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+33"/>
-        <source>NetCoin version</source>
-        <translation>NetCoin version</translation>
+        <source>Netcoin version</source>
+        <translation>Netcoin version</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2654,8 +2663,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or netcoind</source>
-        <translation>Send command to -server or netcoind</translation>
+        <source>Send command to -server or pandacoind</source>
+        <translation>Send command to -server or pandacoind</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2674,13 +2683,13 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+2"/>
-        <source>Specify configuration file (default: netcoin.conf)</source>
-        <translation>Specify configuration file (default: netcoin.conf)</translation>
+        <source>Specify configuration file (default: pandacoin.conf)</source>
+        <translation>Specify configuration file (default: pandacoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify pid file (default: netcoind.pid)</source>
-        <translation>Specify pid file (default: netcoind.pid)</translation>
+        <source>Specify pid file (default: pandacoind.pid)</source>
+        <translation>Specify pid file (default: pandacoind.pid)</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2704,8 +2713,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+6"/>
-        <source>Listen for connections on &lt;port&gt; (default: 51737 or testnet: 51997)</source>
-        <translation>Listen for connections on &lt;port&gt; (default: 51737 or testnet: 51997)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
+        <translation>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2764,7 +2773,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="-87"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 51736 or testnet: 51996)</source>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 22444 or testnet: 25715)</source>
         <translation></translation>
     </message>
     <message>
@@ -2829,8 +2838,8 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="+61"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong NetCoin will not work properly.</source>
-        <translation>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong NetCoin will not work properly.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Netcoin will not work properly.</source>
+        <translation>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Netcoin will not work properly.</translation>
     </message>
     <message>
         <location line="-31"/>
@@ -3018,13 +3027,13 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:
-rpcuser=netcoinrpc
+rpcuser=pandacoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.com
 </source>
         <translation type="unfinished"></translation>
     </message>
@@ -3150,13 +3159,13 @@ for example: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+1"/>
-        <source>Cannot obtain a lock on data directory %s.  NetCoin is probably already running.</source>
-        <translation>Cannot obtain a lock on data directory %s.  NetCoin is probably already running.</translation>
+        <source>Cannot obtain a lock on data directory %s.  Netcoin is probably already running.</source>
+        <translation>Cannot obtain a lock on data directory %s.  Netcoin is probably already running.</translation>
     </message>
     <message>
         <location line="-98"/>
-        <source>NetCoin</source>
-        <translation>NetCoin</translation>
+        <source>Netcoin</source>
+        <translation>Netcoin</translation>
     </message>
     <message>
         <location line="+140"/>
@@ -3190,13 +3199,13 @@ for example: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+4"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of NetCoin</source>
-        <translation>Error loading wallet.dat: Wallet requires newer version of NetCoin</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Netcoin</source>
+        <translation>Error loading wallet.dat: Wallet requires newer version of Netcoin</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart NetCoin to complete</source>
-        <translation>Wallet needed to be rewritten: restart NetCoin to complete</translation>
+        <source>Wallet needed to be rewritten: restart Netcoin to complete</source>
+        <translation>Wallet needed to be rewritten: restart Netcoin to complete</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3265,8 +3274,8 @@ for example: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.
     </message>
     <message>
         <location line="+122"/>
-        <source>Unable to bind to %s on this computer. NetCoin is probably already running.</source>
-        <translation>Unable to bind to %s on this computer. NetCoin is probably already running.</translation>
+        <source>Unable to bind to %s on this computer. Netcoin is probably already running.</source>
+        <translation>Unable to bind to %s on this computer. Netcoin is probably already running.</translation>
     </message>
     <message>
         <location line="-97"/>

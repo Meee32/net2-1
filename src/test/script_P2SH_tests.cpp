@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(norecurse)
     // Should not verify, because it will try to execute OP_INVALIDOPCODE
     BOOST_CHECK(!Verify(scriptSig, p2sh, true));
 
-    // Try to recur, and verification should succeed because
+    // Try to recurse, and verification should succeed because
     // the inner HASH160 <> EQUAL should only check the hash:
     CScript p2sh2;
     p2sh2.SetDestination(p2sh.GetID());
@@ -225,7 +225,7 @@ BOOST_AUTO_TEST_CASE(is)
 
 BOOST_AUTO_TEST_CASE(switchover)
 {
-    // Test switch over code
+    // Test switchover code
     CScript notValid;
     notValid << OP_11 << OP_12 << OP_EQUALVERIFY;
     CScript scriptSig;

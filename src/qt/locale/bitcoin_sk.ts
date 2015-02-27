@@ -3,24 +3,22 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About NetCoin</source>
-        <translation>O NetCoin</translation>
+        <source>About Netcoin</source>
+        <translation>O Netcoin</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;NetCoin&lt;/b&gt; version</source>
-        <translation>verzia &lt;b&gt;NetCoinu&lt;/b&gt;</translation>
+        <source>&lt;b&gt;Netcoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt;Netcoin&lt;/b&gt; verzia</translation>
     </message>
     <message>
         <location line="+41"/>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The BlackCoin developers
-Copyright © 2014 The NetCoin developers</source>
+Copyright © 2014 The Netcoin developers</source>
         <translation>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The BlackCoin developers
-Copyright © 2014 The NetCoin developers</translation>
+Copyright © 2014 The Netcoin developers</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -35,7 +33,7 @@ Toto je experimentálny softvér.
 
 Distribuovaný pod softvérovou licenciou MIT/X11, viď priložený súbor COPYING alebo http://www.opensource.org/licenses/mit-license.php. 
 
-Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použitie v sade OpenSSL Toolkit (http://www.openssl.org/) a šifrovací softvér, ktorý napísal Eric Young (eay@cryptsoft.com) a UPnP softvér ktorý napísaný Thomas Bernard.</translation>
+Tento produkt obsahuje softvér vyvinutý Projektom OpenSSL Project pre použitie v sade OpenSSL Toolkit (http://www.openssl.org/) a šifrovací softvér, ktorý napísal Eric Young (eay@cryptsoft.com) a UPnP softvér napísaný Thomas Bernard.</translation>
     </message>
 </context>
 <context>
@@ -58,17 +56,17 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+14"/>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Kopírovať práve zvolenú adresu do systémovej schránky</translation>
+        <translation>Kopírovať práve zvolenú adresu do systémového klipbordu</translation>
     </message>
     <message>
         <location line="-11"/>
         <source>&amp;New Address</source>
-        <translation>&amp;Nová adresa</translation>
+        <translation>&amp;Nová Adresa</translation>
     </message>
     <message>
         <location line="-46"/>
-        <source>These are your NetCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>Toto sú vaše NetCoin adresy pre príjem platieb. Možno budete chcieť dať inú každému odosielateľovi, aby ste mohli sledovať, kto Vám platí.</translation>
+        <source>These are your Netcoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>Toto sú vaše Netcoin adresy pre príjem platieb. Možno budete chcieť dať inú každému odosielateľovi, takže môžete sledovať, kto Vám platí.</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -78,17 +76,17 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+11"/>
         <source>Show &amp;QR Code</source>
-        <translation>Ukáž &amp;QR kód</translation>
+        <translation>Ukáž &amp;QR Code</translation>
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a NetCoin address</source>
-        <translation>Podpísať správu ako dôkaz, že vlastníte túto NetCoin adresu</translation>
+        <source>Sign a message to prove you own a Netcoin address</source>
+        <translation>Podpísať správu, že vlastníte Netcoin adresu</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Sign &amp;Message</source>
-        <translation>Podpísať &amp;správu</translation>
+        <translation>Podpísať &amp;Správu</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -97,13 +95,13 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     </message>
     <message>
         <location line="-14"/>
-        <source>Verify a message to ensure it was signed with a specified NetCoin address</source>
-        <translation>Overte správu, aby ste zabezpečili, že bola podpísaná s určitou NetCoin adresou</translation>
+        <source>Verify a message to ensure it was signed with a specified Netcoin address</source>
+        <translation>Overte správu, aby ste zabezpečili, že bola podpísaná s určitou Netcoin adresou</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Verify Message</source>
-        <translation>&amp;Overte správu</translation>
+        <translation>&amp;Overte Správu</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -123,7 +121,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+250"/>
         <source>Export Address Book Data</source>
-        <translation>Exportovať dáta z adresára</translation>
+        <translation>Exportovať Udaje Zoznamu</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -138,7 +136,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+0"/>
         <source>Could not write to file %1.</source>
-        <translation>Nie je možné zapísať do súboru %1.</translation>
+        <translation>Nemožno zapisovať do súboru %1.</translation>
     </message>
 </context>
 <context>
@@ -194,7 +192,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location filename="../askpassphrasedialog.cpp" line="+35"/>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Zadajte nové heslo k peňaženke.&lt;br/&gt;Prosím použite heslo s dĺžkou aspon &lt;b&gt;10 a viac náhodných znakov&lt;/b&gt;, alebo &lt;b&gt;8 a viac slov&lt;/b&gt;.</translation>
+        <translation>Zadajte nové heslo k peňaženke.&lt;br/&gt;Prosím použite heslo s dĺžkou aspon &lt;b&gt;10 alebo viac náhodných znakov&lt;/b&gt;, alebo &lt;b&gt;8 alebo viac slov&lt;/b&gt;.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -204,7 +202,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+7"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Táto operácia potrebuje heslo k vašej peňaženke aby ju mohla odomknúť.</translation>
+        <translation>Táto operácia potrebuje heslo k vašej peňaženke aby ju mohla dešifrovať.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -234,12 +232,12 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+46"/>
         <source>Confirm wallet encryption</source>
-        <translation>Potvrďte zašifrovanie peňaženky</translation>
+        <translation>Potvrďte šifrovanie peňaženky</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
-        <translation>Upozornenie: Ak zašifrujete vašu peňaženku a stratíte prístupové heslo, potom &lt;b&gt;prídete o všetky svoje MINCE&lt;/b&gt;!</translation>
+        <translation>Upozornenie: Ak zašifrujete vašu peňaženku a stratíte prístupové heslo, potom &lt;b&gt;Prídete o všetky svoje MINCE&lt;/b&gt;!</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -255,7 +253,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <location line="+103"/>
         <location line="+24"/>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>Upozornenie: Máte zapnutý Caps Lock!</translation>
+        <translation>Varovanie: Caps Lock je zapnutý</translation>
     </message>
     <message>
         <location line="-133"/>
@@ -265,8 +263,8 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     </message>
     <message>
         <location line="-58"/>
-        <source>NetCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>NetCoin sa teraz zavrie aby dokončil proces zašifrovania. Nezabudnite, že zašifrovanie vašej peňaženky nemôže plne chrániť vaše mince pred krádežou malwarom napadnutím vašeho počítača.</translation>
+        <source>Netcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation>Netcoin sa teraz zavrie aby dokončil proces zašifrovania. Nezabudnite, že zašifrovanie vašej peňaženky nemôže plne chrániť vaše mince pred krádežou malwarom napadnutím vašeho počítača.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -313,17 +311,17 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
 <context>
     <name>BitcoinGUI</name>
     <message>
-        <location filename="../bitcoingui.cpp" line="+280"/>
+        <location filename="../bitcoingui.cpp" line="+282"/>
         <source>Sign &amp;message...</source>
         <translation>Podpísať &amp;správu...</translation>
     </message>
     <message>
-        <location line="+242"/>
+        <location line="+251"/>
         <source>Synchronizing with network...</source>
         <translation>Synchronizácia so sieťou...</translation>
     </message>
     <message>
-        <location line="-308"/>
+        <location line="-319"/>
         <source>&amp;Overview</source>
         <translation>&amp;Prehľad</translation>
     </message>
@@ -345,7 +343,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+5"/>
         <source>&amp;Address Book</source>
-        <translation>&amp;Adresár</translation>
+        <translation>&amp;Zoznam</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -378,9 +376,9 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation>Ukončiť program</translation>
     </message>
     <message>
-        <location line="+4"/>
-        <source>Show information about NetCoin</source>
-        <translation>Zobraziť informácie o NetCoin</translation>
+        <location line="+6"/>
+        <source>Show information about Netcoin</source>
+        <translation>Zobraziť informácie o Netcoin</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -400,42 +398,42 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+4"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Zašifrovať peňaženku...</translation>
+        <translation>&amp;Zašifrovať Peňaženku...</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Zálohovať peňaženku...</translation>
+        <translation>&amp;Backup peňaženku...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Zmena hesla...</translation>
+        <translation>&amp;Zmena Hesla...</translation>
     </message>
     <message numerus="yes">
-        <location line="+250"/>
+        <location line="+259"/>
         <source>~%n block(s) remaining</source>
-        <translation><numerusform>~%n blok zostáva</numerusform><numerusform>~%n blokov zostáva</numerusform><numerusform>Zostáva ~%n blokov</numerusform></translation>
+        <translation><numerusform>~%n blok zostáva</numerusform><numerusform>~%n blokov zostáva</numerusform><numerusform>~%n blokov zostáva</numerusform></translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
-        <translation>Stiahnutých %1 z %2 blokov transakčnej histórie (%3% hotových).</translation>
+        <translation>Stiahnutých %1 of %2 blokov z histórie transakcií (%3% hotovo).</translation>
     </message>
     <message>
-        <location line="-247"/>
+        <location line="-256"/>
         <source>&amp;Export...</source>
         <translation>&amp;Export...</translation>
     </message>
     <message>
-        <location line="-62"/>
-        <source>Send coins to a NetCoin address</source>
-        <translation>Poslať mince na NetCoin adresu</translation>
+        <location line="-64"/>
+        <source>Send coins to a Netcoin address</source>
+        <translation>Poslať mince na Netcoin adresu</translation>
     </message>
     <message>
-        <location line="+45"/>
-        <source>Modify configuration options for NetCoin</source>
-        <translation>Upraviť možnosti konfigurácie pre NetCoin</translation>
+        <location line="+47"/>
+        <source>Modify configuration options for Netcoin</source>
+        <translation>Upraviť možnosti konfigurácie pre Netcoin</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -460,7 +458,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+10"/>
         <source>&amp;Debug window</source>
-        <translation>&amp;Ladiace okno</translation>
+        <translation>&amp;Okno pre ladenie</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -473,9 +471,9 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation>Overiť správu</translation>
     </message>
     <message>
-        <location line="-200"/>
-        <source>NetCoin</source>
-        <translation>NetCoin</translation>
+        <location line="-202"/>
+        <source>Netcoin</source>
+        <translation>Netcoin</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -483,9 +481,9 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation>Peňaženka</translation>
     </message>
     <message>
-        <location line="+178"/>
-        <source>&amp;About NetCoin</source>
-        <translation>&amp;O NetCoin</translation>
+        <location line="+180"/>
+        <source>&amp;About Netcoin</source>
+        <translation>&amp;O Netcoin</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -508,7 +506,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation>Zamknúť peňaženku</translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+35"/>
         <source>&amp;File</source>
         <translation>&amp;Súbor</translation>
     </message>
@@ -523,14 +521,14 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+12"/>
         <source>Tabs toolbar</source>
         <translation>Lišta záložiek</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Actions toolbar</source>
-        <translation>Lišta činností</translation>
+        <translation>Actions panel</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -541,23 +539,23 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+0"/>
         <location line="+60"/>
-        <source>NetCoin client</source>
-        <translation>NetCoin klient</translation>
+        <source>Netcoin client</source>
+        <translation>Netcoin client</translation>
     </message>
     <message numerus="yes">
-        <location line="+70"/>
-        <source>%n active connection(s) to NetCoin network</source>
-        <translation><numerusform>%n aktívne spojenie s NetCoin sieťov</numerusform><numerusform>%n aktívnych spojení s NetCoin sieťov</numerusform><numerusform>%n aktívnych spojení s NetCoin sieťou</numerusform></translation>
+        <location line="+75"/>
+        <source>%n active connection(s) to Netcoin network</source>
+        <translation><numerusform>%n aktívne spojenie s Netcoin sieťov</numerusform><numerusform>%n aktívnych spojení s Netcoin sieťov</numerusform><numerusform>%n aktívnych spojení s Netcoin sieťov</numerusform></translation>
     </message>
     <message>
         <location line="+40"/>
         <source>Downloaded %1 blocks of transaction history.</source>
-        <translation>Stiahnutých %1 blokov z transakčnej histórie.</translation>
+        <translation>Stiahnutých %1 blokov z histórie transakcií.</translation>
     </message>
     <message>
         <location line="+413"/>
         <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation>Stávkovanie.&lt;br&gt;Vaša váha je %1&lt;br&gt;Váha siete je %2&lt;br&gt;Odhadovaný čas pre získanie odmeny je %3</translation>
+        <translation>Stávkovanie.&lt;br&gt;Vaša váha je %1&lt;br&gt;Sieť váha je %2&lt;br&gt;Odhadovaný čas na zarobenie odmeny je %3</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -567,7 +565,7 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is offline</source>
-        <translation>Nestávkujem pretože peňaženka je offline</translation>
+        <translation>Nestávkujem pretože peňaženka je vypnutá</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -585,12 +583,22 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
         <translation><numerusform>pred %n sekundou</numerusform><numerusform>pred %n sekundami</numerusform><numerusform>pred %n sekundami</numerusform></translation>
     </message>
     <message>
-        <location line="-284"/>
+        <location line="-312"/>
+        <source>About Netcoin card</source>
+        <translation>O Netcoin karte</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show information about Netcoin card</source>
+        <translation>Zobraziť informácie o Netcoin karte</translation>
+    </message>
+    <message>
+        <location line="+18"/>
         <source>&amp;Unlock Wallet...</source>
-        <translation>&amp;Odomknúť peňaženku...</translation>
+        <translation>&amp;Odomknúť Peňaženku...</translation>
     </message>
     <message numerus="yes">
-        <location line="+288"/>
+        <location line="+297"/>
         <source>%n minute(s) ago</source>
         <translation><numerusform>pred %n minutou</numerusform><numerusform>pred %n minutami</numerusform><numerusform>pred %n minutami</numerusform></translation>
     </message>
@@ -622,12 +630,12 @@ Tento produkt obsahuje softvér vyvinutý projektom OpenSSL Project pre použiti
     <message>
         <location line="+59"/>
         <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
-        <translation>Táto transakcia je nad veľkostný limit. Stále ju môžete poslať za poplatok %1, ktorý ide uzlom spracujúcim vaše transakcie, čím pomáhate podporovať sieť. Chcete zaplatiť poplatok?</translation>
+        <translation>Táto transakcia je nad limit veľkosti. Stále to môžete poslať za poplatok %1, ktorý ide uzlom spracujúcim vaše transakcie, čím pomáhajú podporovať sieť. Chcete platiť poplatok?</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Confirm transaction fee</source>
-        <translation>Potvrďte transakčný poplatok</translation>
+        <translation>Potvrdte poplatok transakcie</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -660,8 +668,8 @@ Adresa: %4</translation>
     <message>
         <location line="-15"/>
         <location line="+15"/>
-        <source>URI can not be parsed! This can be caused by an invalid NetCoin address or malformed URI parameters.</source>
-        <translation>URI nemožno analyzovať! Toto môže byť spôsobené neplatnou NetCoin adresu alebo chybnými URI parametrami.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid Netcoin address or malformed URI parameters.</source>
+        <translation>URI nemožno analyzovať! To môže byť spôsobené neplatnou Netcoin adresu alebo chybnými URI parametrami.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -676,17 +684,17 @@ Adresa: %4</translation>
     <message>
         <location line="+25"/>
         <source>Backup Wallet</source>
-        <translation>Zálohovanie peňaženky</translation>
+        <translation>Zálohovanie Peňaženky</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Wallet Data (*.dat)</source>
-        <translation>Dáta peňaženky (*.dat)</translation>
+        <translation>Dáta Peňaženky (*.dat)</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Backup Failed</source>
-        <translation>Zálohovanie zlyhalo</translation>
+        <translation>Zálohovanie Zlyhalo</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -716,12 +724,12 @@ Adresa: %4</translation>
     <message>
         <location line="+18"/>
         <source>Not staking</source>
-        <translation>Nestávkuje sa</translation>
+        <translation>Not staking</translation>
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+109"/>
-        <source>A fatal error occurred. NetCoin can no longer continue safely and will quit.</source>
-        <translation>Došlo k závažnej chybe. NetCoin už nemôže pokračovať bezpečne a bude ukončený.</translation>
+        <source>A fatal error occurred. Netcoin can no longer continue safely and will quit.</source>
+        <translation>Došlo k závažnej chybe. Netcoin už nemôže pokračovať bezpečne a bude ukončený.</translation>
     </message>
 </context>
 <context>
@@ -737,7 +745,7 @@ Adresa: %4</translation>
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+14"/>
         <source>Coin Control</source>
-        <translation>Kontrola mincí</translation>
+        <translation>Kontrola Mincí</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -747,7 +755,7 @@ Adresa: %4</translation>
     <message>
         <location line="+32"/>
         <source>Bytes:</source>
-        <translation>Bajty:</translation>
+        <translation>Bajtov:</translation>
     </message>
     <message>
         <location line="+48"/>
@@ -767,7 +775,7 @@ Adresa: %4</translation>
     <message>
         <location line="+35"/>
         <source>Low Output:</source>
-        <translation>Nízky výstup:</translation>
+        <translation>Nízky Output:</translation>
     </message>
     <message>
         <location filename="../coincontroldialog.cpp" line="+551"/>
@@ -883,7 +891,7 @@ Adresa: %4</translation>
     <message>
         <location line="+1"/>
         <source>Copy low output</source>
-        <translation>Kopírovať nízky výstup</translation>
+        <translation>Kopírovať nízky output</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -928,7 +936,7 @@ Adresa: %4</translation>
     <message>
         <location line="+155"/>
         <source>DUST</source>
-        <translation>PRACH</translation>
+        <translation>DUST</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -946,7 +954,7 @@ Adresa: %4</translation>
 
  To znamená, že je potrebný poplatok vo výške najmenej %1 za kb.
 
-Môže sa líšiť +/- 1 bajt za vstup.</translation>
+Môže sa líšiť +/- 1 Bajt za vstup.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -957,9 +965,9 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
  This means a fee of at least %1 per kb is required.</source>
         <translation>Transakcie s vyššou prioritou sa dostanú s väčšou pravdepodobnosťou do bloku.
 
-Tento popis sčervenie, ak je priorita menšia ako &quot;stredná&quot;.
+Tento popis sčervená, ak je prioritou menšia ako &quot;stredná&quot;.
 
-To znamená, že je nutný poplatok vo výške aspoň %1 za kb.</translation>
+ To znamená, že je nutný poplatok vo výške aspoň %1 za kb.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -968,20 +976,20 @@ To znamená, že je nutný poplatok vo výške aspoň %1 za kb.</translation>
  This means a fee of at least %2 is required. 
 
  Amounts below 0.546 times the minimum relay fee are shown as DUST.</source>
-        <translation>Tento popis sčervenie, ak príjemca dostane sumu menšiu ako %1.
+        <translation>Tento popis sčervená, ak je príjemca dostane sumu menšiu ako %1.
 
-To znamená, že je potrebný poplatok aspoň %2.
+ To znamená, že je potrebný poplatok aspoň %2.
 
-Sumy nižšie ako 0,546 násobok minimálneho poplatku sú zobrazené ako PRACH.</translation>
+Sumy nižšie ako 0,546 násobok minimálneho poplatku sú zobrazené ako DUST.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This label turns red, if the change is smaller than %1.
 
  This means a fee of at least %2 is required.</source>
-        <translation>Tento popis sčervenie, ak je zmena menšia než %1.
+        <translation>Tento popis sčervená, ak je zmena menšia než %1.
 
-To znamená, že je potrebný poplatok aspoň %2.</translation>
+ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -1025,7 +1033,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+10"/>
         <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
-        <translation>Adresa spojená s položkou v tomto adresári. Toto môže byť zmenené iba pre odosielané adresy.</translation>
+        <translation>Adresa spojená s položkou v tomto adresári. To môže byť zmenené iba pre odosielané adresy.</translation>
     </message>
     <message>
         <location filename="../editaddressdialog.cpp" line="+20"/>
@@ -1040,22 +1048,22 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+3"/>
         <source>Edit receiving address</source>
-        <translation>Upraviť adresu pre prijímanie</translation>
+        <translation>Upraviť prijímacie adresy</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Edit sending address</source>
-        <translation>Upraviť adresu pre odosielanie</translation>
+        <translation>Upraviť odosielaciu adresu</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
-        <translation>Zadaná adresa &quot;%1&quot; sa už nachádza v adresári.</translation>
+        <translation>Vložená adresa &quot;%1&quot; sa už nachádza v adresári.</translation>
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid NetCoin address.</source>
-        <translation>Zadaná adresa &quot;%1&quot; nie je platnou NetCoin adresou.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Netcoin address.</source>
+        <translation>Zadaná adresa &quot;%1&quot; nie je platnou Netcoin adresou.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1073,8 +1081,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location filename="../guiutil.cpp" line="+420"/>
         <location line="+12"/>
-        <source>NetCoin-Qt</source>
-        <translation>NetCoin-Qt</translation>
+        <source>Netcoin-Qt</source>
+        <translation>Netcoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -1094,12 +1102,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+4"/>
         <source>UI options</source>
-        <translation>Možnosti používateľského rozhrania</translation>
+        <translation>UI možnosti</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
-        <translation>Nastavenie jazyka, napr &quot;de_DE&quot; (predvolené: miestne nastavenie systému)</translation>
+        <translation>Nastavenie jazyka, napr &quot;de_DE&quot; (predvolené: lokalizácia systému)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1109,7 +1117,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+1"/>
         <source>Show splash screen on startup (default: 1)</source>
-        <translation>Zobraziť úvodnú obrazovku pri štarte (predvolené: 1)</translation>
+        <translation>Zobraziť úvodnú obrazovku pri štarte (default: 1)</translation>
     </message>
 </context>
 <context>
@@ -1127,7 +1135,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+6"/>
         <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
-        <translation>Voliteľný transakčný poplatok za kB, ktorý pomáha zaistiť, že vaše transakcie sú spracované rýchlo. Väčšina transakcií je 1 kB. Poplatok 0.01 je odporúčaný.</translation>
+        <translation>Voliteľný poplatok za transakciu za kB, ktorý pomáha uistiť sa, že vaše transakcie sú spracované rýchlo. Väčšina transakcií je 1 kB. Poplatok 0.01 je odporúčaný.</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1137,7 +1145,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+31"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
-        <translation>Rezervované množstvo sa nepodieľa na stávkovaní a preto je použiteľné kedykoľvek.</translation>
+        <translation>Rezervované množstvo sa nepodieľa na stávkovaní a preto je utratitelné kedykoľvek.</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1146,18 +1154,18 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start NetCoin after logging in to the system.</source>
-        <translation>Automaticky spustiť NetCoin po prihlásení sa do systému.</translation>
+        <source>Automatically start Netcoin after logging in to the system.</source>
+        <translation>Automaticky spustiť Netcoin po prihlásení sa do systému.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start NetCoin on system login</source>
-        <translation>&amp;Spustiť NetCoin pri prihlásení do systému</translation>
+        <source>&amp;Start Netcoin on system login</source>
+        <translation>&amp;Spustiť Netcoin pri prihlásení do systému</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
-        <translation>Odpojiť blok a databázy z adresami pri vypnutí počítača. To znamená, že môžu byť presunuté do iného adresára dát, ale to spomaľuje vypnutie. Peňaženka je vždy odpojená.</translation>
+        <translation>Odpojiť blok a adresa databázy pri vypnutí počítača. To znamená, že môžu byť presunuté do iného adresára dát, ale to spomaľuje vypnutie. Peňaženka je vždy odpojená.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1171,8 +1179,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the NetCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Automaticky otvoriť port klienta NetCoin na routeri. To funguje iba vtedy, ak váš router podporuje UPnP a je povolené.</translation>
+        <source>Automatically open the Netcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automaticky otvoriť port klienta Netcoin na routeri. To funguje iba vtedy, ak váš router podporuje UPnP a je povolené.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1181,8 +1189,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the NetCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Pripojenie k sieti NetCoin cez SOCKS proxy server (napr. pri pripojení cez Tor).</translation>
+        <source>Connect to the Netcoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Pripojenie k sieti Netcoin cez SOCKS proxy server (napr. pri pripojení cez Tor).</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1232,17 +1240,17 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+3"/>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>Minimalizovať na lištu namiesto panelu úloh</translation>
+        <translation>Zobraziť len ikonu na lište po minimalizovaní okna.</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>Minimalizovať namiesto ukončenia aplikácie keď sa zatvorí okno. Keď je zvolená táto možnosť, aplikácia sa zatvorí len po zvolení Ukončiť v menu.</translation>
+        <translation>Minimalizovat namiesto ukončenia aplikácie keď sa okno zavrie. Keď je zvolená táto možnosť, aplikácia sa zavrie len po zvolení Ukončiť v menu.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M&amp;inimize on close</source>
-        <translation>M&amp;inimalizovať pri zatvorení</translation>
+        <translation>M&amp;inimalizovať pri zavretí</translation>
     </message>
     <message>
         <location line="+21"/>
@@ -1252,12 +1260,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+8"/>
         <source>User Interface &amp;language:</source>
-        <translation>Jazyk používateľského rozhrania:</translation>
+        <translation>Jazyk užívateľského rozhrania:</translation>
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting NetCoin.</source>
-        <translation>Tu môžete nastaviť jazyk používateľského rozhrania. Toto nastavenie sa prejaví až po reštartovaní NetCoin.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting Netcoin.</source>
+        <translation>Jazyk používateľského rozhrania je možné tu nastaviť. Toto nastavenie sa prejaví až po reštartovaní Netcoin.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1271,13 +1279,13 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show NetCoin addresses in the transaction list or not.</source>
-        <translation>Či chcete zobraziť NetCoin adresy v zozname transakcií alebo nie.</translation>
+        <source>Whether to show Netcoin addresses in the transaction list or not.</source>
+        <translation>Či chcete zobraziť Netcoin adresy v zozname transakcií alebo nie.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Display addresses in transaction list</source>
-        <translation>&amp;Zobraziť adresy v zozname transakcií</translation>
+        <translation>&amp;Zobraziť adresy zo zoznamu transakcií</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1313,13 +1321,13 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <location line="+149"/>
         <location line="+9"/>
         <source>Warning</source>
-        <translation>Upozornenie</translation>
+        <translation>Varovanie</translation>
     </message>
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting NetCoin.</source>
-        <translation>Toto nastavenie sa prejaví až po reštartovaní NetCoin.</translation>
+        <source>This setting will take effect after restarting Netcoin.</source>
+        <translation>Toto nastavenie sa prejaví až po reštartovaní Netcoin.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1337,8 +1345,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+33"/>
         <location line="+231"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the NetCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>Zobrazené informácie môžu byť zastaralé. Vaša peňaženka sa automaticky synchronizuje so sieťou NetCoin po nadviazaní spojenia, ale tento proces nie je ešte dokončený.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Netcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Zobrazené informácie môžu byť zastaralé. Vaša peňaženka sa automaticky synchronizuje so sieťou Netcoin po nadviazaní spojenia, ale tento proces nie je ešte dokončený.</translation>
     </message>
     <message>
         <location line="-160"/>
@@ -1404,7 +1412,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <location filename="../overviewpage.cpp" line="+113"/>
         <location line="+1"/>
         <source>out of sync</source>
-        <translation>nezosynchronizované</translation>
+        <translation>nesynchronizované</translation>
     </message>
 </context>
 <context>
@@ -1494,7 +1502,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="-45"/>
         <source>&amp;Information</source>
-        <translation>&amp;Informácie</translation>
+        <translation>&amp;Informácia</translation>
     </message>
     <message>
         <location line="+68"/>
@@ -1519,7 +1527,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+23"/>
         <source>On testnet</source>
-        <translation>Na testovacej sieti</translation>
+        <translation>On testnet</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1553,8 +1561,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the NetCoin-Qt help message to get a list with possible NetCoin command-line options.</source>
-        <translation>Zobraziť NetCoin-Qt nápovedu k získaniu zoznamu pre možnosti  príkazového riadku NetCoin.</translation>
+        <source>Show the Netcoin-Qt help message to get a list with possible Netcoin command-line options.</source>
+        <translation>Zobraziť Netcoin-Qt nápovedu k získaniu zoznamu pre možnosti Netcoin príkazového riadku.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1573,23 +1581,23 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="-104"/>
-        <source>NetCoin - Debug window</source>
-        <translation>NetCoin - Ladiace okno</translation>
+        <source>Netcoin - Debug window</source>
+        <translation>Netcoin - Ladiace okno</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>NetCoin Core</source>
-        <translation>Jadro NetCoin</translation>
+        <source>Netcoin Core</source>
+        <translation>Netcoin Core</translation>
     </message>
     <message>
         <location line="+279"/>
         <source>Debug log file</source>
-        <translation>Súbor denníka ladenia</translation>
+        <translation>Súbor záznamu ladenia</translation>
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the NetCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otvorte NetCoin súbor denníku ladenia z aktuálneho adresára dát. To môže trvať niekoľko sekúnd pre veľké súbory denníka.</translation>
+        <source>Open the Netcoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Otvorte Netcoin ladenie log súbor z aktuálneho adresára dát. To môže trvať niekoľko sekúnd pre veľké súbory protokolu.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1598,18 +1606,18 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-33"/>
-        <source>Welcome to the NetCoin RPC console.</source>
-        <translation>Vitajte v konzole NetCoin RPC.</translation>
+        <source>Welcome to the Netcoin RPC console.</source>
+        <translation>Vitajte v Netcoin RPC konzole.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation>Použite šípky hore a dole pre navigáciu históriou, a &lt;b&gt; Ctrl-L &lt;/ b&gt; pre vymazanie obrazovky.</translation>
+        <translation>Použite hore a dole šípky pre navigáciu históriou, a &lt;b&gt; Ctrl-L &lt;/ b&gt; pre vymazanie obrazovky.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
-        <translation>Zadajte &lt;b&gt;help&lt;/b&gt; pre prehľad dostupných príkazov.</translation>
+        <translation>Zadajte &lt;b&gt; pomoc &lt;/ b&gt; pre prehľad dostupných príkazov.</translation>
     </message>
 </context>
 <context>
@@ -1624,7 +1632,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <location line="+5"/>
         <location line="+5"/>
         <source>Send Coins</source>
-        <translation>Poslať mince</translation>
+        <translation>Poslať Bitcoins</translation>
     </message>
     <message>
         <location line="+76"/>
@@ -1672,8 +1680,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <location line="+86"/>
         <location line="+86"/>
         <location line="+32"/>
-        <source>0.00 SDC</source>
-        <translation>123.456 SDC {0.00 ?}</translation>
+        <source>0.00 NET</source>
+        <translation>123.456 NET {0.00 ?}</translation>
     </message>
     <message>
         <location line="-191"/>
@@ -1693,7 +1701,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+35"/>
         <source>Low Output:</source>
-        <translation>Nízky výstup:</translation>
+        <translation>Nízky Output:</translation>
     </message>
     <message>
         <location line="+19"/>
@@ -1703,7 +1711,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+32"/>
         <source>After Fee:</source>
-        <translation>Po poplatkoch:</translation>
+        <translation>Po Poplatkoch:</translation>
     </message>
     <message>
         <location line="+35"/>
@@ -1742,8 +1750,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+16"/>
-        <source>123.456 SDC</source>
-        <translation>123.456 SDC</translation>
+        <source>123.456 NET</source>
+        <translation>123.456 NET</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1757,8 +1765,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
-        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Zadajte NetCoin adresu (napr. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Zadajte Netcoin adresu (napr. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -1793,7 +1801,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+1"/>
         <source>Copy low output</source>
-        <translation>Kopírovať nízky výstup</translation>
+        <translation>Kopírovať nízky output</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1808,12 +1816,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+5"/>
         <source>Confirm send coins</source>
-        <translation>Potvrdiť odoslanie mincí</translation>
+        <translation>Potvrdiť odoslanie bitcoins</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Are you sure you want to send %1?</source>
-        <translation>Ste si istý, že chcete poslať %1?</translation>
+        <translation>Ste si istí, že chcete poslať %1?</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -1823,7 +1831,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+29"/>
         <source>The recipient address is not valid, please recheck.</source>
-        <translation>Adresa príjemcu je neplatná, overte ju prosím.</translation>
+        <translation>Adresa príjemcu je neplatná, prosím, overte ju.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -1838,12 +1846,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+5"/>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>Celková suma prevyšuje Váš zostatok ak sú započítané aj transakčné poplatky %1.</translation>
+        <translation>Suma celkom prevyšuje Váš zostatok ak sú započítané %1 transakčné poplatky.</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>Objavený duplikát adresy, na každú adresu je možné poslať len raz v jednej odchádzajúcej transakcii.</translation>
+        <translation>Duplikát adresy objavený, je možné poslať na každú adresu len raz v jednej odchádzajúcej transakcii.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -1853,12 +1861,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+5"/>
         <source>Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>Chyba: Transakcia bola zamietnutá. To môže nastať, ak niektoré z mincí vo vašej peňaženke sa už použili, ako napríklad, ak ste použili kópiu wallet.dat a mince boli použité v kópii, ale neboli označené tu ako použité.</translation>
+        <translation>Chyba: Transakcia bola zamietnutá. To môže nastať, ak niektoré z mincí vo vašej peňaženke sa už použili, ako napríklad, ak ste použili kópiu wallet.dat a mince boli použité v kópii, ale neboli označené ako použité tu.</translation>
     </message>
     <message>
         <location line="+251"/>
-        <source>WARNING: Invalid NetCoin address</source>
-        <translation>UPOZORNENIE: Neplatná NetCoin adresa</translation>
+        <source>WARNING: Invalid Netcoin address</source>
+        <translation>VAROVANIE: Neplatná Netcoin adresa</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1868,7 +1876,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+4"/>
         <source>WARNING: unknown change address</source>
-        <translation>UPOZORNENIE: Neznáma zmena adresy</translation>
+        <translation>VAROVANIE: Neznáma zmena adresy</translation>
     </message>
 </context>
 <context>
@@ -1901,8 +1909,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to send the payment to  (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Adresa pre poslanie platby (napr. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>The address to send the payment to  (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Adresa pre poslanie platby (napr. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1917,7 +1925,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+7"/>
         <source>Paste address from clipboard</source>
-        <translation>Vložiť adresu zo schránky</translation>
+        <translation>Vložiť adresu z klipbordu</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1931,8 +1939,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Zadajte NetCoin adresu (napr. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Zadaj a Netcoin addresu (napr. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
 </context>
 <context>
@@ -1940,23 +1948,23 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="+14"/>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation>Podpisy - Prihlásiť sa / Overiť správu</translation>
+        <translation>Podpisy - Prihlásiť sa / Overenie správu</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+124"/>
         <source>&amp;Sign Message</source>
-        <translation>&amp;Podpísať správu</translation>
+        <translation>&amp;Podpísať Správu</translation>
     </message>
     <message>
         <location line="-118"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Môžete podpísať správy svojimi adresami a dokázať tak, že ich vlastníte. Buďte opatrní a podpíšte len prehlásenia s ktorými plne súhlasíte, nakoľko útoky typu &quot;phishing&quot; Vás môžu lákať k ich podpísaniu. Podpisujete iba plne detailné vyhlásenia s ktorými súhlasíte.</translation>
+        <translation>Môžete podpísať správy svojou adresou a dokázať, že ju vlastníte. Buďte opatrní a podpíšte len prehlásenia s ktorými plne súhlasíte, nakoľko útoky typu &quot;phishing&quot; Vás môžu lákať k ich podpísaniu.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Adresa na podpísanie správy (napr. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>The address to sign the message with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Adresa na podpísanie správy (napr. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1973,7 +1981,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="-193"/>
         <source>Paste address from clipboard</source>
-        <translation>Vložiť adresu zo schránky</translation>
+        <translation>Vložte adresu z klipbordu</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1988,17 +1996,17 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+24"/>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>Skopírujte aktuálny podpis do schránky</translation>
+        <translation>Skopírujte aktuálny podpis do clipboard</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this NetCoin address</source>
-        <translation>Podpísať správu ako dôkaz, že vlastníte túto NetCoin adresu</translation>
+        <source>Sign the message to prove you own this Netcoin address</source>
+        <translation>Podpísať správu ako dôkaz, že vlastníte túto Netcoin adresu</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Reset all sign message fields</source>
-        <translation>Obnoviť všetky polia podpísania správy</translation>
+        <translation>Obnoviť všetky polia podpísanie správy</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2015,17 +2023,17 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="-64"/>
         <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
-        <translation>Zadajte podpisovú adresu správy (uistite sa že presne kopírujete konce riadkov, medzier, tabulátorov, atď.) a podpis nižšie pre overenie správy. Dávajte pozor, aby ste nedali viac do podpisu, než to, čo je v podpísanej správe samotnej, aby ste sa vyhli oklamaniu útokom typu man-in-the-middle.</translation>
+        <translation>Zadajte podpisovú adresu správy (zaistite skopírovanie koncov riadkov, medzier, tabulátorov, atď) a podpis nižšie pre overenie správy. Dávajte pozor, aby ste nedali viac do podpisu, než to, čo je v podpísanej správe samotnej, aby ste sa vyhli oklamanu útoku man-in-the-middle.</translation>
     </message>
     <message>
         <location line="+21"/>
-        <source>The address the message was signed with (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Adresa správy bola podpísaná (napr. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>The address the message was signed with (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Adresa správy bola podpísaná (napr. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified NetCoin address</source>
-        <translation>Overte správu, aby ste sa ubezpečili, že bola podpísaná s danou NetCoin adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified Netcoin address</source>
+        <translation>Overte správu, aby zabezpečilo, že bola podpísaná s danou Netcoin adresu</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2035,18 +2043,18 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a NetCoin address (e.g. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</source>
-        <translation>Zadajte NetCoin adresu (napr. SXywGBZBowrppUwwNUo1GCRDTibzJi7g2M)</translation>
+        <source>Enter a Netcoin address (e.g. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</source>
+        <translation>Zadajte Netcoin adresu (napr. PBZ8YVV3XT3WWWd2a1jo4N9WePiwKB3mJE)</translation>
     </message>
     <message>
         <location line="-2"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
-        <translation>Kliknite &quot;Podpísať správu&quot; pre získanie podpisu</translation>
+        <translation>Kliknite &quot;Podpísať Správu&quot; na získanie podpisu</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter NetCoin signature</source>
-        <translation>Zadajte NetCoin podpis</translation>
+        <source>Enter Netcoin signature</source>
+        <translation>Zadajte Netcoin podpis</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -2102,7 +2110,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+0"/>
         <source>The signature did not match the message digest.</source>
-        <translation>Podpis nezodpovedá súhrnu správy.</translation>
+        <translation>Podpis nezodpovedá zrhnutie správy.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2176,7 +2184,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <location line="+5"/>
         <location line="+17"/>
         <source>From</source>
-        <translation>Od</translation>
+        <translation>od</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2231,7 +2239,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+16"/>
         <source>Net amount</source>
-        <translation>Čiastka netto</translation>
+        <translation>Suma netto</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2251,7 +2259,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+3"/>
         <source>Generated coins must mature 510 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Generované mince musia zrieť 510 blokov pred tým, než môžu byť použité. Keď sa vygeneroval tento blok, bol vysielaný do siete, kde má byť pridaný do reťazca blokov. Ak sa nepodarí dostať ho do reťazca blokov, jeho stav sa zmení na &quot;Neprijatý&quot;, a nebude použiteľný. Toto sa môže občas stať, ak iný uzol generuje blok v priebehu niekoľkých sekúnd pred Vami.</translation>
+        <translation>Generované mince musia zrieť 510 blokov pred tým, než môžu byť použité. Keď sa vygeneruje tento blok, bol vysielaný do siete, kde má byť pridaný do block chain. Ak sa nepodarí dostať ho do block chain, jeho stav sa zmení na &quot;Neprijatý&quot;, a nebude použiteľný. Toto sa môže občas stať, ak iný uzol generuje blok v priebehu niekoľkých sekúnd pred Vami.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2372,7 +2380,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+3"/>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>Ten blok nebol prijatý žiadnym iným uzlom a pravdepodobne nebude akceptovaný!</translation>
+        <translation>Ten blok nebol prijatý žiadnou inou nódou a pravdepodobne nebude akceptovaný!</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2402,7 +2410,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+2"/>
         <source>Mined</source>
-        <translation>Vyťažené</translation>
+        <translation>Vyfárané</translation>
     </message>
     <message>
         <location line="+38"/>
@@ -2412,7 +2420,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+190"/>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation>Status transakcie. Presuňte myš nad toto pole a zobrazí sa počet potvrdení.</translation>
+        <translation>Status transakcie. Pohybujte myšou nad týmto poľom a zjaví sa počet potvrdení.</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2491,7 +2499,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+1"/>
         <source>Mined</source>
-        <translation>Vyťažené</translation>
+        <translation>Vyfárané</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2506,7 +2514,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+7"/>
         <source>Min amount</source>
-        <translation>Min. množstvo</translation>
+        <translation>Min množstvo</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -2541,7 +2549,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+144"/>
         <source>Export Transaction Data</source>
-        <translation>Export transakčných údajov</translation>
+        <translation>Export údajov transakcií</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2616,8 +2624,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+33"/>
-        <source>NetCoin version</source>
-        <translation>NetCoin verzia</translation>
+        <source>Netcoin version</source>
+        <translation>Netcoin verzia</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2626,8 +2634,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Send command to -server or netcoind</source>
-        <translation>Pošli príkaz na -server alebo netcoind</translation>
+        <source>Send command to -server or pandacoind</source>
+        <translation>Pošli príkaz na -server alebo pandacoind</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2637,7 +2645,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+1"/>
         <source>Get help for a command</source>
-        <translation>Získať pomoc pre príkaz</translation>
+        <translation>Dostať pomoc pre príkaz</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2646,13 +2654,13 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Specify configuration file (default: netcoin.conf)</source>
-        <translation>Zadajte konfiguračný súbor (predvolené: netcoin.conf)</translation>
+        <source>Specify configuration file (default: pandacoin.conf)</source>
+        <translation>Zadajte konfiguračný súbor (predvolené: pandacoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Specify pid file (default: netcoind.pid)</source>
-        <translation>Zadajte pid súbor (predvolené: netcoind.pid)</translation>
+        <source>Specify pid file (default: pandacoind.pid)</source>
+        <translation>Zadajte pid súbor (predvolené: pandacoind.pid)</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2662,22 +2670,22 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="-1"/>
         <source>Specify data directory</source>
-        <translation>Zadajte priečinok s dátami</translation>
+        <translation>Určiť priečinok s dátami</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Set database cache size in megabytes (default: 25)</source>
-        <translation>Nastaviť veľkosť vyrovnávajúcej pamäte pre databázu v megabytoch (predvolené: 25)</translation>
+        <translation>Veľkosť vyrovnávajúcej pamäte pre databázu v megabytoch (predvolené:25)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set database disk log size in megabytes (default: 100)</source>
-        <translation>Nastaviť veľkosť databázového denníka na disku v MB (predvolené: 100)</translation>
+        <translation>Nastaviť veľkosť databázy denníka na disku v MB (predvolené: 100)</translation>
     </message>
     <message>
         <location line="+6"/>
-        <source>Listen for connections on &lt;port&gt; (default: 51737 or testnet: 51997)</source>
-        <translation>Počúvať pripojenia na &lt;port&gt; (predvolené: 51737 alebo testovacia sieť: 51997)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
+        <translation>Počúvať pripojenie na &lt;port&gt; (predvolené: 15714 alebo testovaciasieť: 25714)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2687,7 +2695,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+3"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
-        <translation>Pre načítanie peer adresy sa pripojte k uzlu, a odpojte</translation>
+        <translation>Pripojte sa k uzlu pre načítanie peer adresy, a odpojte</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2702,7 +2710,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+2"/>
         <source>Stake your coins to support network and gain reward (default: 1)</source>
-        <translation>Nechajte stávkovať vaše mince pre podporu siete a získajte odmenu (predvolené: 1)</translation>
+        <translation>Nechajte stávkovať vaše mince na podporu siete a získajte odmenu (default: 1)</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -2722,7 +2730,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+51"/>
         <source>Detach block and address databases. Increases shutdown time (default: 0)</source>
-        <translation>Odpojiť blok a databázy adries. Zvyšuje vypínací čas (predvolené: 0)</translation>
+        <translation>Odpojiť blok a adresa databáz. Zvyšuje vypínací čas (štandardne: 0)</translation>
     </message>
     <message>
         <location line="+109"/>
@@ -2736,8 +2744,8 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     </message>
     <message>
         <location line="-87"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 51736 or testnet: 51996)</source>
-        <translation>Počúvajte pre JSON-RPC spojenie na &lt;port&gt; (predvolené: 51736 alebo testovaciasieť: 51996)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 22444 or testnet: 25715)</source>
+        <translation>Počúvajte pre JSON-RPC spojenie na &lt;port&gt; (predvolené: 22444 alebo testovaciasieť: 25715)</translation>
     </message>
     <message>
         <location line="-11"/>
@@ -2752,12 +2760,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="-5"/>
         <source>Error: Wallet locked, unable to create transaction  </source>
-        <translation>Chyba: Peňaženka je zamknutá, nie je možné vytvoriť transakciu</translation>
+        <translation>Chyba: Peňaženka zamknutá, nemožno vytvoriť transakciu</translation>
     </message>
     <message>
         <location line="-8"/>
         <source>Importing blockchain data file.</source>
-        <translation>Importovanie dátového súboru reťazca blokov.</translation>
+        <translation>Importovanie blockchain data súboru.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2797,22 +2805,22 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+11"/>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>Upozornenie: -paytxfee je nastavené veľmi vysoko. Toto sú transakčné poplatky ktoré zaplatíte ak odošlete transakciu.</translation>
+        <translation>Varovanie: -paytxfee je nastavené veľmi vysoko. Toto sú transakčné poplatky ktoré zaplatíte ak odošlete transakciu.</translation>
     </message>
     <message>
         <location line="+61"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong NetCoin will not work properly.</source>
-        <translation>Upozornenie: Skontrolujte, že dátum a čas počítača sú správne! Ak je Váš čas nesprávny NetCoin nebude pracovať správne.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Netcoin will not work properly.</source>
+        <translation>Upozornenie: Skontrolujte, že dátum a čas počítača sú správne! Ak je Váš čas nesprávny Netcoin nebude pracovať správne.</translation>
     </message>
     <message>
         <location line="-31"/>
         <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Upozornenie: Chyba pri čítaní wallet.dat! Všetky kľúče načítané správne, ale transakčné dáta alebo položky adresára môže chýbať alebo byť nesprávne.</translation>
+        <translation>Varovanie: Chyba pri čítaní wallet.dat! Všetky kľúče načítané správne, ale transakčné dáta alebo položky adresára môže chýbať alebo byť nesprávne.</translation>
     </message>
     <message>
         <location line="-18"/>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Upozornenie: wallet.dat poškodený, údaje zachránené! Pôvodný wallet.dat bol uložený ako wallet.{timestamp}.bak v %s; ak váš zostatok alebo transakcie nie sú správne, mali by ste obnoviť zo zálohy.</translation>
+        <translation>Upozornenie: wallet.dat poškodený, údaje zachránené! Pôvodný wallet.dat uložiť ako peňaženku {timestamp}.bak v %s; ak váš zostatok alebo transakcie nie sú správne, mali by ste obnoviť zo zálohy.</translation>
     </message>
     <message>
         <location line="-30"/>
@@ -2827,7 +2835,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="-62"/>
         <source>Connect only to the specified node(s)</source>
-        <translation>Pripojiť sa len k určenému uzlu(om)</translation>
+        <translation>Pripojiť sa len k určenej nóde</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -2847,7 +2855,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+5"/>
         <source>Sync checkpoints policy (default: strict)</source>
-        <translation>Sync checkpoints policy (predvolené: strict)</translation>
+        <translation>Sync checkpoints policy (default: strict)</translation>
     </message>
     <message>
         <location line="+83"/>
@@ -2907,7 +2915,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+1"/>
         <source>Send trace/debug info to debugger</source>
-        <translation>Poslať stopy/ladiace informácie do debuggera</translation>
+        <translation>Poslať stopy / ladiace informácie do debuggera</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -2917,7 +2925,7 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="-1"/>
         <source>Set minimum block size in bytes (default: 0)</source>
-        <translation>Nastavte minimálnu veľkosť bloku v bajtoch (predvolené: 0)</translation>
+        <translation>Nastavte minimálnu veľkosť bloku v bajtoch (štandardne: 0)</translation>
     </message>
     <message>
         <location line="-29"/>
@@ -2964,12 +2972,12 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
     <message>
         <location line="+57"/>
         <source>WARNING: syncronized checkpoint violation detected, but skipped!</source>
-        <translation>UPOZORNENIE: detekovaný synchronizovaný porušený checkpoint, ale preskočený!</translation>
+        <translation>VAROVANIE: synchronizovaný porušený checkpoint detekovaný, ale preskočený!</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Warning: Disk space is low!</source>
-        <translation>Upozornenie: Nedostatok miesta na disku!</translation>
+        <translation>Upozornenie: Miesto na disku je nízke!</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -2991,24 +2999,24 @@ To znamená, že je potrebný poplatok aspoň %2.</translation>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:
-rpcuser=netcoinrpc
+rpcuser=pandacoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.com
 </source>
         <translation>%s, musíte nastaviť rpcpassword v konfiguračnom súbore:
  %s
 Je odporúčané použiť nasledujúce náhodné heslo:
-rpcuser=netcoinrpc
+rpcuser=pandacoinrpc
 rpcpassword=%s
 (Nemusíte si pamätať toto heslo)
 Užívateľské meno a heslo nesmú byť rovnaké. 
 Ak súbor neexistuje, vytvorte ho s oprávneniami súborov vlastníkov iba na čítatanie.
 Odporúča sa tiež nastaviť alertnotify, takže budete upozornení na problémy;
-napríklad: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.com</translation>
+napríklad: alertnotify=echo %%s | mail -s &quot;Netcoin Alert&quot; admin@foo.com</translation>
     </message>
     <message>
         <location line="+51"/>
@@ -3118,7 +3126,7 @@ napríklad: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.c
     <message>
         <location line="+18"/>
         <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>
-        <translation>UPOZORNENIE: Neplatný checkpoint nájdený! Uvedené transakcie nemusia byť správne! Možno budete musieť upgradovať, alebo upozorniť vývojárov.</translation>
+        <translation>VAROVANIE: Neplatný checkpoint nájdený! Uvedené transakcie nemusia byť správne! Možno budete musieť upgradovať, alebo oznámiť vývojárov.</translation>
     </message>
     <message>
         <location line="-158"/>
@@ -3132,13 +3140,13 @@ napríklad: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.c
     </message>
     <message>
         <location line="+1"/>
-        <source>Cannot obtain a lock on data directory %s.  NetCoin is probably already running.</source>
-        <translation>Nemožno získať zámok na dátový adresár %s. NetCoin už pravdepodobne beží.</translation>
+        <source>Cannot obtain a lock on data directory %s.  Netcoin is probably already running.</source>
+        <translation>Nemožno získať zámok na dátový adresár %s. Netcoin už pravdepodobne beží.</translation>
     </message>
     <message>
         <location line="-98"/>
-        <source>NetCoin</source>
-        <translation>NetCoin</translation>
+        <source>Netcoin</source>
+        <translation>Netcoin</translation>
     </message>
     <message>
         <location line="+140"/>
@@ -3172,13 +3180,13 @@ napríklad: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.c
     </message>
     <message>
         <location line="+4"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of NetCoin</source>
-        <translation>Chyba pri načítaní wallet.dat: Peňaženka vyžaduje novšiu verziu NetCoin</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Netcoin</source>
+        <translation>Chyba pri načítaní wallet.dat: Peňaženka vyžaduje novšiu verziu Netcoin</translation>
     </message>
     <message>
         <location line="+1"/>
-        <source>Wallet needed to be rewritten: restart NetCoin to complete</source>
-        <translation>Peňaženka potrebuje byť prepísaná: reštartujte NetCoin k dokončeniu</translation>
+        <source>Wallet needed to be rewritten: restart Netcoin to complete</source>
+        <translation>Peňaženka potrebuje byť prepísaná: reštartujte Netcoin k dokončeniu</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3247,8 +3255,8 @@ napríklad: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.c
     </message>
     <message>
         <location line="+122"/>
-        <source>Unable to bind to %s on this computer. NetCoin is probably already running.</source>
-        <translation>Nemôžem sa pripojiť na %s na tomto počítači. NetCoin je pravdepodobne už beží.</translation>
+        <source>Unable to bind to %s on this computer. Netcoin is probably already running.</source>
+        <translation>Nemôžem sa pripojiť na %s na tomto počítači. Netcoin je pravdepodobne už beží.</translation>
     </message>
     <message>
         <location line="-97"/>
@@ -3307,7 +3315,7 @@ napríklad: alertnotify=echo %%s | mail -s &quot;NetCoin Alert&quot; admin@foo.c
 If the file does not exist, create it with owner-readable-only file permissions.</source>
         <translation>Musíš nastaviť rpcpassword=&lt;heslo&gt; v konfiguračnom súbore:
 %s
-Ak súbor neexistuje, vytvorte ho s oprávnením pre čítanie len vlastníkom (owner-readable-only)</translation>
+Ak súbor neexistuje, vytvor ho s oprávnením pre čítanie len vlastníkom (owner-readable-only)</translation>
     </message>
 </context>
 </TS>
