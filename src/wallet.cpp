@@ -77,7 +77,6 @@ bool CWallet::AddKey(const CKey& key)
         return true;
     if (!IsCrypted())
         return CWalletDB(strWalletFile).WriteKey(pubkey, key.GetPrivKey(), mapKeyMetadata[pubkey.GetID()]);
-
     return true;
 }
 
@@ -110,6 +109,7 @@ bool CWallet::LoadCryptedKey(const CPubKey &vchPubKey, const std::vector<unsigne
 {
     SetMinVersion(FEATURE_WALLETCRYPT);
     return CCryptoKeyStore::AddCryptedKey(vchPubKey, vchCryptedSecret);
+
 }
 
 bool CWallet::AddCScript(const CScript& redeemScript)
@@ -397,7 +397,6 @@ void CWallet::WalletUpdateSpent(const CTransaction &tx, bool fBlock)
                 }
             }
         }
-    
 
         if (fBlock)
         {
@@ -534,7 +533,7 @@ bool CWallet::AddToWallet(const CWalletTx& wtxIn)
                     {
                         SetDefaultKey(newDefaultKey);
                         SetAddressBookName(vchDefaultKey.GetID(), "");
-                    }                    }
+                    }
                 }
             }
         }
@@ -728,9 +727,8 @@ void CWalletTx::GetAmounts(list<pair<CTxDestination, int64_t> >& listReceived,
         }
         else if (!(fIsMine = pwallet->IsMine(txout)))
             continue;
-         // In either case, we need to get the destination address
 
-
+        // In either case, we need to get the destination address
         CTxDestination address;
         if (!ExtractDestination(txout.scriptPubKey, address))
         {
@@ -980,7 +978,6 @@ void CWalletTx::RelayWalletTransaction()
 
 void CWallet::ResendWalletTransactions(bool fForce)
 {
-
     if (!fForce)
     {
         // Do this infrequently and randomly to avoid giving away
@@ -2008,12 +2005,12 @@ void CWallet::PrintWallet(const CBlock& block)
         if (block.IsProofOfWork() && mapWallet.count(block.vtx[0].GetHash()))
         {
             CWalletTx& wtx = mapWallet[block.vtx[0].GetHash()];
-            printf("    mine:  %d  %d  %"PRI64d"", wtx.GetDepthInMainChain(), wtx.GetBlocksToMaturity(), wtx.GetCredit());
+            printf("    mine:  %d  %d  %"PRId64"", wtx.GetDepthInMainChain(), wtx.GetBlocksToMaturity(), wtx.GetCredit());
         }
         if (block.IsProofOfStake() && mapWallet.count(block.vtx[1].GetHash()))
         {
             CWalletTx& wtx = mapWallet[block.vtx[1].GetHash()];
-            printf("    stake: %d  %d  %"PRI64d"", wtx.GetDepthInMainChain(), wtx.GetBlocksToMaturity(), wtx.GetCredit());
+            printf("    stake: %d  %d  %"PRId64"", wtx.GetDepthInMainChain(), wtx.GetBlocksToMaturity(), wtx.GetCredit());
          }
 
     }
@@ -2076,7 +2073,7 @@ bool CWallet::NewKeyPool()
             walletdb.WritePool(nIndex, CKeyPool(GenerateNewKey()));
             setKeyPool.insert(nIndex);
         }
-        printf("CWallet::NewKeyPool wrote %"PRI64d" new keys\n", nKeys);
+        printf("CWallet::NewKeyPool wrote %"PRId64" new keys\n", nKeys);
     }
     return true;
 }
@@ -2106,7 +2103,7 @@ bool CWallet::TopUpKeyPool(unsigned int nSize)
             if (!walletdb.WritePool(nEnd, CKeyPool(GenerateNewKey())))
                 throw runtime_error("TopUpKeyPool() : writing generated key failed");
             setKeyPool.insert(nEnd);
-            printf("keypool added key %"PRI64d", size=%"PRIszu"\n", nEnd, setKeyPool.size());
+            printf("keypool added key %"PRId64", size=%"PRIszu"\n", nEnd, setKeyPool.size());
         }
     }
     return true;
@@ -2136,7 +2133,7 @@ void CWallet::ReserveKeyFromKeyPool(int64_t& nIndex, CKeyPool& keypool)
             throw runtime_error("ReserveKeyFromKeyPool() : unknown key in key pool");
         assert(keypool.vchPubKey.IsValid());
         if (fDebug && GetBoolArg("-printkeypool"))
-            printf("keypool reserve %"PRI64d"\n", nIndex);
+            printf("keypool reserve %"PRId64"\n", nIndex);
     }
 }
 
@@ -2164,7 +2161,7 @@ void CWallet::KeepKey(int64_t nIndex)
         walletdb.ErasePool(nIndex);
     }
     if(fDebug)
-        printf("keypool keep %"PRI64d"\n", nIndex);
+        printf("keypool keep %"PRId64"\n", nIndex);
 }
 
 void CWallet::ReturnKey(int64_t nIndex)
@@ -2175,7 +2172,7 @@ void CWallet::ReturnKey(int64_t nIndex)
         setKeyPool.insert(nIndex);
     }
     if(fDebug)
-        printf("keypool return %"PRI64d"\n", nIndex);
+        printf("keypool return %"PRId64"\n", nIndex);
 }
 
 bool CWallet::GetKeyFromPool(CPubKey& result, bool fAllowReuse)
