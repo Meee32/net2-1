@@ -4,12 +4,14 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef BITCOIN_MRUSET_H
 #define BITCOIN_MRUSET_H
-#include <stdint.h>
-#include <set>
+
 #include <deque>
+#include <set>
+#include <stdint.h>
 
 /** STL-like set container that only keeps the most recent N elements. */
-template <typename T> class mruset
+template <typename T>
+Class mruset
 {
 public:
     typedef T key_type;
@@ -37,10 +39,8 @@ public:
     std::pair<iterator, bool> insert(const key_type& x)
     {
         std::pair<iterator, bool> ret = set.insert(x);
-        if (ret.second)
-        {
-            if (nMaxSize && queue.size() == nMaxSize)
-            {
+        if (ret.second) {
+            if (nMaxSize && queue.size() == nMaxSize) {
                 set.erase(queue.front());
                 queue.pop_front();
             }
@@ -52,8 +52,7 @@ public:
     size_type max_size(size_type s)
     {
         if (s)
-            while (queue.size() > s)
-            {
+            while (queue.size() > s) {
                 set.erase(queue.front());
                 queue.pop_front();
             }
@@ -62,4 +61,4 @@ public:
     }
 };
 
-#endif
+#endif // BITCOIN_MRUSET_H

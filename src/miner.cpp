@@ -77,18 +77,19 @@ public:
     }
 };
 
-
 uint64_t nLastBlockTx = 0;
 uint64_t nLastBlockSize = 0;
 int64_t nLastCoinStakeSearchInterval = 0;
- 
+
 // We want to sort transactions by priority and fee, so:
 typedef boost::tuple<double, double, CTransaction*> TxPriority;
 class TxPriorityCompare
 {
     bool byFee;
+
 public:
     TxPriorityCompare(bool _byFee) : byFee(_byFee) { }
+
     bool operator()(const TxPriority& a, const TxPriority& b)
     {
         if (byFee)
@@ -233,6 +234,7 @@ CBlock* CreateNewBlock(CWallet* pwallet, bool fProofOfStake, int64_t* pFees)
                 nTotalIn += nValueIn;
 
                 int nConf = txindex.GetDepthInMainChain();
+
                 dPriority += (double)nValueIn * nConf;
             }
             if (fMissingInputs) continue;
@@ -390,7 +392,6 @@ void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& 
         hashPrevBlock = pblock->hashPrevBlock;
     }
     ++nExtraNonce;
-
     unsigned int nHeight = pindexPrev->nHeight+1; // Height first in coinbase required for block.version=2
     pblock->vtx[0].vin[0].scriptSig = (CScript() << nHeight << CBigNum(nExtraNonce)) + COINBASE_FLAGS;
     assert(pblock->vtx[0].vin[0].scriptSig.size() <= 100);

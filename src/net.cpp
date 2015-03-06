@@ -18,8 +18,8 @@
 #endif
 
 #ifdef USE_UPNP
-#include <miniupnpc/miniwget.h>
 #include <miniupnpc/miniupnpc.h>
+#include <miniupnpc/miniwget.h>
 #include <miniupnpc/upnpcommands.h>
 #include <miniupnpc/upnperrors.h>
 #endif
@@ -485,7 +485,6 @@ CNode* ConnectNode(CAddress addrConnect, const char *pszDest, int64 nTimeout)
         }
     }
 
-
     /// debug print
     printf("trying connection %s lastseen=%.1fhrs\n",
         pszDest ? pszDest : addrConnect.ToString().c_str(),
@@ -523,6 +522,7 @@ CNode* ConnectNode(CAddress addrConnect, const char *pszDest, int64 nTimeout)
         }
 
         pnode->nTimeConnected = GetTime();
+
         return pnode;
     }
     else
@@ -735,12 +735,10 @@ void ThreadSocketHandler2(void* parg)
                 }
             }
         }
-        if (vNodes.size() != nPrevNodeCount)
-        {
+        if(vNodes.size() != nPrevNodeCount) {
             nPrevNodeCount = vNodes.size();
             uiInterface.NotifyNumConnectionsChanged(vNodes.size());
         }
-
 
         //
         // Find which sockets have data to receive
@@ -801,7 +799,6 @@ void ThreadSocketHandler2(void* parg)
             MilliSleep(timeout.tv_usec/1000);
         }
 
-
         //
         // Accept new connections
         //
@@ -859,7 +856,6 @@ void ThreadSocketHandler2(void* parg)
                 }
             }
         }
-
 
         //
         // Service each socket

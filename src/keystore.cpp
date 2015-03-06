@@ -16,8 +16,7 @@ bool CKeyStore::GetPubKey(const CKeyID &address, CPubKey &vchPubKeyOut) const
     return true;
 }
 
-bool CBasicKeyStore::AddKey(const CKey& key)
-{
+bool CBasicKeyStore::AddKey(const CKey& key) {
     bool fCompressed = false;
     CSecret secret = key.GetSecret(fCompressed);
     {

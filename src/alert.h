@@ -99,4 +99,4 @@ public:
     static CAlert getAlertByHash(const uint256 &hash);
 };
 
-#endif
+#endif // BITCOIN_ALERT_H

@@ -49,6 +49,7 @@ public:
         READWRITE(nDeriveIterations);
         READWRITE(vchOtherDerivationParameters);
     )
+
     CMasterKey()
     {
         // 25000 rounds is just under 0.1 seconds on a 1.86 GHz Pentium M
